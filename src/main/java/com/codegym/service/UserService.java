@@ -32,10 +32,9 @@ public class UserService implements IUserService {
     private boolean checkUser(User user){
         return Pattern.matches("^\\d+\\S{10}&", user.getPassWord());
     }
-
     @Override
-    public boolean update(int id, User user) {
-        return false;
+    public boolean update(int id, User user) throws SQLException {
+        return userDAO.update(id,user);
     }
 
     @Override

@@ -11,7 +11,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/users")
@@ -28,10 +27,15 @@ public class UserServlet extends HttpServlet {
             case "create":
                 createNewForm(request, response);
                 break;
+            case "edit":
+                showEditCustomerForm(request, response);
             default:
                 showList(request, response);
                 break;
         }
+    }
+
+    private void showEditCustomerForm(HttpServletRequest request, HttpServletResponse response) {
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) {
@@ -51,13 +55,37 @@ public class UserServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        if ("create".equals(action)) {
-            try {
-                createNewCustomer(request, response);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+        switch (action){
+            case "create":
+                try {
+                    createNewCustomer(request,response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            case "edit" :
+                try {
+                    editCustomer(request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+
         }
+    }
+
+    private void editCustomer(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
+        String gender = request.getParameter("gender");
+        String phone = request.getParameter("phone");
+        String rank = request.getParameter("rank");
+        User user = new User(userName,passWord,gender,phone,rank);
+        userService.update(id, user);
+        request.setAttribute("user", user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void createNewCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

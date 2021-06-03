@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class RentalPersonDAO implements IRentalPersonDAO {
+
     @Override
     public boolean insert(RentalPerson rentalPerson) throws SQLException {
         return false;
@@ -28,7 +29,7 @@ public class RentalPersonDAO implements IRentalPersonDAO {
     }
 
     @Override
-    public boolean update(RentalPerson rentalPerson) throws SQLException {
+    public boolean update(int id, RentalPerson rentalPerson) throws SQLException {
         return false;
     }
 }

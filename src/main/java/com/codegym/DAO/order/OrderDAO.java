@@ -87,7 +87,7 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public boolean update(OrderDetail orderDetail) throws SQLException {
+    public boolean update(int id,OrderDetail orderDetail) throws SQLException {
         int rowUpdate = 0;
         Connection connection = SQLConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ORDER_DETAILS);
