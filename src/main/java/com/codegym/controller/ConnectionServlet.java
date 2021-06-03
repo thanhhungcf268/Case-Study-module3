@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ConnectionServlet", value = "/ConnectionServlet")
+@WebServlet(name = "ConnectionServlet", value = "/connections")
 public class ConnectionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
