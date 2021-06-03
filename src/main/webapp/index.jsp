@@ -28,6 +28,7 @@
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" ><a href="/users?action=create">registration</a></button>
 </form>
 <script src="css/bootstrap-5.0.1-dist/js/bootstrap.bundle.js"></script>
 </body>
