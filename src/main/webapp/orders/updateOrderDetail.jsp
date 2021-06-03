@@ -10,7 +10,7 @@
 <c:if test="${message!= null}">
     <p style="color: red"><c:out value="${message}"/></p>
 </c:if>
-<form method="post">
+<form method="post" action="/orders?action=edit&&id=${orderDetail.orderId}">
     <table>
         <tr>
             <td>User Id:</td>

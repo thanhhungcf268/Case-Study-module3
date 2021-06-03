@@ -80,7 +80,7 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void updateOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        int orderId = Integer.parseInt(request.getParameter("id"));
         int userId = Integer.parseInt(request.getParameter("userId"));
         int personId = Integer.parseInt(request.getParameter("personId"));
         float price = Float.parseFloat(request.getParameter("price"));
