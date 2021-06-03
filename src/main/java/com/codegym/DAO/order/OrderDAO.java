@@ -12,9 +12,9 @@ import java.util.List;
 public class OrderDAO implements IOrderDAO {
 
     public static final String SELECT_ALL_ORDER_DETAILS = "select * from orderdetail";
-    public static final String SELECT_CUSTOMER_BY_ID = "select * from orderdetail where id = ?";
+    public static final String SELECT_CUSTOMER_BY_ID = "select * from orderdetail where orderId = ?";
     public static final String INSERT_ORDER_DETAILS = "insert into orderdetail (userId, personId, price, hours, startHour) VALUE (?, ?, ?, ?, ?)";
-    public static final String UPDATE_ORDER_DETAILS = "update orderdetail set userId = ?,personId = ?, price =?, hours=?, startHour =? where orderId = ?;";
+    public static final String UPDATE_ORDER_DETAILS = "update orderdetail set userId = ?,personId = ?, price =?, hours=?, startHour =? where orderId = ?";
 
 
     @Override
@@ -87,7 +87,7 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public boolean update(OrderDetail orderDetail) throws SQLException {
+    public boolean update(int id, OrderDetail orderDetail) throws SQLException {
         int rowUpdate = 0;
         Connection connection = SQLConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ORDER_DETAILS);
@@ -96,7 +96,7 @@ public class OrderDAO implements IOrderDAO {
         preparedStatement.setDouble(3, orderDetail.getPrice());
         preparedStatement.setFloat(4, orderDetail.getHours());
         preparedStatement.setString(5, orderDetail.getStartHour());
-        preparedStatement.setInt(6, orderDetail.getOrderId());
+        preparedStatement.setInt(6, id);
 
         rowUpdate = preparedStatement.executeUpdate();
         return rowUpdate !=0;

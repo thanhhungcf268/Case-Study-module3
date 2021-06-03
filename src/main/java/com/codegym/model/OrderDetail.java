@@ -11,6 +11,14 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
+    public OrderDetail(int userId, int personId, double price, float hours, String startHour) {
+        this.userId = userId;
+        this.personId = personId;
+        this.price = price;
+        this.hours = hours;
+        this.startHour = startHour;
+    }
+
     public OrderDetail(int orderId, int userId, int personId, double price, float hours, String startHour) {
         this.orderId = orderId;
         this.userId = userId;

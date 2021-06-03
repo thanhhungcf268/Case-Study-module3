@@ -28,7 +28,7 @@ public class RentalPersonDAO implements IRentalPersonDAO {
     }
 
     @Override
-    public boolean update(RentalPerson rentalPerson) throws SQLException {
+    public boolean update(int id, RentalPerson rentalPerson) throws SQLException {
         return false;
     }
 }
