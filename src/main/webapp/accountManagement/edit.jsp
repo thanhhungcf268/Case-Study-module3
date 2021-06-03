@@ -11,14 +11,14 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Edit customer</h1>
-<a href="/customers">List customer</a>
+<h1>Edit home</h1>
+<a href="/">back home</a>
 <form method="post">
     <table>
         <h1>Username :</h1>
         <input name="userName" type="text" value="${user.userNam}">
         <h1>PassWord :</h1>
-        <input name="passWord" type="text " value="${user.passWord}">
+        <input name="passWord" type="password" value="${user.passWord}">
         <h1>gender :</h1>
         <input name="gender" type="text" value="${user.gender}">
         <h1>phone :</h1>
