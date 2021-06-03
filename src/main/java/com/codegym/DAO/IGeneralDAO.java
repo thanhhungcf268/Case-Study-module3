@@ -14,5 +14,9 @@ public interface IGeneralDAO<T> {
 
     boolean delete(int id) throws SQLException;
 
+<<<<<<< HEAD
     boolean update(int id,T t) throws SQLException;
+=======
+    boolean update(int id, T t) throws SQLException;
+>>>>>>> a3732bb3535155e84cbe02c2ba2cd7e6d1a16508
 }

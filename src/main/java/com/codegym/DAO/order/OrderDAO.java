@@ -11,10 +11,10 @@ import java.util.List;
 
 public class OrderDAO implements IOrderDAO {
 
-    public static final String SELECT_ALL_ORDER_DETAILS = "select * from orderdetails";
-    public static final String SELECT_CUSTOMER_BY_ID = "select * from orderdetails where id = ?";
-    public static final String INSERT_ORDER_DETAILS = "insert into orderdetails (userId, rentalPersonId, price, hours, startHour) VALUE (?, ?, ?, ?, ?)";
-    public static final String UPDATE_ORDER_DETAILS = "update orderdetail set userId = ?,rentalPersonId = ?, price =?, hours=?, startHour =? where orderId = ?;";
+    public static final String SELECT_ALL_ORDER_DETAILS = "select * from orderdetail";
+    public static final String SELECT_CUSTOMER_BY_ID = "select * from orderdetail where orderId = ?";
+    public static final String INSERT_ORDER_DETAILS = "insert into orderdetail (userId, personId, price, hours, startHour) VALUE (?, ?, ?, ?, ?)";
+    public static final String UPDATE_ORDER_DETAILS = "update orderdetail set userId = ?,personId = ?, price =?, hours=?, startHour =? where orderId = ?";
 
 
     @Override
@@ -23,7 +23,7 @@ public class OrderDAO implements IOrderDAO {
         int rowInsert = 0;
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER_DETAILS);
         preparedStatement.setInt(1, orderDetail.getUserId());
-        preparedStatement.setInt(2, orderDetail.getRentalPersonId());
+        preparedStatement.setInt(2, orderDetail.getPersonId());
         preparedStatement.setDouble(3, orderDetail.getPrice());
         preparedStatement.setFloat(4, orderDetail.getHours());
         preparedStatement.setString(5, orderDetail.getStartHour());
@@ -41,11 +41,11 @@ public class OrderDAO implements IOrderDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
                 int userId = rs.getInt("userId");
-                int rentalPersonId = rs.getInt("rentalPersonId");
+                int personId = rs.getInt("personId");
                 double price = rs.getDouble("price");
                 float hours = rs.getFloat("hours");
                 String startHour = rs.getString("startHour");
-                orderDetail = new OrderDetail(id, userId, rentalPersonId,price,hours,startHour);
+                orderDetail = new OrderDetail(id, userId, personId,price,hours,startHour);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,11 +63,11 @@ public class OrderDAO implements IOrderDAO {
             while (rs.next()){
                 int orderId = rs.getInt("orderId");
                 int userId = rs.getInt("userId");
-                int rentalPersonId = rs.getInt("rentalPersonId");
+                int personId = rs.getInt("personId");
                 double price = rs.getDouble("price");
                 float hours = rs.getFloat("hours");
                 String startHour = rs.getString("startHour");
-                orderDetails.add(new OrderDetail(orderId, userId, rentalPersonId, price, hours, startHour));
+                orderDetails.add(new OrderDetail(orderId, userId, personId, price, hours, startHour));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,16 +87,20 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
+<<<<<<< HEAD
     public boolean update(int id,OrderDetail orderDetail) throws SQLException {
+=======
+    public boolean update(int id, OrderDetail orderDetail) throws SQLException {
+>>>>>>> a3732bb3535155e84cbe02c2ba2cd7e6d1a16508
         int rowUpdate = 0;
         Connection connection = SQLConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ORDER_DETAILS);
         preparedStatement.setInt(1, orderDetail.getUserId());
-        preparedStatement.setInt(2, orderDetail.getRentalPersonId());
+        preparedStatement.setInt(2, orderDetail.getPersonId());
         preparedStatement.setDouble(3, orderDetail.getPrice());
         preparedStatement.setFloat(4, orderDetail.getHours());
         preparedStatement.setString(5, orderDetail.getStartHour());
-        preparedStatement.setInt(6, orderDetail.getOrderId());
+        preparedStatement.setInt(6, id);
 
         rowUpdate = preparedStatement.executeUpdate();
         return rowUpdate !=0;

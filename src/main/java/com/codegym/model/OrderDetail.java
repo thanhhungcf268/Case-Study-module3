@@ -3,7 +3,7 @@ package com.codegym.model;
 public class OrderDetail {
     private int orderId;
     private int userId;
-    private int rentalPersonId;
+    private int personId;
     private double price;
     private float hours;
     private String startHour;
@@ -11,10 +11,18 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(int orderId, int userId, int rentalPersonId, double price, float hours, String startHour) {
+    public OrderDetail(int userId, int personId, double price, float hours, String startHour) {
+        this.userId = userId;
+        this.personId = personId;
+        this.price = price;
+        this.hours = hours;
+        this.startHour = startHour;
+    }
+
+    public OrderDetail(int orderId, int userId, int personId, double price, float hours, String startHour) {
         this.orderId = orderId;
         this.userId = userId;
-        this.rentalPersonId = rentalPersonId;
+        this.personId = personId;
         this.price = price;
         this.hours = hours;
         this.startHour = startHour;
@@ -36,12 +44,12 @@ public class OrderDetail {
         this.userId = userId;
     }
 
-    public int getRentalPersonId() {
-        return rentalPersonId;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setRentalPersonId(int rentalPersonId) {
-        this.rentalPersonId = rentalPersonId;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public double getPrice() {

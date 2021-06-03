@@ -44,6 +44,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
+<<<<<<< HEAD
     public boolean update(int id ,User user) throws SQLException {
          rowInserted = 0;
         try {
@@ -60,5 +61,9 @@ public class UserDAO implements IUserDAO {
             sqlException.printStackTrace();
         }
         return rowInserted != 0;
+=======
+    public boolean update(int id,User user) throws SQLException {
+        return false;
+>>>>>>> a3732bb3535155e84cbe02c2ba2cd7e6d1a16508
     }
 }
