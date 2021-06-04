@@ -37,6 +37,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/orders?action=create"><b>Create Order</b></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/"><b>Service Detail</b></a>
+                        </li>
                     </ul>
                 </div>
             </div>

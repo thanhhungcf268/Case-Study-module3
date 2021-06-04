@@ -24,6 +24,7 @@
 <div align="center">
     <h1>Create new order detail</h1>
     <h2><a href="/orders">List order detail</a></h2>
+    <h2><a href="/">Choose type service</a></h2>
     <c:if test="${message!= null}">
         <p style="color: red"><c:out value="${message}"/></p>
     </c:if>
