@@ -21,24 +21,27 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid" style="background-color: #e3f2fd">
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <h1 style="margin: 10px">Order List</h1>
-            <p></p>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 10px">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/"><b>Homepage</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/orders?action=create"><b>Create Order</b></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
 <table class="table table-striped">
     <thead>
+    <tr>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid" style="background-color: #e3f2fd">
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <h1 style="margin: 10px">Order List</h1>
+                    <p></p>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 10px">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/"><b>Homepage</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/orders?action=create"><b>Create Order</b></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </tr>
     <tr>
         <th>Order Id</th>
         <th>User Id</th>

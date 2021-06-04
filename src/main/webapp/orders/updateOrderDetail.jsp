@@ -16,33 +16,21 @@
             <td>User Id:</td>
             <td><input type="text" name="userId" value="${orderDetail.userId}"></td>
         </tr>
-        <%--        <tr>--%>
-        <%--            <td>User Id:</td>--%>
-        <%--            <td>--%>
-        <%--                <select name="userId">--%>
-        <%--                    <c:forEach items="${orderDetail}" var="orderDetail">--%>
-        <%--                        <option value="${orderDetail.userId}">--%>
-        <%--                            <c:out value="${customer.name}"/>--%>
-        <%--                        </option>--%>
-        <%--                    </c:forEach>--%>
-        <%--                </select>--%>
-        <%--            </td>--%>
-        <%--        </tr>--%>
         <tr>
             <td>Person Id:</td>
             <td><input type="text" name="personId" value="${orderDetail.personId}"></td>
         </tr>
         <tr>
             <td>Price:</td>
-            <td><input type="text" name="price"></td>
+            <td><input type="text" name="price" value="${orderDetail.price}"></td>
         </tr>
         <tr>
             <td>Hours:</td>
-            <td><input type="text" name="hours"></td>
+            <td><input type="text" name="hours" value="${orderDetail.hours}"></td>
         </tr>
         <tr>
             <td>Start Hour:</td>
-            <td><input type="text" name="startHour"></td>
+            <td><input type="text" name="startHour" value="${orderDetail.startHour}"></td>
         </tr>
         <tr>
             <td></td>
