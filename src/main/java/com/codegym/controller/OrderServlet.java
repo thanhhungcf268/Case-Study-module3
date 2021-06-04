@@ -1,7 +1,10 @@
 package com.codegym.controller;
 
 import com.codegym.DAO.order.OrderDAO;
+import com.codegym.DAO.rentalPerson.RentalPersonDAO;
+import com.codegym.DAO.user.UserDAO;
 import com.codegym.model.OrderDetail;
+import com.codegym.model.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,6 +17,8 @@ import java.util.List;
 public class OrderServlet extends HttpServlet {
 
     public OrderDAO orderDAO = new OrderDAO();
+    public UserDAO userDAO = new UserDAO();
+    public RentalPersonDAO rentalPersonDAO = new RentalPersonDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,6 +93,8 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<User> users = userDAO.selectAll();
+        request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/createOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
