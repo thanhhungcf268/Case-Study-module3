@@ -23,17 +23,52 @@ public class OrderServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action) {
-            case "create":
-                showCreateForm(request, response);
-                break;
-            case "edit":
-                showEditForm(request, response);
-                break;
-            default:
-                showList(request, response);
-                break;
+        try {
+            switch (action) {
+                case "create":
+                    showCreateForm(request, response);
+                    break;
+                case "edit":
+                    showEditForm(request, response);
+                    break;
+                case "delete":
+                    deleteOrder(request, response);
+                    break;
+                case "view":
+                    viewDetail(request, response);
+                    break;
+                default:
+                    showList(request, response);
+                    break;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
+
+    private void viewDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        OrderDetail orderDetail = orderDAO.select(id);
+        RequestDispatcher dispatcher;
+        if (orderDetail == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("orderDetail", orderDetail);
+            dispatcher = request.getRequestDispatcher("orders/view.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        boolean isDelete = orderDAO.delete(id);
+        if (!isDelete) {
+            request.setAttribute("message", "Error!");
+        } else {
+            request.setAttribute("message", "Success!");
+        }
+        response.sendRedirect("/orders");
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
