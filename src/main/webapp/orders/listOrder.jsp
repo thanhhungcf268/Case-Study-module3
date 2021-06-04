@@ -32,7 +32,7 @@
                     <p></p>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 10px">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/"><b>Homepage</b></a>
+                            <a class="nav-link active" aria-current="page" href="accountManagement/homePageAdmin.jsp"><b>Homepage</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/orders?action=create"><b>Create Order</b></a>
