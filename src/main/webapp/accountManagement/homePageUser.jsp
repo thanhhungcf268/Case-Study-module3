@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Đây là user</h1>
+<h1> user</h1>
+<h1><a href="/">Edit</a></h1>
+<h1><a href="..//users?action=edit&userId=${user.userId}">Show In For</a></h1>
+<h1><a href="..//orders?action=oderUser">create request</a></h1>
 </body>
 </html>

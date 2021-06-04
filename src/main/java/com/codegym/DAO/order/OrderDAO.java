@@ -75,7 +75,6 @@ public class OrderDAO implements IOrderDAO {
         return orderDetails;
     }
 
-
     @Override
     public boolean delete(int id) throws SQLException {
         int rowDelete = 0;

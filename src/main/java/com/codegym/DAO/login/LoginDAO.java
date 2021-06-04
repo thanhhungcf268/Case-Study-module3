@@ -9,17 +9,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginDAO {
-    public boolean checkLogin(String userName1,String passWord1) throws SQLException {
+    public int checkLogin(String userName1,String passWord1) throws SQLException {
         Connection connection = SQLConnection.getConnection();
-        boolean isCheck = false;
-        String SELECT_BY_USERNAME = "select * from usermanager.user where username = ?";
+        int isCheck = -1;
+        String SELECT_BY_USERNAME = "select userId,password from usermanager.user where username = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_USERNAME);
         preparedStatement.setString(1, userName1);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             String password = resultSet.getString("password");
+            int userId = resultSet.getInt("userId");
             if (password.equals(passWord1)){
-                isCheck = true;
+                isCheck = userId;
             }
         }
         return isCheck;
