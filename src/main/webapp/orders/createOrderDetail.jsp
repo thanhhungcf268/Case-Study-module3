@@ -6,15 +6,18 @@
     <link href="css/bootstrap-5.0.1-dist/css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css">
     <style>
-        table{
+        table {
             text-align: center;
         }
+
         tr:hover {
             background-color: #e3f2fd;
         }
+
         a:hover {
             color: red;
         }
+
         b:hover {
             color: red;
         }
@@ -26,7 +29,7 @@
     <h2><a href="/orders">List order detail</a></h2>
     <h2><a href="/">Choose type service</a></h2>
     <c:if test="${message!= null}">
-        <p style="color: red"><c:out value="${message}"/></p>
+    <p style="color: red"><c:out value="${message}"/></p>
     </c:if>
     <form method="post">
         <table>
@@ -64,10 +67,12 @@
             </tr>
             <tr>
                 <td></td>
-                <td><button>Create</button></td>
+                <td>
+                    <button>Create</button>
+                </td>
             </tr>
         </table>
+    </form>
 </div>
-</form>
 </body>
 </html>

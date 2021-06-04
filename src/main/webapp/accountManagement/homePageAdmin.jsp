@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Admin Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -51,14 +51,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" ><b id = "tider" style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
+                <li class="active"><a>Home</a></li>
+                <li><a href="users">Users List</a></li>
                 <li><a href="orders">Order List</a></li>
-                <li><a href="">Projects</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/employee">Rental List</a></li>
+                <li><a href="https://www.facebook.com/xoa.hets.9">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/"><span class="glyphicon glyphicon-log-in"></span>Sign out</a></li>
@@ -72,23 +73,41 @@
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+            <img style="height: 550px; object-fit: cover" src="https://www.wallpapertip.com/wmimgs/139-1399581_mikasa-ackerman-wallpaper-hinh-attack-on-titan.jpg" alt="img">
             <div class="carousel-caption">
-                <h3>Sell $</h3>
-                <p>Money Money.</p>
+                <h3>Mikasa Ackerman 18</h3>
             </div>
         </div>
-
         <div class="item">
-            <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+            <img style="height: 550px; object-fit: cover" src="https://wallpapercave.com/wp/wp5170725.jpg" alt="Image">
             <div class="carousel-caption">
-                <h3>More Sell $</h3>
-                <p>Lorem ipsum...</p>
+                <h3>Queen of pain 20</h3>
+            </div>
+        </div>
+        <div class="item">
+            <img style="height: 550px; object-fit: cover" src="https://wallpapercave.com/wp/wp5537291.jpg" alt="Image">
+            <div class="carousel-caption">
+                <h3>Lina 16</h3>
+            </div>
+        </div>
+        <div class="item">
+            <img style="height: 550px; object-fit: cover" src="https://wallpapercave.com/wp/wp2539007.jpg" alt="Image">
+            <div class="carousel-caption">
+                <h3>Crystal Maiden 17</h3>
+            </div>
+        </div>
+        <div class="item">
+            <img style="height: 550px; object-fit: cover" src="https://wallpapercave.com/wp/wp5820989.jpg" alt="Image">
+            <div class="carousel-caption">
+                <h3>Luna 23</h3>
             </div>
         </div>
     </div>
@@ -108,27 +127,66 @@
     <h3>What We Do</h3><br>
     <div class="row">
         <div class="col-sm-4">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Current Project</p>
+            <img src="https://edgecast.production.backyard.verizonmedia.com/verizonmedia/s3fs-public/styles/featured/public/post/2020/03/27/tinder.png?h=3c8378b6&itok=5NBg_AD7"
+                 class="img-responsive" style="width:100%;height: 200px; padding: 5px;object-fit: cover" alt="Image">
+            <h4>Current Project</h4>
         </div>
         <div class="col-sm-4">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Project 2</p>
+            <img src="https://cdn.watajob.com/photo/d8/06/d80646d0-4429-11eb-9dce-47010f84228e.jpg"
+                 class="img-responsive" style="width:100%;height: 200px; padding: 5px;object-fit: cover" alt="Image">
+                <h4>Project 2</h4>
         </div>
         <div class="col-sm-4">
             <div class="well">
-                <p>Some text..</p>
+                <p>Group: Bột giặt Tide</p>
             </div>
             <div class="well">
-                <p>Some text..</p>
+                <p>Chân thành cảm ơn <b>Mr. Quân Nguyễn</b> đã giúp đỡ để chúng tôi hoàn thành project này</p>
             </div>
         </div>
     </div>
 </div><br>
+<footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">SỨ MỆNH CỦA CODEGYM <br>Phát triển các giải pháp học tập hiện đại và
+                        hiệu quả thông qua các mô hình đào tạo tiên tiến trên nền tảng công nghệ giáo dục và sự
+                        cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.</p>
+                </div>
 
-<footer class="container-fluid text-center">
-    <p>Footer Text</p>
+                <div class="col-xs-6 col-md-3">
+                    <h6>Categories</h6>
+                    <ul class="footer-links">
+                        <li><a>Javascript</a></li>
+                        <li><a>MySQL</a></li>
+                        <li><a>PHP</a></li>
+                        <li><a>Java</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a>About Us</a></li>
+                        <li><a>Contact Us</a></li>
+                        <li><a>Contribute</a></li>
+                        <li><a>Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                        <a href="#">BotGiatTide</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
 </footer>
-
 </body>
 </html>

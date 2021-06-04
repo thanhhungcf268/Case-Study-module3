@@ -8,6 +8,7 @@
     <style>
         table{
             text-align: center;
+            margin: 20px;
         }
         tr:hover {
             background-color: #e3f2fd;
