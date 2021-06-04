@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <style>
+        *{
+            font-family: "Times New Roman", serif;
+        }
+    </style>
     <link href="../css/bootstrap-5.0.1-dist/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
