@@ -11,7 +11,16 @@ public class User {
     public User() {
     }
 
-    public User( String userName, String passWord, String gender, String phone, String rank) {
+    public User(int id, String userName, String passWord, String gender, String phone, String rank) {
+        this.id = id;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.gender = gender;
+        this.phone = phone;
+        this.rank = rank;
+    }
+
+    public User(String userName, String passWord, String gender, String phone, String rank) {
         this.userName = userName;
         this.passWord = passWord;
         this.gender = gender;

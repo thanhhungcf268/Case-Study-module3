@@ -8,5 +8,5 @@ public interface IGeneralService<T>{
     T findById(int id);
     boolean create(T t) throws SQLException;
     boolean update(int id, T t) throws SQLException;
-    boolean delete(int id);
+    boolean delete(int id) throws SQLException;
 }

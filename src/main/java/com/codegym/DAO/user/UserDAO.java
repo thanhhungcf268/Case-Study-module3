@@ -5,7 +5,9 @@ import com.codegym.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements IUserDAO {
@@ -13,7 +15,7 @@ public class UserDAO implements IUserDAO {
     private int rowInserted = 0;
 
     @Override
-    public boolean insert(User user) throws SQLException {
+    public boolean create(User user) throws SQLException {
         connection = SQLConnection.getConnection();
         try {
             String INSERT_USER = "insert into usermanager.user (username, password, gender, phone, level) VALUE (?,?,?,?,?)";
@@ -37,12 +39,35 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public List<User> selectAll() {
-        return null;
+        List<User> list = new ArrayList<>();
+         connection = SQLConnection.getConnection();
+        try {
+            String SELECT_ALL_USER = "select * from usermanager.user";
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int userId = resultSet.getInt("userId");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String gender = resultSet.getString("gender");
+                String phone = resultSet.getString("phone");
+                String level = resultSet.getString("level");
+                list.add(new User(userId,username,password,gender,phone,level));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        rowInserted = 0;
+        String DELETE_BY_ID = "delete from usermanager.user where userId = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID);
+        preparedStatement.setInt(1,id);
+        rowInserted = preparedStatement.executeUpdate();
+        return rowInserted !=0;
     }
 
     @Override

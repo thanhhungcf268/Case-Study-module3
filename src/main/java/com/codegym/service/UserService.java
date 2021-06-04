@@ -13,7 +13,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userDAO.selectAll();
     }
 
     @Override
@@ -23,23 +23,25 @@ public class UserService implements IUserService {
 
     @Override
     public boolean create(User user) throws SQLException {
-        if (checkUser(user)){
-            return userDAO.insert(user);
-        }else
-        return false;
+        if (checkUser(user)) {
+            return userDAO.create(user);
+        } else {
+            return false;
+        }
     }
 
-    private boolean checkUser(User user){
-        return Pattern.matches("^\\d+\\S{10}&", user.getPassWord());
+    private boolean checkUser(User user) {
+        return  Pattern.matches("^[0-9a-zA-Z]{6,20}$", user.getPassWord());
     }
+
     @Override
     public boolean update(int id, User user) throws SQLException {
-        return userDAO.update(id,user);
+        return userDAO.update(id, user);
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public boolean delete(int id) throws SQLException {
+        return userDAO.delete(id);
     }
 
     @Override
