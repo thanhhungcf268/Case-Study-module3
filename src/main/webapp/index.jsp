@@ -29,6 +29,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <button type="submit" ><a href="/users?action=create">registration</a></button>
+    <button type="submit" ><a href="/orders">registration</a></button>
 </form>
 <script src="css/bootstrap-5.0.1-dist/js/bootstrap.bundle.js"></script>
 </body>

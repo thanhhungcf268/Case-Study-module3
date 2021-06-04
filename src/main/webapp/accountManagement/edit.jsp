@@ -25,10 +25,7 @@
     <input name="phone" type="text" value="${user.phone}">
     <h1>rank :</h1>
     <input name="level" type="text" value="${user.level}">
-
-
     <button>Edit</button>
-
 </form>
 </body>
 </html>

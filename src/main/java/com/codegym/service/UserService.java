@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class UserService implements IUserService {
-    private IUserDAO userDAO = new UserDAO();
+    private final IUserDAO userDAO = new UserDAO();
 
     @Override
     public List<User> findAll() {
