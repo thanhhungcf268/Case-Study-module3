@@ -6,5 +6,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserDAO extends IGeneralDAO<User> {
-
+    boolean changePasswordById(int id) throws SQLException;
 }
