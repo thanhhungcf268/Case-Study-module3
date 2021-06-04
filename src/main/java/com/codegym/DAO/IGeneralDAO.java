@@ -1,14 +1,12 @@
 package com.codegym.DAO;
 
-import com.codegym.model.User;
-
 import java.sql.SQLException;
 import java.util.List;
 
 public interface IGeneralDAO<T> {
-    boolean insert(T t) throws SQLException;
+    boolean create(T t) throws SQLException;
 
-    T select(int id);
+    T select(int id) throws SQLException;
 
     List<T> selectAll();
 

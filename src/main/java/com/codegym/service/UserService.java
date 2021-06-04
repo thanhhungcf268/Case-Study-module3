@@ -9,37 +9,39 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class UserService implements IUserService {
-    private IUserDAO userDAO = new UserDAO();
+    private final IUserDAO userDAO = new UserDAO();
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userDAO.selectAll();
     }
 
     @Override
-    public User findById(int id) {
-        return null;
+    public User findById(int id) throws SQLException {
+        return userDAO.select(id);
     }
 
     @Override
     public boolean create(User user) throws SQLException {
-        if (checkUser(user)){
-            return userDAO.insert(user);
-        }else
-        return false;
+        if (checkUser(user)) {
+            return userDAO.create(user);
+        } else {
+            return false;
+        }
     }
 
-    private boolean checkUser(User user){
-        return Pattern.matches("^\\d+\\S{10}&", user.getPassWord());
+    private boolean checkUser(User user) {
+        return  Pattern.matches("^[0-9a-zA-Z]{6,20}$", user.getPassWord());
     }
+
     @Override
     public boolean update(int id, User user) throws SQLException {
-        return userDAO.update(id,user);
+        return userDAO.update(id, user);
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public boolean delete(int id) throws SQLException {
+        return userDAO.delete(id);
     }
 
     @Override
@@ -50,5 +52,10 @@ public class UserService implements IUserService {
     @Override
     public List<User> sortAllCustomer() {
         return null;
+    }
+
+    @Override
+    public boolean changePasswordById(int id) throws SQLException {
+        return userDAO.changePasswordById(id);
     }
 }

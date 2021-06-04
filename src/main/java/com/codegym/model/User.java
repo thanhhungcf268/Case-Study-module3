@@ -1,30 +1,39 @@
 package com.codegym.model;
 
 public class User {
-    private int id;
+    private int userId;
     private String userName;
     private String passWord;
     private String gender;
     private String phone;
-    private String rank;
+    private int level;
 
     public User() {
     }
 
-    public User( String userName, String passWord, String gender, String phone, String rank) {
+    public User(int userId, String userName, String passWord, String gender, String phone, int level) {
+        this.userId = userId;
         this.userName = userName;
         this.passWord = passWord;
         this.gender = gender;
         this.phone = phone;
-        this.rank = rank;
+        this.level = level;
     }
 
-    public int getId() {
-        return id;
+    public User(String userName, String passWord, String gender, String phone, int level) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.gender = gender;
+        this.phone = phone;
+        this.level = level;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -59,11 +68,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getRank() {
-        return rank;
+    public int getLevel() {
+        return level;
     }
 
-    public void setRank(String rank) {
-        this.rank = rank;
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

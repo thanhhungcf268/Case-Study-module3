@@ -9,7 +9,7 @@ import java.util.List;
 public class RentalPersonDAO implements IRentalPersonDAO {
 
     @Override
-    public boolean insert(RentalPerson rentalPerson) throws SQLException {
+    public boolean create(RentalPerson rentalPerson) throws SQLException {
         return false;
     }
 

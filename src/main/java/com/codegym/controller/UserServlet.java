@@ -15,8 +15,7 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/users")
 public class UserServlet extends HttpServlet {
-    private IUserDAO userDAO = new UserDAO();
-    private IUserService userService = new UserService();
+    private final IUserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -25,27 +24,51 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createNewForm(request, response);
+                String a = "registration.jsp";
+                createNewForm(request, response,a);
                 break;
             case "edit":
-                showEditCustomerForm(request, response);
-            default:
-                showList(request, response);
+                try {
+                    showEditUserForm(request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            case "list" :
+                String b = "list.jsp";
+                createNewForm(request,response,b);
+                break;
+            case "delete":
+                try {
+                    deleteNewFrom(request,response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            default: b = "list.jsp";
+                createNewForm(request,response,b);
                 break;
         }
     }
 
-    private void showEditCustomerForm(HttpServletRequest request, HttpServletResponse response) {
+    private void deleteNewFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("userId"));
+        userService.delete(id);
+        response.sendRedirect("/users");
     }
 
-    private void showList(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userId"));
+        User user = userService.findById(id);
+        request.setAttribute("user",user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
+        dispatcher.forward(request, response);
     }
 
-    private void createNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> users = userDAO.selectAll();
+    private void createNewForm(HttpServletRequest request, HttpServletResponse response,String a) throws ServletException, IOException {
+        List<User> users = userService.findAll();
         request.setAttribute("user", users);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/registration.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/"+a);
         dispatcher.forward(request, response);
     }
 
@@ -65,7 +88,7 @@ public class UserServlet extends HttpServlet {
                 break;
             case "edit" :
                 try {
-                    editCustomer(request, response);
+                    editUser(request, response);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -74,15 +97,24 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void editCustomer(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+
+    }
+
+    private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userId"));
         String userName = request.getParameter("userName");
         String passWord = request.getParameter("passWord");
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
-        String rank = request.getParameter("rank");
+        int rank = Integer.parseInt(request.getParameter("level"));
         User user = new User(userName,passWord,gender,phone,rank);
-        userService.update(id, user);
+        boolean  isUpdate =userService.update(id, user);
+        if (!isUpdate) {
+            request.setAttribute("message", "Error!");
+        } else {
+            request.setAttribute("message", "Success!");
+        }
         request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);
@@ -93,13 +125,13 @@ public class UserServlet extends HttpServlet {
         String passWord = request.getParameter("passWord");
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
-        String rank = request.getParameter("rank");
+        int rank = Integer.parseInt(request.getParameter("rank"));
         User user = new User(userName, passWord, gender, phone, rank);
-        boolean isInserted = userService.create(user);
-        if (!isInserted) {
-            request.setAttribute("message", "Xảy ra lỗi khi tạo mới!");
+        boolean isUpdate = userService.create(user);
+        if (!isUpdate) {
+            request.setAttribute("message", "Error!");
         } else {
-            request.setAttribute("message", "Tạo thành công!");
+            request.setAttribute("message", "Success!");
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/registration.jsp");
         dispatcher.forward(request, response);
