@@ -51,6 +51,15 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+//    private void showInFor(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+//        int userId = Integer.parseInt(request.getParameter("userId"));
+//        User user = userService.findById(userId);
+//        request.setAttribute("user",user);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
+//        dispatcher.forward(request, response);
+//
+//    }
+
     private void deleteNewFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("userId"));
         userService.delete(id);

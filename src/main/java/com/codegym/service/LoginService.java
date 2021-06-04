@@ -8,7 +8,7 @@ public class LoginService {
     private final LoginDAO loginDAO = new LoginDAO();
 
 
-    public boolean loginService(String userName, String passWord) throws SQLException {
+    public int loginService(String userName, String passWord) throws SQLException {
         return loginDAO.checkLogin(userName,passWord);
     }
 }
