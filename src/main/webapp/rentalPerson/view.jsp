@@ -6,7 +6,7 @@
     <title>View Employee</title>
 </head>
 <body>
-<h1>Customer details</h1>
+<h1>Employee Details</h1>
 <p>
     <a href="/employee">Back to employee list</a>
 </p>

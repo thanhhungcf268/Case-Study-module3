@@ -17,7 +17,7 @@ public class RentalPersonDAO implements IRentalPersonDAO {
     public static final String SELECT_ALL_RENTAL_PEOPLE = "select * from personrental";
     public static final String SELECT_RENTAL_PERSON_BY_ID = "select * from personrental where personId = ?";
     public static final String INSERT_RENTAL_PERSON = "insert into personrental(name, age, gender, status, phone, urlImg) values (?,?,?,?,?,?)";
-    public static final String UPDATE_RENTAL_PERSON_BY_ID = "update personrental set name = ?, age = ?, gender = ?, status = ?, phone = ?, urlImg = ? where personId = ?";
+    public static final String UPDATE_RENTAL_PERSON_BY_ID = "update personrental t set t.name = ?, t.age = ?, t.gender = ?, t.status = ?, t.phone = ?, t.urlImg = ? where t.personId = ?";
 
     @Override
     public List<RentalPerson> selectAll() {
@@ -90,12 +90,20 @@ public class RentalPersonDAO implements IRentalPersonDAO {
         preparedStatement.setString(6, rentalPerson.getUrlImage());
 
         insertedRow = preparedStatement.executeUpdate();
-        return insertedRow > 0;
+        return insertedRow != 0;
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        int deletedRow = 0;
+        Connection connection = SQLConnection.getConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement("delete from personrental where personId = ?");
+        preparedStatement.setInt(1, id);
+
+        deletedRow = preparedStatement.executeUpdate();
+
+        return deletedRow != 0;
     }
 
 //    update personrental set name = ?, age = ?, gender = ?, status = ?, phone = ?, urlImg = ? where personId = ?"
@@ -115,6 +123,6 @@ public class RentalPersonDAO implements IRentalPersonDAO {
 
         updatedRow = preparedStatement.executeUpdate();
 
-        return updatedRow > 0;
+        return updatedRow != 0;
     }
 }

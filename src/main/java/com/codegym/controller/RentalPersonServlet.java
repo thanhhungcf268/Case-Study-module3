@@ -29,6 +29,9 @@ public class RentalPersonServlet extends HttpServlet {
             case "editEmployee":
                 showEditRentalForm(request, response);
                 break;
+            case "deleteEmployee":
+                showDeleteRentalForm(request, response);
+                break;
             default:
                 showListRental(request, response);
                 break;
@@ -84,6 +87,22 @@ public class RentalPersonServlet extends HttpServlet {
     }
 
 
+    private void showDeleteRentalForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("employeeId"));
+        RentalPerson rental = this.rentalPersonService.select(id);
+
+        RequestDispatcher dispatcher;
+        if (rental == null){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("rental", rental);
+            dispatcher = request.getRequestDispatcher("/rentalPerson/delete.jsp");
+        }
+
+        dispatcher.forward(request, response);
+    }
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -96,10 +115,14 @@ public class RentalPersonServlet extends HttpServlet {
             case "editEmployee":
                 editRental(request, response);
                 break;
+            case "deleteEmployee":
+                deleteRental(request, response);
+                break;
             default:
                 break;
         }
     }
+
 
 
 
@@ -124,15 +147,52 @@ public class RentalPersonServlet extends HttpServlet {
     }
 
 
-    private void editRental(HttpServletRequest request, HttpServletResponse response) {
+    private void editRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("employeeId"));
+
         String name = request.getParameter("name");
         int age = Integer.parseInt(request.getParameter("age"));
         String gender = request.getParameter("gender");
         boolean status = Boolean.parseBoolean(request.getParameter("status"));
         String phone = request.getParameter("phone");
         String urlImage = request.getParameter("urlImage");
+        RentalPerson rental = this.rentalPersonService.select(id);
+        RequestDispatcher dispatcher;
+
+        if (rental == null){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            rental.setName(name);
+            rental.setAge(age);
+            rental.setGender(gender);
+            rental.setStatus(status);
+            rental.setPhone(phone);
+            rental.setUrlImage(urlImage);
+            boolean isUpdated = this.rentalPersonService.update(id, rental);
+
+            request.setAttribute("rental", rental);
+            if (isUpdated == false){
+                request.setAttribute("message", "Errors occurs when editing this employee!");
+            } else {
+                request.setAttribute("message", "Updated successfully!");
+            }
+            dispatcher = request.getRequestDispatcher("/rentalPerson/edit.jsp");
+        }
+        dispatcher.forward(request, response);
+
+    }
 
 
+    private void deleteRental(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("employeeId"));
+        RentalPerson rental = this.rentalPersonService.select(id);
 
+        RequestDispatcher dispatcher;
+        if (rental == null){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            this.rentalPersonService.delete(id);
+            response.sendRedirect("/employee");
+        }
     }
 }

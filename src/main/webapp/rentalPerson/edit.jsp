@@ -22,7 +22,10 @@
                     Edit Employee
                 </h2>
             </caption>
-<%--            <c:if test="${user != null}">--%>
+            <c:if test="${message != null}">
+                <h3 style="color: red"><c:out value="${message}"/></h3>
+            </c:if>
+<%--            <c:if test="${rental != null}">--%>
 <%--                <input type="hidden" name="id" value="<c:out value='${user.id}' />"/>--%>
 <%--            </c:if>--%>
             <tr>
@@ -42,28 +45,16 @@
                 </td>
             </tr>
             <tr>
-<%--                <th>Gender</th>--%>
-<%--                <td>--%>
-<%--                    <input type="text" name="gender" size="15"--%>
-<%--                           value="<c:out value='${rental.gender}' />"--%>
-<%--                    />--%>
-<%--                </td>--%>
                 <th>Gender</th>
                 <td>
-                    <input type="radio" id="male" name="gender" value="male" > Male
-                    <br>
                     <input type="radio" id="female" name="gender" value="female" checked> Female
+                    <br>
+                    <input type="radio" id="male" name="gender" value="male"> Male
                     <br>
                     <input type="radio" id="other" name="gender" value="other"> Other
                 </td>
             </tr>
             <tr>
-<%--                <th>Status</th>--%>
-<%--                <td>--%>
-<%--                    <input type="text" name="status" size="15"--%>
-<%--                           value="<c:out value='${rental.status}' />"--%>
-<%--                    />--%>
-<%--                </td>--%>
                 <th>Status</th>
                 <td>
                     <input type="radio" id="true" name="status" value="true" checked> Available
@@ -83,7 +74,7 @@
             <tr>
                 <th>Image</th>
                 <td>
-                    <input type="text" name="image" size="15"
+                    <input type="text" name="urlImage" size="15"
                            value="<c:out value='${rental.urlImage}' />"
                     />
                 </td>

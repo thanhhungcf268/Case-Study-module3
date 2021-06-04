@@ -45,12 +45,12 @@
                 <td><c:out value="${rental.gender}"/></td>
                 <td><c:out value="${rental.status}"/></td>
                 <td><c:out value="${rental.phone}"/></td>
-                <td><img src = "${rental.urlImage}" alt="Not available" width = 75 height = 50></td>
+                <td><img src = "${rental.urlImage}" alt="Not available" width = 75 height = 75></td>
                 <td>
                     <a href="/employee?action=editEmployee&employeeId=${rental.id}">Edit</a>
                 </td>
                 <td>
-                    <a href="/users?action=delete&id=${rental.id}">Delete</a>
+                    <a href="/employee?action=deleteEmployee&employeeId=${rental.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
