@@ -14,10 +14,10 @@ import java.util.List;
 public class RentalPersonDAO implements IRentalPersonDAO {
 
 
-    public static final String SELECT_ALL_RENTAL_PEOPLE = "select * from personrental";
-    public static final String SELECT_RENTAL_PERSON_BY_ID = "select * from personrental where personId = ?";
-    public static final String INSERT_RENTAL_PERSON = "insert into personrental(name, age, gender, status, phone, urlImg) values (?,?,?,?,?,?)";
-    public static final String UPDATE_RENTAL_PERSON_BY_ID = "update personrental t set t.name = ?, t.age = ?, t.gender = ?, t.status = ?, t.phone = ?, t.urlImg = ? where t.personId = ?";
+    public static final String SELECT_ALL_RENTAL_PEOPLE = "select * from usermanager.personrental";
+    public static final String SELECT_RENTAL_PERSON_BY_ID = "select * from usermanager.personrental where personId = ?";
+    public static final String INSERT_RENTAL_PERSON = "insert into usermanager.personrental(name, age, gender, status, phone, urlImg) values (?,?,?,?,?,?)";
+    public static final String UPDATE_RENTAL_PERSON_BY_ID = "update usermanager.personrental t set t.name = ?, t.age = ?, t.gender = ?, t.status = ?, t.phone = ?, t.urlImg = ? where t.personId = ?";
 
     @Override
     public List<RentalPerson> selectAll() {
