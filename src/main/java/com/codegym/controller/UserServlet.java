@@ -15,8 +15,7 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/users")
 public class UserServlet extends HttpServlet {
-    private IUserDAO userDAO = new UserDAO();
-    private IUserService userService = new UserService();
+    private final IUserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -39,7 +38,23 @@ public class UserServlet extends HttpServlet {
                 String b = "list.jsp";
                 createNewForm(request,response,b);
                 break;
+            case "delete":
+                try {
+                    deleteNewFrom(request,response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            default: b = "list.jsp";
+                createNewForm(request,response,b);
+                break;
         }
+    }
+
+    private void deleteNewFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("userId"));
+        userService.delete(id);
+        response.sendRedirect("/users");
     }
 
     private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
@@ -50,15 +65,8 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-//    private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        List<User> users = userDAO.selectAll();
-//        request.setAttribute("user", users);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/");
-//        dispatcher.forward(request, response);
-//    }
-
     private void createNewForm(HttpServletRequest request, HttpServletResponse response,String a) throws ServletException, IOException {
-        List<User> users = userDAO.selectAll();
+        List<User> users = userService.findAll();
         request.setAttribute("user", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/"+a);
         dispatcher.forward(request, response);
@@ -87,6 +95,10 @@ public class UserServlet extends HttpServlet {
                 break;
 
         }
+    }
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+
     }
 
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
