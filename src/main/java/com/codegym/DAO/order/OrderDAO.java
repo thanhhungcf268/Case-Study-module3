@@ -28,7 +28,7 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public boolean update(OrderDetail orderDetail) throws SQLException {
+    public boolean update(int id, OrderDetail orderDetail) throws SQLException {
         return false;
     }
 }

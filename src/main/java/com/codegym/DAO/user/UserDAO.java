@@ -30,7 +30,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public boolean update(User user) throws SQLException {
+    public boolean update(int id, User user) throws SQLException {
         return false;
     }
 }
