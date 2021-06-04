@@ -18,7 +18,7 @@ public class OrderDAO implements IOrderDAO {
 
 
     @Override
-    public boolean insert(OrderDetail orderDetail) throws SQLException {
+    public boolean create(OrderDetail orderDetail) throws SQLException {
         Connection connection = SQLConnection.getConnection();
         int rowInsert = 0;
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER_DETAILS);

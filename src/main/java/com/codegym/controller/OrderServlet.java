@@ -1,7 +1,6 @@
 package com.codegym.controller;
 
 import com.codegym.DAO.order.OrderDAO;
-import com.codegym.DAO.user.UserDAO;
 import com.codegym.model.OrderDetail;
 
 import javax.servlet.*;
@@ -9,7 +8,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "OrderServlet", value = "/orders")
@@ -140,7 +138,7 @@ public class OrderServlet extends HttpServlet {
         float hours = Float.parseFloat(request.getParameter("hours"));
         String startHour = request.getParameter("startHour");
         OrderDetail orderDetail = new OrderDetail(userId, personId, price, hours, startHour);
-        boolean isCreate = orderDAO.insert(orderDetail);
+        boolean isCreate = orderDAO.create(orderDetail);
         if (!isCreate) {
             request.setAttribute("message", "Error!");
         } else {

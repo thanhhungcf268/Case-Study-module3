@@ -28,14 +28,15 @@ public class UserServlet extends HttpServlet {
                 createNewForm(request, response);
                 break;
             case "edit":
-                showEditCustomerForm(request, response);
+                showEditUserForm(request, response);
             default:
                 showList(request, response);
                 break;
         }
     }
 
-    private void showEditCustomerForm(HttpServletRequest request, HttpServletResponse response) {
+    private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) {
@@ -65,7 +66,7 @@ public class UserServlet extends HttpServlet {
                 break;
             case "edit" :
                 try {
-                    editCustomer(request, response);
+                    editUser(request, response);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -74,7 +75,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void editCustomer(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+    private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String userName = request.getParameter("userName");
         String passWord = request.getParameter("passWord");
@@ -82,7 +83,12 @@ public class UserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String rank = request.getParameter("rank");
         User user = new User(userName,passWord,gender,phone,rank);
-        userService.update(id, user);
+        boolean  isUpdate =userService.update(id, user);
+        if (!isUpdate) {
+            request.setAttribute("message", "Error!");
+        } else {
+            request.setAttribute("message", "Success!");
+        }
         request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);
@@ -95,11 +101,11 @@ public class UserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String rank = request.getParameter("rank");
         User user = new User(userName, passWord, gender, phone, rank);
-        boolean isInserted = userService.create(user);
-        if (!isInserted) {
-            request.setAttribute("message", "Xảy ra lỗi khi tạo mới!");
+        boolean isUpdate = userService.create(user);
+        if (!isUpdate) {
+            request.setAttribute("message", "Error!");
         } else {
-            request.setAttribute("message", "Tạo thành công!");
+            request.setAttribute("message", "Success!");
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/registration.jsp");
         dispatcher.forward(request, response);
