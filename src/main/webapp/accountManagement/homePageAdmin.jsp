@@ -62,7 +62,7 @@
                 <li><a href="https://www.facebook.com/xoa.hets.9">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/"><span class="glyphicon glyphicon-log-in"></span>Sign out</a></li>
+                <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
             </ul>
         </div>
     </div>
