@@ -8,7 +8,7 @@ import java.util.List;
 public interface IGeneralDAO<T> {
     boolean create(T t) throws SQLException;
 
-    T select(int id);
+    T select(int id) throws SQLException;
 
     List<T> selectAll();
 

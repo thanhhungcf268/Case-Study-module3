@@ -25,6 +25,7 @@
     <button type="submit">registration</button>
     <button type="submit"><a href="/">back home</a></button>
     <button type="submit"><a href="/users?action=edit&userId=2">edit</a></button>
+    <button type="submit"><a href="/users?action=list">showList</a></button>
 </form>
 <script src="../css/bootstrap-5.0.1-dist/js/bootstrap.bundle.js"></script>
 </body>

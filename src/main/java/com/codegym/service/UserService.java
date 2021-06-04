@@ -17,8 +17,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findById(int id) {
-        return null;
+    public User findById(int id) throws SQLException {
+        return userDAO.select(id);
     }
 
     @Override
@@ -52,5 +52,10 @@ public class UserService implements IUserService {
     @Override
     public List<User> sortAllCustomer() {
         return null;
+    }
+
+    @Override
+    public boolean changePasswordById(int id) throws SQLException {
+        return userDAO.changePasswordById(id);
     }
 }

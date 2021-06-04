@@ -25,28 +25,42 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createNewForm(request, response);
+                String a = "registration.jsp";
+                createNewForm(request, response,a);
                 break;
             case "edit":
-                showEditUserForm(request, response);
-            default:
-                showList(request, response);
+                try {
+                    showEditUserForm(request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            case "list" :
+                String b = "list.jsp";
+                createNewForm(request,response,b);
                 break;
         }
     }
 
-    private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userId"));
+        User user = userService.findById(id);
+        request.setAttribute("user",user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
+        dispatcher.forward(request, response);
     }
 
-    private void showList(HttpServletRequest request, HttpServletResponse response) {
+//    private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        List<User> users = userDAO.selectAll();
+//        request.setAttribute("user", users);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/");
+//        dispatcher.forward(request, response);
+//    }
 
-    }
-
-    private void createNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void createNewForm(HttpServletRequest request, HttpServletResponse response,String a) throws ServletException, IOException {
         List<User> users = userDAO.selectAll();
         request.setAttribute("user", users);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/registration.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/"+a);
         dispatcher.forward(request, response);
     }
 
@@ -76,12 +90,12 @@ public class UserServlet extends HttpServlet {
     }
 
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("userId"));
         String userName = request.getParameter("userName");
         String passWord = request.getParameter("passWord");
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
-        String rank = request.getParameter("rank");
+        int rank = Integer.parseInt(request.getParameter("level"));
         User user = new User(userName,passWord,gender,phone,rank);
         boolean  isUpdate =userService.update(id, user);
         if (!isUpdate) {
@@ -99,7 +113,7 @@ public class UserServlet extends HttpServlet {
         String passWord = request.getParameter("passWord");
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
-        String rank = request.getParameter("rank");
+        int rank = Integer.parseInt(request.getParameter("rank"));
         User user = new User(userName, passWord, gender, phone, rank);
         boolean isUpdate = userService.create(user);
         if (!isUpdate) {
