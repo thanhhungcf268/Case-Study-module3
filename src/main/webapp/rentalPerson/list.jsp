@@ -5,6 +5,9 @@
 <html>
 <head>
     <title>Employee List</title>
+    <style>
+
+    </style>
 </head>
 <body>
 <center>
@@ -14,7 +17,7 @@
     </h2>
 </center>
 <div align="center">
-    <table border="1" cellpadding="5">
+
         <caption><h2>List of Employees</h2></caption>
 
         <form>
@@ -31,9 +34,10 @@
             <button><a href = "/employee?sort=age&type=asc">Sort By Age asc</a></button>
             <button><a href = "/employee?sort=age&type=desc">Sort By Age desc</a></button>
         </p>
-
+        <table border = "1" cellpadding="5" class = "table table-hover">
+        <thead>
         <tr>
-            <td>Id</td>
+            <th>#</th>
             <th>Name</th>
             <th>Age</th>
             <th>Gender</th>
@@ -43,13 +47,22 @@
             <th>Edit</th>
             <th>Delete</th>
         </tr>
+        </thead>
+        <tbody>
         <c:forEach var="rental" items="${rentals}">
             <tr>
                 <td><c:out value="${rental.id}"/></td>
                 <td><a href="/employee?action=viewEmployee&employeeId=${rental.id}">${rental.name}</a></td>
                 <td><c:out value="${rental.age}"/></td>
                 <td><c:out value="${rental.gender}"/></td>
-                <td><c:out value="${rental.status}"/></td>
+                <td>
+                    <c:if test="${rental.status == true}">
+                        <p>Available</p>
+                    </c:if>
+                    <c:if test="${rental.status == false}">
+                        <p>N/A</p>
+                    </c:if>
+                </td>
                 <td><c:out value="${rental.phone}"/></td>
                 <td><a href = "${rental.urlImage}"><img src = "${rental.urlImage}" alt="Not available" width = 100 height = 160></a></td>
                 <td>
@@ -60,6 +73,7 @@
                 </td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
 </div>
 

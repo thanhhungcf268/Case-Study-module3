@@ -65,7 +65,7 @@ public class RentalPersonDAO implements IRentalPersonDAO {
     //need to change procedure
     @Override
     public boolean delete(int id) throws SQLException {
-        int deletedRow = 0;
+        int deletedRow;
         Connection connection = SQLConnection.getConnection();
         CallableStatement callableStatement = connection.prepareCall(DELETE_RENTAL_PERSON_BY_ID);
         callableStatement.setInt(1, id);
