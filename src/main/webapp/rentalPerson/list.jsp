@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Girlfriend List</title>
+    <title>Employee List</title>
 </head>
 <body>
 <center>
@@ -22,9 +22,15 @@
             <button type = "submit">Search</button>
         </form>
         <br/>
-
-        <button>Default Employee List</button>
-        <button>Sort By Name</button>
+        <br/>
+        <p>Sort by:
+            <button><a href = "/employee?sort=personId&type=asc">Sort By ID asc</a></button>
+            <button><a href = "/employee?sort=personId&type=desc">Sort By ID desc</a></button>
+            <button><a href = "/employee?sort=name&type=asc">Sort By Name asc</a></button>
+            <button><a href = "/employee?sort=name&type=desc">Sort By Name desc</a></button>
+            <button><a href = "/employee?sort=age&type=asc">Sort By Age asc</a></button>
+            <button><a href = "/employee?sort=age&type=desc">Sort By Age desc</a></button>
+        </p>
 
         <tr>
             <td>Id</td>
@@ -45,7 +51,7 @@
                 <td><c:out value="${rental.gender}"/></td>
                 <td><c:out value="${rental.status}"/></td>
                 <td><c:out value="${rental.phone}"/></td>
-                <td><img src = "${rental.urlImage}" alt="Not available" width = 75 height = 75></td>
+                <td><a href = "${rental.urlImage}"><img src = "${rental.urlImage}" alt="Not available" width = 100 height = 160></a></td>
                 <td>
                     <a href="/employee?action=editEmployee&employeeId=${rental.id}">Edit</a>
                 </td>

@@ -1,76 +1,47 @@
 package com.codegym.DAO.rentalPerson;
 
 import com.codegym.DAO.SQLConnection;
-import com.codegym.DAO.rentalPerson.IRentalPersonDAO;
+
 import com.codegym.model.RentalPerson;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RentalPersonDAO implements IRentalPersonDAO {
 
 
-    public static final String SELECT_ALL_RENTAL_PEOPLE = "select * from usermanager.personrental";
-    public static final String SELECT_RENTAL_PERSON_BY_ID = "select * from usermanager.personrental where personId = ?";
-    public static final String INSERT_RENTAL_PERSON = "insert into usermanager.personrental(name, age, gender, status, phone, urlImg) values (?,?,?,?,?,?)";
-    public static final String UPDATE_RENTAL_PERSON_BY_ID = "update usermanager.personrental t set t.name = ?, t.age = ?, t.gender = ?, t.status = ?, t.phone = ?, t.urlImg = ? where t.personId = ?";
+    public static final String SELECT_ALL_RENTAL_PEOPLE = "select * from personrental";
+    public static final String SELECT_RENTAL_PERSON_BY_ID = "select * from personrental where personId = ?";
+    public static final String INSERT_RENTAL_PERSON = "insert into personrental(name, age, gender, status, phone, urlImg) values (?,?,?,?,?,?)";
+    public static final String UPDATE_RENTAL_PERSON_BY_ID = "update personrental set name = ?, age = ?, gender = ?, status = ?, phone = ?, urlImg = ? where personId = ?";
+    public static final String DELETE_RENTAL_PERSON_BY_ID = "Call deleteRentalPerson(?)";
+    public static final String SORT_RENTAL = "select * from personrental order by";
+
 
     @Override
-    public List<RentalPerson> selectAll() {
-        List<RentalPerson> rentals = new ArrayList<>();
+    public List<RentalPerson> selectAll() throws SQLException {
         Connection connection = SQLConnection.getConnection();
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_RENTAL_PEOPLE);
-            ResultSet rs = preparedStatement.executeQuery();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_RENTAL_PEOPLE);
+        ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()){
-                int id = rs.getInt("personId");
-                String name = rs.getString("name");
-                int age = rs.getInt("age");
-                String gender = rs.getString("gender");
-                boolean status = rs.getBoolean("status");
-                String phone = rs.getString("phone");
-                String urlImage = rs.getString("urlImg");
-
-                rentals.add(new RentalPerson(id, name, age, gender, status, phone, urlImage));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return rentals;
+        return convertResultSetToList(rs);
     }
 
+
     @Override
-    public RentalPerson select(int selectedId) {
+    public RentalPerson select(int selectedId) throws SQLException {
         RentalPerson rental = null;
         Connection connection = SQLConnection.getConnection();
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RENTAL_PERSON_BY_ID);
-            preparedStatement.setInt(1, selectedId);
-            ResultSet rs = preparedStatement.executeQuery();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RENTAL_PERSON_BY_ID);
+        preparedStatement.setInt(1, selectedId);
+        ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()){
-                int id = rs.getInt("personId");
-                String name = rs.getString("name");
-                int age = rs.getInt("age");
-                String gender = rs.getString("gender");
-                boolean status = rs.getBoolean("status");
-                String phone = rs.getString("phone");
-                String urlImage = rs.getString("urlImg");
-                rental = new RentalPerson(id, name, age, gender, status, phone, urlImage);
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return rental;
+        return convertResultSetToList(rs).get(0);
     }
+
 
     @Override
     public boolean create(RentalPerson rentalPerson) throws SQLException {
@@ -89,22 +60,23 @@ public class RentalPersonDAO implements IRentalPersonDAO {
         return insertedRow != 0;
     }
 
+
+
+    //need to change procedure
     @Override
     public boolean delete(int id) throws SQLException {
         int deletedRow = 0;
         Connection connection = SQLConnection.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(DELETE_RENTAL_PERSON_BY_ID);
+        callableStatement.setInt(1, id);
 
-        PreparedStatement preparedStatement = connection.prepareStatement("delete from personrental where personId = ?");
-        preparedStatement.setInt(1, id);
-
-        deletedRow = preparedStatement.executeUpdate();
-
+        deletedRow = callableStatement.executeUpdate();
         return deletedRow != 0;
     }
 
     @Override
     public boolean update(int id, RentalPerson rentalPerson) throws SQLException {
-        int updatedRow = 0;
+        int updatedRow;
         Connection connection = SQLConnection.getConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RENTAL_PERSON_BY_ID);
@@ -119,5 +91,42 @@ public class RentalPersonDAO implements IRentalPersonDAO {
         updatedRow = preparedStatement.executeUpdate();
 
         return updatedRow != 0;
+    }
+
+    @Override
+    public List<RentalPerson> findRentalByName(String inputName) throws SQLException {
+        Connection connection = SQLConnection.getConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from personrental where name like ?");
+        preparedStatement.setString(1, "%"+inputName+"%");
+
+        ResultSet rs = preparedStatement.executeQuery();
+        return convertResultSetToList(rs);
+    }
+
+    @Override
+    public List<RentalPerson> sort(String category, String type) throws SQLException {
+        Connection connection = SQLConnection.getConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(SORT_RENTAL+" "+category+" "+type);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        return convertResultSetToList(rs);
+    }
+
+
+    private List<RentalPerson> convertResultSetToList(ResultSet rs) throws SQLException {
+        List<RentalPerson> rentals = new ArrayList<>();
+        while (rs.next()){
+            int id = rs.getInt("personId");
+            String name = rs.getString("name");
+            int age = rs.getInt("age");
+            String gender = rs.getString("gender");
+            boolean status = rs.getBoolean("status");
+            String phone = rs.getString("phone");
+            String urlImage = rs.getString("urlImg");
+            rentals.add(new RentalPerson(id, name, age, gender, status, phone, urlImage));
+        }
+        return rentals;
     }
 }

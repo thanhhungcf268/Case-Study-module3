@@ -95,7 +95,7 @@ public class OrderServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<User> users = userDAO.selectAll();
         request.setAttribute("users", users);
         List<RentalPerson> rentalPeople = rentalPersonDAO.selectAll();
