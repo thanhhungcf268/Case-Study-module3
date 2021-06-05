@@ -28,13 +28,6 @@ public class UserServlet extends HttpServlet {
                 String a = "registration.jsp";
                 createNewForm(request, response, a);
                 break;
-            case "delete":
-                try {
-                    deleteNewFrom(request, response);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-                break;
             case "edit":
                 try {
                     showEditUserForm(request, response);
@@ -42,7 +35,21 @@ public class UserServlet extends HttpServlet {
                     throwables.printStackTrace();
                 }
                 break;
-
+            case "list":
+                String b = "list.jsp";
+                createNewForm(request, response, b);
+                break;
+            case "delete":
+                try {
+                    deleteNewFrom(request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            default:
+                b = "list.jsp";
+                createNewForm(request, response, b);
+                break;
         }
     }
 
@@ -55,11 +62,7 @@ public class UserServlet extends HttpServlet {
     private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
         User user = userService.findById(id);
-        request.setAttribute("user", user);
-        String userName1 = request.getParameter("userName");
-        String passWord1 = request.getParameter("passWord");
-        request.setAttribute("userName", userName1);
-        request.setAttribute("passWord", passWord1);
+        request.setAttribute("user",user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);
     }
@@ -96,14 +99,6 @@ public class UserServlet extends HttpServlet {
                     throwables.printStackTrace();
                 }
                 break;
-            case "list":
-                String b = "list.jsp";
-                createNewForm(request, response, b);
-                break;
-            default:
-                b = "list.jsp";
-                createNewForm(request, response, b);
-                break;
         }
     }
 
@@ -113,22 +108,18 @@ public class UserServlet extends HttpServlet {
 
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
-        String userName1 = request.getParameter("userName1");
-        String passWord1 = request.getParameter("passWord1");
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
-        int rank = 1;
-        User user = new User(userName1, passWord1, gender, phone, rank);
-        boolean isUpdate = userService.update(id, user);
+        int rank = Integer.parseInt(request.getParameter("level"));
+        User user = new User(userName,passWord,gender,phone,rank);
+        boolean  isUpdate =userService.update(id, user);
         if (!isUpdate) {
             request.setAttribute("message", "Error!");
         } else {
             request.setAttribute("message", "Success!");
         }
-        String userName = request.getParameter("userName");
-        String passWord = request.getParameter("passWord");
-        request.setAttribute("userName", userName);
-        request.setAttribute("passWord", passWord);
         request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);
