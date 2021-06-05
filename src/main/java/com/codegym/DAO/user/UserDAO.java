@@ -3,10 +3,7 @@ package com.codegym.DAO.user;
 import com.codegym.DAO.SQLConnection;
 import com.codegym.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +74,9 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean delete(int id) throws SQLException {
         rowInserted = 0;
+//        String deletes = "";
+//        CallableStatement preparedStatements = connection.prepareCall(deletes);
+//        preparedStatements.setInt(1,id);
         String DELETE_BY_ID = "delete from usermanager.user where userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID);
         preparedStatement.setInt(1, id);
@@ -106,6 +106,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean changePasswordById(int id) throws SQLException {
         rowInserted = 0;
+
         String CHANGE_PW = "delete from usermanager.user where userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_PW);
         preparedStatement.setInt(1, id);

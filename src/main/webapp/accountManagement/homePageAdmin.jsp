@@ -72,7 +72,7 @@
                     </form>
                 </li>
                 <li>
-                    <form method="post" action="/employee">
+                    <form method="get" action="/employee">
                         <input hidden name="userName" value="${user.userName}">
                         <input hidden name="passWord" value="${user.passWord}">
                         <button type="submit">Rental List</button>

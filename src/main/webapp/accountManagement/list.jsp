@@ -30,9 +30,9 @@
             <td><c:out value="${user1.phone}"/></td>
             <td><c:out value="${user1.level}"/></td>
             <td><a href="/users?action=edit&userId=${user1.userId}&userName=${userName}&passWord=${passWord}">Edit</a></td>
-            <td><a href="/users?action=delete&userId=${user1.userId}">Delete</a></td>
+            <td><a href="/users?action=delete&userId=${user1.userId}&userName=${userName}&passWord=${passWord}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
 </body>
-</html
+</html>
