@@ -6,7 +6,7 @@
 <body>
 <h1>Edit home</h1>
 
-<form method="post" action="/users">
+<form method="get" action="/users">
     <input hidden name="userName" value="${userName}">
     <input hidden name="passWord" value="${passWord}">
     <button style="height: auto" type="submit">Users List</button>

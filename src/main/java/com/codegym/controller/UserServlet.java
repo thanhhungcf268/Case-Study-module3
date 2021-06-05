@@ -56,7 +56,11 @@ public class UserServlet extends HttpServlet {
     private void deleteNewFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("userId"));
         userService.delete(id);
-        response.sendRedirect("/users");
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
+        request.setAttribute("userName", userName);
+        request.setAttribute("passWord", passWord);
+        response.sendRedirect("/users?userName="+userName+"&passWord="+passWord);
     }
 
     private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
@@ -103,20 +107,9 @@ public class UserServlet extends HttpServlet {
                     throwables.printStackTrace();
                 }
                 break;
-//            default:
-//                showlistAccount(request,response);
-//                break;
+
         }
     }
-
-    private void showlistAccount(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-
-    }
-
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
         String userName = request.getParameter("userName");
