@@ -43,7 +43,9 @@
 </head>
 <body>
 
-
+<form method="post" action="/login?action=login">
+    <input hidden name="userName" value="${userName}">
+    <input hidden name="passWord" value="${passWord}">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -57,13 +59,13 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a>Home</a></li>
-                <li><a href="accountManagement/homePageAdmin.jsp">Homepage</a></li>
+                <li><button type="submit" value="login">Homepage</button></li>
                 <li><a href="/orders?action=create">Create Order</a></li>
             </ul>
         </div>
     </div>
 </nav>
-
+</form>
 
 <table class="table table-striped">
     <thead>

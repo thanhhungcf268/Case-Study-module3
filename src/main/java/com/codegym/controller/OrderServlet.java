@@ -41,9 +41,7 @@ public class OrderServlet extends HttpServlet {
                 case "view":
                     viewDetail(request, response);
                     break;
-                default:
-                    showList(request, response);
-                    break;
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +86,11 @@ public class OrderServlet extends HttpServlet {
 
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<OrderDetail> orderDetails = orderDAO.selectAll();
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
         request.setAttribute("orderDetails", orderDetails);
+        request.setAttribute("userName", userName);
+        request.setAttribute("passWord", passWord);
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/listOrder.jsp");
         dispatcher.forward(request, response);
     }
@@ -115,6 +117,9 @@ public class OrderServlet extends HttpServlet {
                     break;
                 case "edit":
                     updateOrder(request, response);
+                    break;
+                default:
+                    showList(request, response);
                     break;
             }
         } catch (SQLException e) {

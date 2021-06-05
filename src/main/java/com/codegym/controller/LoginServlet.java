@@ -57,14 +57,14 @@ public class LoginServlet extends HttpServlet {
         String userName = req.getParameter("userName");
         String passWord = req.getParameter("passWord");
         int checkUser = loginService1.loginService(userName, passWord);
+        User user = userService.findById(checkUser);
+        req.setAttribute("user",user);
         RequestDispatcher dispatcher;
         if (checkUser != -1) {
-            User user = userService.findById(checkUser);
             if (userName.equals("admin")) {
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageAdmin.jsp");
                 dispatcher.forward(req, resp);
             }else {
-                req.setAttribute("user",user);
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageUser.jsp");
                 dispatcher.forward(req, resp);
             }

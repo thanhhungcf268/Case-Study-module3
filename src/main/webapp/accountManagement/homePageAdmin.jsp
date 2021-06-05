@@ -30,7 +30,7 @@
         .carousel-inner img {
             width: 100%; /* Set width to 100% */
             margin: auto;
-            min-height:200px;
+            min-height: 200px;
         }
 
         /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -51,16 +51,36 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ><b id = "tider" style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
+            <a class="navbar-brand"><b id="tider"
+                                       style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-left">
                 <li class="active"><a>Home</a></li>
-                <li><a href="users">Users List</a></li>
-                <li><a href="orders">Order List</a></li>
-                <li><a href="/employee">Rental List</a></li>
-                <li><a href="https://www.facebook.com/xoa.hets.9">Contact</a></li>
+                <li>
+                    <form method="post" action="/orders">
+                        <input hidden name="userName" value="${user.userName}">
+                        <input hidden name="passWord" value="${user.passWord}">
+                        <button style="height: auto" type="submit">Order List</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="get" action="/users">
+                        <input hidden name="userName" value="${user.userName}">
+                        <input hidden name="passWord" value="${user.passWord}">
+                        <button style="height: auto" type="submit">Users List</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="get" action="/employee">
+                        <input hidden name="userName" value="${user.userName}">
+                        <input hidden name="passWord" value="${user.passWord}">
+                        <button type="submit">Rental List</button>
+                    </form>
+                </li>
+
             </ul>
+            <li><a href="https://www.facebook.com/xoa.hets.9">Contact</a></li>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
             </ul>
@@ -81,7 +101,9 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img style="height: 550px; object-fit: cover" src="https://www.wallpapertip.com/wmimgs/139-1399581_mikasa-ackerman-wallpaper-hinh-attack-on-titan.jpg" alt="img">
+            <img style="height: 550px; object-fit: cover"
+                 src="https://www.wallpapertip.com/wmimgs/139-1399581_mikasa-ackerman-wallpaper-hinh-attack-on-titan.jpg"
+                 alt="img">
             <div class="carousel-caption">
                 <h3>Mikasa Ackerman 18</h3>
             </div>
@@ -134,7 +156,7 @@
         <div class="col-sm-4">
             <img src="https://cdn.watajob.com/photo/d8/06/d80646d0-4429-11eb-9dce-47010f84228e.jpg"
                  class="img-responsive" style="width:100%;height: 200px; padding: 5px;object-fit: cover" alt="Image">
-                <h4>Project 2</h4>
+            <h4>Project 2</h4>
         </div>
         <div class="col-sm-4">
             <div class="well">
@@ -145,48 +167,50 @@
             </div>
         </div>
     </div>
-</div><br>
+</div>
+<br>
 <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">SỨ MỆNH CỦA CODEGYM <br>Phát triển các giải pháp học tập hiện đại và
-                        hiệu quả thông qua các mô hình đào tạo tiên tiến trên nền tảng công nghệ giáo dục và sự
-                        cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.</p>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    <ul class="footer-links">
-                        <li><a>Javascript</a></li>
-                        <li><a>MySQL</a></li>
-                        <li><a>PHP</a></li>
-                        <li><a>Java</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a>About Us</a></li>
-                        <li><a>Contact Us</a></li>
-                        <li><a>Contribute</a></li>
-                        <li><a>Privacy Policy</a></li>
-                    </ul>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <p class="text-justify">SỨ MỆNH CỦA CODEGYM <br>Phát triển các giải pháp học tập hiện đại và
+                    hiệu quả thông qua các mô hình đào tạo tiên tiến trên nền tảng công nghệ giáo dục và sự
+                    cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.
+                </p>
             </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="#">BotGiatTide</a>.
-                    </p>
-                </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Categories</h6>
+                <ul class="footer-links">
+                    <li><a>Javascript</a></li>
+                    <li><a>MySQL</a></li>
+                    <li><a>PHP</a></li>
+                    <li><a>Java</a></li>
+                </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a>About Us</a></li>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Contribute</a></li>
+                    <li><a>Privacy Policy</a></li>
+                </ul>
             </div>
         </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                    <a href="#">BotGiatTide</a>.
+                </p>
+            </div>
+        </div>
+    </div>
 </footer>
 </body>
 </html>
