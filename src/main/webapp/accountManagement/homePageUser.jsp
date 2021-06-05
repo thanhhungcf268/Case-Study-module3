@@ -26,6 +26,12 @@
             background-color: #f2f2f2;
             padding: 25px;
         }
+        img{
+            border: 5px solid white;
+        }
+        img:hover{
+            border: lightskyblue;
+        }
     </style>
 </head>
 <body>
@@ -59,19 +65,19 @@
     <div class="row">
         <div class="col-sm-3">
             <p>Ino Masashi 20</p>
-            <img src="https://cdn.statically.io/img/thuthuatnhanh.com/wp-content/uploads/2019/11/anh-avatar-anime-buon-khoc-that-tinh-cho-nu.jpg" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=1"><img src="https://cdn.statically.io/img/thuthuatnhanh.com/wp-content/uploads/2019/11/anh-avatar-anime-buon-khoc-that-tinh-cho-nu.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
         <div class="col-sm-3">
             <p>Minano Yakuchi 19</p>
-            <img src="https://img.thuthuatphanmem.vn/uploads/2018/10/06/anh-dep-ve-anime-girl-ca-tinh_033449959.jpg" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=2"><img src="https://img.thuthuatphanmem.vn/uploads/2018/10/06/anh-dep-ve-anime-girl-ca-tinh_033449959.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
         <div class="col-sm-3">
             <p>Yoona Kaito 18</p>
-            <img src="https://img.thuthuatphanmem.vn/uploads/2018/10/06/hinh-anh-anime-girl-de-thuong-ca-tinh_033450366.jpg" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=3"><img src="https://img.thuthuatphanmem.vn/uploads/2018/10/06/hinh-anh-anime-girl-de-thuong-ca-tinh_033450366.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
         <div class="col-sm-3">
             <p>Naomi Anderson 16</p>
-            <img src="https://i.pinimg.com/originals/e5/fa/8c/e5fa8c39861fe595e429067841f38485.jpg" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=4"><img src="https://i.pinimg.com/originals/e5/fa/8c/e5fa8c39861fe595e429067841f38485.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
     </div>
 </div><br>
@@ -80,19 +86,19 @@
     <div class="row">
         <div class="col-sm-3">
             <p>Elizabeth Olsen</p>
-            <img src="https://static.viettelstudy.vn/upload/17975/20200818/nhung-hinh-anh-anime-nu-dep-nhat-2_9c2f4.jpg" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=5"><img src="https://static.viettelstudy.vn/upload/17975/20200818/nhung-hinh-anh-anime-nu-dep-nhat-2_9c2f4.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
         <div class="col-sm-3">
             <p>Nguyễn Yến Linh 20</p>
-            <img src="https://gamek.mediacdn.vn/133514250583805952/2020/8/22/kizunaaifull2298404-15980596259471104118625.jpg" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=6"><img src="https://gamek.mediacdn.vn/133514250583805952/2020/8/22/kizunaaifull2298404-15980596259471104118625.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
         <div class="col-sm-3">
             <p>Sakura Anko 25</p>
-            <img src="https://taoanhonline.com/wp-content/uploads/2020/02/anh-ngau-32-2.jpg?v=1582389550" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=7"><img src="https://taoanhonline.com/wp-content/uploads/2020/02/anh-ngau-32-2.jpg?v=1582389550" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
         <div class="col-sm-3">
             <p>Emily Colson 22</p>
-            <img src="https://mondaycareer.com/wp-content/uploads/2020/11/%E1%BA%A3nh-avatar-%C4%91%E1%BA%B9p-c%C3%B4-g%C3%A1i-%C4%91eo-k%C3%ADnh.jpg" class="img-responsive" style="width:100%; height: 350px; object-fit: cover" alt="Image">
+            <a href="employee?action=viewEmployee&employeeId=8"><img src="https://mondaycareer.com/wp-content/uploads/2020/11/%E1%BA%A3nh-avatar-%C4%91%E1%BA%B9p-c%C3%B4-g%C3%A1i-%C4%91eo-k%C3%ADnh.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
         </div>
     </div>
 </div><br>
