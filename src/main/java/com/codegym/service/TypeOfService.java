@@ -10,8 +10,13 @@ import java.util.List;
 public class TypeOfService implements ITypeOfService {
     ITypeServiceDAO serviceDAO = new TypeServiceDAO();
     @Override
-    public List findAll() {
-        return serviceDAO.selectAll();
+    public List<TypeService> findAll() {
+        try {
+            return serviceDAO.selectAll();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
     }
 
     @Override

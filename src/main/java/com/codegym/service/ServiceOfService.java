@@ -11,7 +11,12 @@ public class ServiceOfService implements IServiceOfService{
     IServiceDB_DAO serviceDB_dao = new ServiceDB_DAO();
     @Override
     public List<ServiceDB> findAll() {
-        return serviceDB_dao.selectAll();
+        try {
+            return serviceDB_dao.selectAll();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
     }
 
     @Override
