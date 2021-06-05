@@ -14,7 +14,11 @@
 </head>
 <body>
 <h1>List type service </h1>
-<a href="/">|| back home ||</a>
+<form method="post" action="/login?action=login">
+    <input hidden name="passWord" value="${passWord}">
+    <input hidden name="userName" value="${userName}">
+    <button type="submit">back home</button>
+</form>
 <a href="/typeServices?action=create">|| create new ||</a>
 <p style="color: red"><c:out value="${message}"/></p>
 <table>
