@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -7,7 +6,12 @@
 </head>
 <body>
 <h1>List user</h1>
-<a href="/">back home</a>
+<form method="post" action="/login?action=login">
+    <input hidden name="passWord" value="${passWord}">
+    <input hidden name="userName" value="${userName}">
+    <button type="submit">back home</button>
+</form>
+
 <table>
     <tr>
         <td>id</td>
@@ -25,10 +29,10 @@
             <td><c:out value="${user1.gender}"/></td>
             <td><c:out value="${user1.phone}"/></td>
             <td><c:out value="${user1.level}"/></td>
-            <td><a href="/users?action=edit&userId=${user1.userId}">Edit</a></td>
+            <td><a href="/users?action=edit&userId=${user1.userId}&userName=${userName}&passWord=${passWord}">Edit</a></td>
             <td><a href="/users?action=delete&userId=${user1.userId}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
 </body>
-</html>
+</html

@@ -32,9 +32,19 @@ public class RentalPersonServlet extends HttpServlet {
             case "deleteEmployee":
                 showDeleteRentalForm(request, response);
                 break;
+<<<<<<< HEAD
             default:
                 showListRental(request, response);
                 break;
+=======
+            case "showListRental" :
+                showListRentals(request, response);
+                break;
+            case "viewEmployees":
+                viewRentals(request,response);
+                break;
+
+>>>>>>> thanh
         }
     }
 
@@ -132,6 +142,12 @@ public class RentalPersonServlet extends HttpServlet {
             case "deleteEmployee":
                 deleteRental(request, response);
                 break;
+<<<<<<< HEAD
+=======
+            default:
+                showListRental(request, response);
+                break;
+>>>>>>> thanh
         }
     }
 

@@ -16,6 +16,7 @@ import java.util.List;
 @WebServlet(name = "UserServlet", value = "/users")
 public class UserServlet extends HttpServlet {
     private final IUserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -25,7 +26,7 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "create":
                 String a = "registration.jsp";
-                createNewForm(request, response,a);
+                createNewForm(request, response, a);
                 break;
             case "edit":
                 try {
@@ -34,31 +35,23 @@ public class UserServlet extends HttpServlet {
                     throwables.printStackTrace();
                 }
                 break;
-            case "list" :
+            case "list":
                 String b = "list.jsp";
-                createNewForm(request,response,b);
+                createNewForm(request, response, b);
                 break;
             case "delete":
                 try {
-                    deleteNewFrom(request,response);
+                    deleteNewFrom(request, response);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
-            default: b = "list.jsp";
-                createNewForm(request,response,b);
+            default:
+                b = "list.jsp";
+                createNewForm(request, response, b);
                 break;
         }
     }
-
-//    private void showInFor(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-//        int userId = Integer.parseInt(request.getParameter("userId"));
-//        User user = userService.findById(userId);
-//        request.setAttribute("user",user);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
-//        dispatcher.forward(request, response);
-//
-//    }
 
     private void deleteNewFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("userId"));
@@ -69,15 +62,23 @@ public class UserServlet extends HttpServlet {
     private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
         User user = userService.findById(id);
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
+        request.setAttribute("userName", userName);
+        request.setAttribute("passWord", passWord);
         request.setAttribute("user",user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void createNewForm(HttpServletRequest request, HttpServletResponse response,String a) throws ServletException, IOException {
+    private void createNewForm(HttpServletRequest request, HttpServletResponse response, String a) throws ServletException, IOException {
         List<User> users = userService.findAll();
         request.setAttribute("user", users);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/"+a);
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
+        request.setAttribute("userName", userName);
+        request.setAttribute("passWord", passWord);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/" + a);
         dispatcher.forward(request, response);
     }
 
@@ -87,23 +88,29 @@ public class UserServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action){
+        switch (action) {
             case "create":
                 try {
-                    createNewCustomer(request,response);
+                    createNewCustomer(request, response);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
-            case "edit" :
+            case "edit":
                 try {
                     editUser(request, response);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
-
+//            default:
+//                showlistAccount(request,response);
+//                break;
         }
+    }
+
+    private void showlistAccount(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -124,6 +131,10 @@ public class UserServlet extends HttpServlet {
         } else {
             request.setAttribute("message", "Success!");
         }
+        String userName1 = request.getParameter("userName");
+        String passWord1 = request.getParameter("passWord");
+        request.setAttribute("userName", userName1);
+        request.setAttribute("passWord", passWord1);
         request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);
