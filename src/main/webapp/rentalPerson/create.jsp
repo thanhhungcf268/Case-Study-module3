@@ -31,7 +31,20 @@
             <tr>
                 <th>Age</th>
                 <td>
-                    <input type="text" name="age" id="age" size="45"/>
+                    <select name = "age">
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -61,14 +74,15 @@
                 </td>
             </tr>
             <tr>
-<%--                input file--%>
-                <th>Image</th>
+
+                <th>Image URL</th>
                 <td>
                     <input type="text" name="urlImage" id="image" size="45"/>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
+<%--                    <input type = "reset" value = "Clear" style = "background-color: red"/>--%>
                     <input type="submit" value="Save"/>
                 </td>
             </tr>

@@ -15,4 +15,8 @@ public interface IRentalPersonService {
     boolean update(int id, RentalPerson rental);
 
     boolean delete(int id);
+
+    List<RentalPerson> findRentalByName(String name);
+
+    List<RentalPerson> sort(String category, String type);
 }

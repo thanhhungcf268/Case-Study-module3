@@ -10,7 +10,7 @@ public interface IGeneralDAO<T> {
 
     T select(int id) throws SQLException;
 
-    List<T> selectAll();
+    List<T> selectAll() throws SQLException;
 
     boolean delete(int id) throws SQLException;
 

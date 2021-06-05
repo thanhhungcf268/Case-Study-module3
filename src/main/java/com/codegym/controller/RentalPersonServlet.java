@@ -42,7 +42,21 @@ public class RentalPersonServlet extends HttpServlet {
 
 
     private void showListRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<RentalPerson> rentals = this.rentalPersonService.selectAll();
+        List<RentalPerson> rentals;
+        String search = request.getParameter("search");
+
+        if (search == null || search .equals("")){
+            rentals = this.rentalPersonService.selectAll();
+        } else {
+            rentals = this.rentalPersonService.findRentalByName(search);
+        }
+
+        String sort = request.getParameter("sort");
+        String type = request.getParameter("type");
+
+        if (sort != null){
+            rentals = this.rentalPersonService.sort(sort, type);
+        }
 
         request.setAttribute("rentals", rentals);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/rentalPerson/list.jsp");
@@ -117,8 +131,6 @@ public class RentalPersonServlet extends HttpServlet {
                 break;
             case "deleteEmployee":
                 deleteRental(request, response);
-                break;
-            default:
                 break;
         }
     }

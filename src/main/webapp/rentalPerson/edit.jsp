@@ -39,9 +39,23 @@
             <tr>
                 <th>Age</th>
                 <td>
-                    <input type="text" name="age" size="45"
-                           value="<c:out value='${rental.age}' />"
-                    />
+                    <select name = "age">
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                    </select>
+<%--                    <input type="text" name="age" size="45"--%>
+<%--                           value="<c:out value='${rental.age}' />"--%>
+<%--                    />--%>
                 </td>
             </tr>
             <tr>
@@ -72,15 +86,16 @@
                 </td>
             </tr>
             <tr>
-                <th>Image</th>
+                <th>Image URL</th>
                 <td>
-                    <input type="text" name="urlImage" size="15"
+                    <input type="text" name="urlImage" size="50"
                            value="<c:out value='${rental.urlImage}' />"
                     />
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
+                    <input type = "reset" value = "Clear"/>
                     <input type="submit" value="Save"/>
                 </td>
             </tr>

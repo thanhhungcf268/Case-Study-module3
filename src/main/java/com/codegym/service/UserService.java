@@ -13,7 +13,12 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> findAll() {
-        return userDAO.selectAll();
+        try {
+            return userDAO.selectAll();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     @Override

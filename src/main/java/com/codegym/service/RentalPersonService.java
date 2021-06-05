@@ -13,7 +13,12 @@ public class RentalPersonService implements IRentalPersonService{
 
     @Override
     public List<RentalPerson> selectAll() {
-        return rentalDAO.selectAll();
+        try {
+            return rentalDAO.selectAll();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -56,5 +61,25 @@ public class RentalPersonService implements IRentalPersonService{
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<RentalPerson> findRentalByName(String name) {
+        try {
+            return rentalDAO.findRentalByName(name);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<RentalPerson> sort(String category, String type) {
+        try {
+            return rentalDAO.sort(category, type);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }
