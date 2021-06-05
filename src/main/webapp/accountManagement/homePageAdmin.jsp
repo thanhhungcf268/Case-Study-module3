@@ -14,5 +14,6 @@
 <h1>Welcome Admin</h1>
 <h2><a href="/orders"></a></h2>
 <h2><a href="/users"></a></h2>
+<h2><a href="/employee">Employee List</a></h2>
 </body>
 </html>

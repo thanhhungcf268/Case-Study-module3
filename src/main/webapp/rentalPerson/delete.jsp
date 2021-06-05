@@ -13,7 +13,7 @@
         </h2>
     </center>
     <div align="center" style = "width: 50%; position: relative; left: 25%">
-        <h3>Are you sure?</h3>
+        <h3 style = "color: red">Are you sure?</h3>
         <form method="post">
             <fieldset>
                 <legend><h3>Employee information</h3></legend>
