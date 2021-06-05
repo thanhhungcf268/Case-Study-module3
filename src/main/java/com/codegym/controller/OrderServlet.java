@@ -41,7 +41,6 @@ public class OrderServlet extends HttpServlet {
                 case "view":
                     viewDetail(request, response);
                     break;
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

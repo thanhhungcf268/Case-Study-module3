@@ -38,9 +38,7 @@ public class RentalPersonServlet extends HttpServlet {
             case "viewEmployees":
                 viewRentals(request,response);
                 break;
-            default:
-                showListRental(request, response);
-                break;
+
         }
     }
 
@@ -144,6 +142,7 @@ public class RentalPersonServlet extends HttpServlet {
                 deleteRental(request, response);
                 break;
             default:
+                showListRental(request, response);
                 break;
         }
     }

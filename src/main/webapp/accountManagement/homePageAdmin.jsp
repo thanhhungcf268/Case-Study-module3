@@ -56,7 +56,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a>Home</a></li>
+                <li class="active"><button>Home</button></li>
                 <li>
                     <form method="post" action="/orders">
                         <input hidden name="userName" value="${user.userName}">
@@ -65,22 +65,21 @@
                     </form>
                 </li>
                 <li>
-                    <form method="get" action="/users">
+                    <form method="post" action="/users">
                         <input hidden name="userName" value="${user.userName}">
                         <input hidden name="passWord" value="${user.passWord}">
                         <button style="height: auto" type="submit">Users List</button>
                     </form>
                 </li>
                 <li>
-                    <form method="get" action="/employee">
+                    <form method="post" action="/employee">
                         <input hidden name="userName" value="${user.userName}">
                         <input hidden name="passWord" value="${user.passWord}">
                         <button type="submit">Rental List</button>
                     </form>
                 </li>
-
+                <li><button><a href="https://www.facebook.com/xoa.hets.9">Contact</a></button></li>
             </ul>
-            <li><a href="https://www.facebook.com/xoa.hets.9">Contact</a></li>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
             </ul>
