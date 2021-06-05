@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ACER
-  Date: 6/3/2021
-  Time: 2:34 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +5,12 @@
 </head>
 <body>
 <h1>Edit home</h1>
-<a href="/">back home</a>
+
+<form method="get" action="/users">
+    <input hidden name="userName" value="${userName}">
+    <input hidden name="passWord" value="${passWord}">
+    <button style="height: auto" type="submit">Users List</button>
+</form>
 <form method="post">
     <input name="userId" type="hidden" value="${user.userId}">
     <h1>Username :</h1>
