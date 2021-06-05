@@ -4,6 +4,7 @@ import com.codegym.DAO.order.OrderDAO;
 import com.codegym.DAO.rentalPerson.RentalPersonDAO;
 import com.codegym.DAO.user.UserDAO;
 import com.codegym.model.OrderDetail;
+import com.codegym.model.RentalPerson;
 import com.codegym.model.User;
 
 import javax.servlet.*;
@@ -95,6 +96,8 @@ public class OrderServlet extends HttpServlet {
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = userDAO.selectAll();
         request.setAttribute("users", users);
+        List<RentalPerson> rentalPeople = rentalPersonDAO.selectAll();
+        request.setAttribute("rentalPeople", rentalPeople);
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/createOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
