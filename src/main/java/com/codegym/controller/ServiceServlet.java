@@ -110,6 +110,8 @@ public class ServiceServlet extends HttpServlet {
     private void showListForm(HttpServletRequest request, HttpServletResponse response) {
         List<ServiceDB> services = servicesOfService.findAll();
         request.setAttribute("services", services);
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
         RequestDispatcher dispatcher = request.getRequestDispatcher("service/listService.jsp");
         try {
             dispatcher.forward(request, response);

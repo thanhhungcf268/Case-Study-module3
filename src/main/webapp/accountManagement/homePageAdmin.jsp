@@ -72,6 +72,16 @@
                         <button type="submit">Rental List</button>
                     </form>
                 </li>
+                <li>
+                    <form method="post" action="/Services">
+                        <button type="submit">Services</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" action="/typeServices">
+                        <button type="submit">typeServices</button>
+                    </form>
+                </li>
                 <li><button><a href="https://www.facebook.com/xoa.hets.9">Contact</a></button></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

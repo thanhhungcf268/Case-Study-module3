@@ -82,6 +82,8 @@ public class TypeServiceServlet extends HttpServlet {
     private void showListForm(HttpServletRequest request, HttpServletResponse response) {
         List<TypeService> typeServices = typeOfService.findAll();
         request.setAttribute("types", typeServices);
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
         RequestDispatcher dispatcher = request.getRequestDispatcher("typeService/listTypeService.jsp");
         try {
             dispatcher.forward(request, response);
