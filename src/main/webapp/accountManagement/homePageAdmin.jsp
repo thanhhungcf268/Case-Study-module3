@@ -59,22 +59,16 @@
                 <li class="active"><button>Home</button></li>
                 <li>
                     <form method="post" action="/orders">
-                        <input hidden name="userName" value="${user.userName}">
-                        <input hidden name="passWord" value="${user.passWord}">
                         <button style="height: auto" type="submit">Order List</button>
                     </form>
                 </li>
                 <li>
-                    <form method="get" action="/users">
-                        <input hidden name="userName" value="${user.userName}">
-                        <input hidden name="passWord" value="${user.passWord}">
+                    <form  method="get" action="/users">
                         <button style="height: auto" type="submit">Users List</button>
                     </form>
                 </li>
                 <li>
-                    <form method="get" action="/employee">
-                        <input hidden name="userName" value="${user.userName}">
-                        <input hidden name="passWord" value="${user.passWord}">
+                    <form method="post" action="/employee">
                         <button type="submit">Rental List</button>
                     </form>
                 </li>

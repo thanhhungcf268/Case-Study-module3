@@ -48,7 +48,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a>Home</a></li>
-                <li><a href="/orders">List Order</a></li>
+                <li><form method="post" action="/orders"><button>List Order</button></form></li>
             </ul>
         </div>
     </div>

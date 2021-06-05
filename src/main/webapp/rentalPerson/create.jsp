@@ -9,7 +9,7 @@
 <center>
     <h1>Employee Management</h1>
     <h2>
-        <a href="/employee">Back to Employee List</a>
+        <form method="post" action="/employee"><button type="submit">Back to Employee List</button></form>
     </h2>
 </center>
 <div align="center">
