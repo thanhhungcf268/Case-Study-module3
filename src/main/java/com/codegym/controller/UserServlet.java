@@ -62,6 +62,10 @@ public class UserServlet extends HttpServlet {
     private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
         User user = userService.findById(id);
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
+        request.setAttribute("userName", userName);
+        request.setAttribute("passWord", passWord);
         request.setAttribute("user",user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);
@@ -99,7 +103,14 @@ public class UserServlet extends HttpServlet {
                     throwables.printStackTrace();
                 }
                 break;
+//            default:
+//                showlistAccount(request,response);
+//                break;
         }
+    }
+
+    private void showlistAccount(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -120,6 +131,10 @@ public class UserServlet extends HttpServlet {
         } else {
             request.setAttribute("message", "Success!");
         }
+        String userName1 = request.getParameter("userName");
+        String passWord1 = request.getParameter("passWord");
+        request.setAttribute("userName", userName1);
+        request.setAttribute("passWord", passWord1);
         request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/edit.jsp");
         dispatcher.forward(request, response);

@@ -65,7 +65,7 @@
                     </form>
                 </li>
                 <li>
-                    <form method="post" action="/users">
+                    <form method="get" action="/users">
                         <input hidden name="userName" value="${user.userName}">
                         <input hidden name="passWord" value="${user.passWord}">
                         <button style="height: auto" type="submit">Users List</button>

@@ -5,7 +5,12 @@
 </head>
 <body>
 <h1>Edit home</h1>
-<a href="/">back home</a>
+
+<form method="post" action="/users">
+    <input hidden name="userName" value="${userName}">
+    <input hidden name="passWord" value="${passWord}">
+    <button style="height: auto" type="submit">Users List</button>
+</form>
 <form method="post">
     <input name="userId" type="hidden" value="${user.userId}">
     <h1>Username :</h1>
