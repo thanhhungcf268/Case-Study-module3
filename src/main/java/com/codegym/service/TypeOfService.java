@@ -1,7 +1,7 @@
 package com.codegym.service;
 
-import com.codegym.DAO.typeService.type.ITypeServiceDAO;
-import com.codegym.DAO.typeService.type.TypeServiceDAO;
+import com.codegym.DAO.typeService.ITypeServiceDAO;
+import com.codegym.DAO.typeService.TypeServiceDAO;
 import com.codegym.model.TypeService;
 
 import java.sql.SQLException;

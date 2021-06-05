@@ -1,7 +1,6 @@
-package com.codegym.DAO.typeService.type;
+package com.codegym.DAO.typeService;
 
 import com.codegym.DAO.SQLConnection;
-import com.codegym.model.OrderDetail;
 import com.codegym.model.TypeService;
 
 import java.sql.*;
