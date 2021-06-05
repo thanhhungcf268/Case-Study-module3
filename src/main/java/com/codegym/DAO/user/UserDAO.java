@@ -74,13 +74,10 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean delete(int id) throws SQLException {
         rowInserted = 0;
-//        String deletes = "";
-//        CallableStatement preparedStatements = connection.prepareCall(deletes);
-//        preparedStatements.setInt(1,id);
-        String DELETE_BY_ID = "delete from usermanager.user where userId = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID);
-        preparedStatement.setInt(1, id);
-        rowInserted = preparedStatement.executeUpdate();
+        String DELETE_USER = "{call deleteUser(?)}";
+        CallableStatement preparedStatements = connection.prepareCall(DELETE_USER);
+        preparedStatements.setInt(1,id);
+        rowInserted = preparedStatements.executeUpdate();
         return rowInserted != 0;
     }
 

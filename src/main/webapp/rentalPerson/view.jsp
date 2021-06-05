@@ -7,63 +7,71 @@
     <title>View Employee</title>
     <style>
         div {
-            width: 50%; position: relative; left: 25%
+            width: 50%;
+            position: relative;
+            left: 25%
         }
-        #firstRow{
+
+        #firstRow {
             width: 20%;
         }
+
         p {
             font-size: 18px;
         }
+
         .title {
             font-size: 22px;
             font-weight: bold;
         }
-
-
     </style>
 </head>
 <body>
-<center>
-    <h1>Employee Management</h1>
-    <h2>
-        <a href="/employee">Back to Employee List</a>
-    </h2>
-</center>
-<div align="center" >
-        <fieldset>
-            <legend><p class = "title">Employee Information</p></legend>
-            <table align="center"  width="75%" height = "50%">
-                <tr id = "firstRow" >
-                    <td rowspan="5"><img src="${rental.urlImage}" alt = "Not available" width = 150 height = 240></td>
-                    <td colspan="2"><p class ="title">${rental.id}.  ${rental.name}</p></td>
-                </tr>
-                <tr>
-                    <td><p>Age: </p></td>
-                    <td><p>${rental.age}</p></td>
-                </tr>
-                <tr>
-                    <td><p>Gender: </p></td>
-                    <td><p>${rental.gender}</p></td>
-                </tr>
-                <tr>
-                    <td><p>Status: </p></td>
-                    <td>
-                        <c:if test="${rental.status == true}">
-                            <p>Available</p>
-                        </c:if>
-                        <c:if test="${rental.status == false}">
-                            <p>Not Available</p>
-                        </c:if>
-                    </td>
-                </tr>
-                <tr>
-                    <td><p>Phone: </p></td>
-                    <td><p>${rental.phone}</p></td>
-                </tr>
+<h1>Employee Details</h1>
+<p>
+<form method="post" action="/employee">
+    <button type="submit">Back to Employee List</button>
+</form>
+<form method="post" action="/login?action=login">
+    <input hidden name="passWord" value="${passWord}">
+    <input hidden name="userName" value="${userName}">
+    <button type="submit">Back Home Page</button>
+</form>
+</p>
+<div align="center">
+    <fieldset>
+        <legend><p class="title">Employee Information</p></legend>
+        <table align="center" width="75%" height="50%">
+            <tr id="firstRow">
+                <td rowspan="5"><img src="${rental.urlImage}" alt="Not available" width=150 height=240></td>
+                <td colspan="2"><p class="title">${rental.id}. ${rental.name}</p></td>
+            </tr>
+            <tr>
+                <td><p>Age: </p></td>
+                <td><p>${rental.age}</p></td>
+            </tr>
+            <tr>
+                <td><p>Gender: </p></td>
+                <td><p>${rental.gender}</p></td>
+            </tr>
+            <tr>
+                <td><p>Status: </p></td>
+                <td>
+                    <c:if test="${rental.status == true}">
+                        <p>Available</p>
+                    </c:if>
+                    <c:if test="${rental.status == false}">
+                        <p>Not Available</p>
+                    </c:if>
+                </td>
+            </tr>
+            <tr>
+                <td><p>Phone: </p></td>
+                <td><p>${rental.phone}</p></td>
+            </tr>
 
-            </table>
-        </fieldset>
+        </table>
+    </fieldset>
 </div>
 
 </body>

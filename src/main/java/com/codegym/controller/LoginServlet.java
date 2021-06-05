@@ -60,6 +60,8 @@ public class LoginServlet extends HttpServlet {
         User user = userService.findById(checkUser);
         req.setAttribute("user",user);
         RequestDispatcher dispatcher;
+        UserServlet.checkUser = userName;
+        UserServlet.checkUserPassWord = passWord;
         if (checkUser != -1) {
             if (userName.equals("admin")) {
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageAdmin.jsp");

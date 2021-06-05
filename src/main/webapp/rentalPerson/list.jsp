@@ -15,6 +15,11 @@
     <h2>
         <a href="/employee?action=createEmployee">Add New Employees</a>
     </h2>
+    <form method="post" action="/login?action=login">
+        <input hidden name="passWord" value="${passWord}">
+        <input hidden name="userName" value="${userName}">
+        <button type="submit">Back Home Page</button>
+    </form>
 </center>
 <div align="center">
 

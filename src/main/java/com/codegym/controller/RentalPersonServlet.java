@@ -40,9 +40,6 @@ public class RentalPersonServlet extends HttpServlet {
         }
     }
 
-
-
-
     private void showListRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<RentalPerson> rentals;
         String search = request.getParameter("search");
@@ -61,6 +58,16 @@ public class RentalPersonServlet extends HttpServlet {
         }
 
         request.setAttribute("rentals", rentals);
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/rentalPerson/list.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void showListRentals(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<RentalPerson> rentals = this.rentalPersonService.selectAll();
+        request.setAttribute("rentals", rentals);
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/rentalPerson/list.jsp");
         dispatcher.forward(request, response);
     }
@@ -71,12 +78,27 @@ public class RentalPersonServlet extends HttpServlet {
         RentalPerson rental = this.rentalPersonService.select(id);
 
         RequestDispatcher dispatcher;
-
+        String a =  UserServlet.checkUser;
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
         if (rental == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             request.setAttribute("rental", rental);
             dispatcher = request.getRequestDispatcher("/rentalPerson/view.jsp");
+        }
+        dispatcher.forward(request, response);
+    }
+    private void viewRentals(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("employeeId"));
+        RentalPerson rental = this.rentalPersonService.select(id);
+        RequestDispatcher dispatcher;
+
+        if (rental == null){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("rental", rental);
+            dispatcher = request.getRequestDispatcher("/orderUser/view.jsp");
         }
         dispatcher.forward(request, response);
     }

@@ -85,11 +85,9 @@ public class OrderServlet extends HttpServlet {
 
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<OrderDetail> orderDetails = orderDAO.selectAll();
-        String userName = request.getParameter("userName");
-        String passWord = request.getParameter("passWord");
         request.setAttribute("orderDetails", orderDetails);
-        request.setAttribute("userName", userName);
-        request.setAttribute("passWord", passWord);
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/listOrder.jsp");
         dispatcher.forward(request, response);
     }
