@@ -18,6 +18,8 @@ public class UserServlet extends HttpServlet {
     private final IUserService userService = new UserService();
     public static String checkUser = "";
     public static String checkUserPassWord = "";
+    public static float Price = 3000;
+    public static int idUser = 0;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

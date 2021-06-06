@@ -39,6 +39,17 @@
         th {
             text-align: center;
         }
+        button {
+            margin-top: 14px;
+            border: 0;
+            margin-right: 10px;
+            color: #9d9d9d;
+            background-color: #222222;
+        }
+
+        button:hover {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +67,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a>Home</a></li>
-                <li><a href="/orders">List Order</a></li>
+                <li><form style="margin-left: 10px" method="post" action="/orders"><button>List Order</button></form></li>
             </ul>
         </div>
     </div>

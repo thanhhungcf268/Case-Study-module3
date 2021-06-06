@@ -33,7 +33,7 @@
     .social_icon span {
         font-size: 60px;
         margin-left: 10px;
-        color: hotpink;
+        color: deeppink;
     }
 
     .social_icon span:hover {
@@ -53,7 +53,7 @@
 
     .input-group-prepend span {
         width: 50px;
-        background-color: hotpink;
+        background-color: deeppink;
         color: black;
         border: 0 !important;
     }
@@ -72,7 +72,7 @@
 
     .login_btn {
         color: black;
-        background-color: hotpink;
+        background-color: deeppink;
         width: 100px;
     }
 
