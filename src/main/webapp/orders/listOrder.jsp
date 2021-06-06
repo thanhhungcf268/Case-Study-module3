@@ -40,6 +40,7 @@
         th {
             text-align: center;
         }
+
         button {
             margin-top: 14px;
             border: 0;
@@ -79,19 +80,17 @@
             </div>
         </div>
     </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="background-color: #e3f2fd">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <h1 style="margin: 10px">Order List</h1>
+            </div>
+        </div>
+    </nav>
 </form>
 
 <table class="table table-striped">
     <thead>
-    <tr>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" style="background-color: #e3f2fd">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <h1 style="margin: 10px">Order List</h1>
-                </div>
-            </div>
-        </nav>
-    </tr>
     <tr>
         <th>Order Id</th>
         <th>User Id</th>
@@ -99,8 +98,7 @@
         <th>Price</th>
         <th>Hours</th>
         <th>Start Hour</th>
-        <th>edit</th>
-        <th>delete</th>
+        <th colspan="2"></th>
     </tr>
     </thead>
     <tbody>
