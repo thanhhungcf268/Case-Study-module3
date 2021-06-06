@@ -41,6 +41,9 @@ public class OrderServlet extends HttpServlet {
                 case "view":
                     viewDetail(request, response);
                     break;
+                default:
+                    showList(request, response);
+                    break;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,8 +71,9 @@ public class OrderServlet extends HttpServlet {
             request.setAttribute("message", "Error!");
         } else {
             request.setAttribute("message", "Success!");
+            response.sendRedirect("/orders");
         }
-        response.sendRedirect("/orders");
+
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
