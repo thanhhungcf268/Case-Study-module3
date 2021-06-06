@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <style>
         table {
             text-align: center;
@@ -33,6 +34,40 @@
 
         th {
             text-align: center;
+        }
+
+        .divider-text {
+            position: relative;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .divider-text span {
+            padding: 7px;
+            font-size: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .divider-text:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            top: 55%;
+            left: 0;
+            z-index: 1;
+        }
+
+        .btn-facebook {
+            background-color: #405D9D;
+            color: #fff;
+        }
+
+        .btn-twitter {
+            background-color: #42AEEC;
+            color: #fff;
         }
     </style>
 </head>
@@ -69,46 +104,69 @@
     <h1><c:if test="${message!= null}">
         <p style="color: red"><c:out value="${message}"/></p>
     </c:if></h1>
-
-    <form method="post">
-        <table class="table">
-            <thead class="thead-light">
-            <tr>
-                <th style="text-align: right" scope="col">Property</th>
-                <th scope="col">Data</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td style="text-align: right">Username:</td>
-                <td><input name="userName" type="text"></td>
-            </tr>
-            <tr>
-                <td style="text-align: right">Password:</td>
-                <td><input name="passWord" type="text"></td>
-            </tr>
-            <tr>
-                <td style="text-align: right">Gender:</td>
-                <td><input name="gender" type="text"></td>
-            </tr>
-            <tr>
-                <td style="text-align: right">Phone:</td>
-                <td> <input name="phone" type="text"></td>
-            </tr>
-            <tr>
-                <td style="text-align: right">Level:</td>
-                <td> <input readonly value="1" name="level " type="text"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button style="width: 100px; height: 50px" class="btn btn-success">Register</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
 </div>
+
+
+<div align="center" class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Create Account</h4>
+        <p class="text-center">Get started with your free account</p>
+        <p>
+            <a style="background-color: pink" href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>
+                  Login via Twitter</a>
+            <a style="background-color: hotpink" href="" class="btn btn-block btn-facebook"> <i
+                    class="fab fa-facebook-f"></i>   Login via facebook</a>
+        </p>
+        <p class="divider-text">
+            <span class="bg-light">OR</span>
+        </p>
+        <form method="post">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                <input name="userName" class="form-control" placeholder="Username" type="text">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input name="passWord" class="form-control" placeholder="Create password" type="password">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input name="phone" class="form-control" placeholder="Phone number" type="number">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input name="gender" class="form-control" placeholder="Gender" type="text">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input name="level" readonly value="1" class="form-control">
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <button style="background-color: deeppink" type="submit" class="btn btn-primary btn-block"> Create
+                    Account
+                </button>
+            </div> <!-- form-group// -->
+            <p class="text-center">Have an account? <a href="/">Log In</a></p>
+        </form>
+    </article>
+</div> <!-- card.// -->
+
+</div>
+<!--container end.//-->
+
+<br><br>
+
+
 <footer class="site-footer">
     <div class="container">
         <div class="row">
