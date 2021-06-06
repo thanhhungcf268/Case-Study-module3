@@ -101,6 +101,7 @@ public class OrderServlet extends HttpServlet {
         request.setAttribute("users", users);
         request.setAttribute("userName", UserServlet.checkUser);
         request.setAttribute("passWord", UserServlet.checkUserPassWord);
+        request.setAttribute("startHour", java.time.LocalDateTime.now()+"");
         List<RentalPerson> rentalPeople = rentalPersonDAO.selectAll();
         request.setAttribute("rentalPeople", rentalPeople);
         double Price = UserServlet.Price-UserServlet.Price*0.05*(users.getLevel()-1);
@@ -111,7 +112,6 @@ public class OrderServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/createOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
