@@ -39,6 +39,9 @@
         html, body{
             background-color: lightpink;
         }
+        #tuan:hover{
+            color: deeppink;
+        }
     </style>
 </head>
 <body>
@@ -71,8 +74,10 @@
     <h3>Everyone Is Looking For Their Half</h3><br>
     <div class="row">
         <c:forEach items="${rentals}" var="rental">
-            <div class="col-sm-3">
-                <p> <b style="font-size: large">${rental.name}</b> </p>
+            <div id="tuan" style="position:relative;" class="col-sm-3">
+                <div>
+                    <b class="tuan" style="position: absolute;top: 90%; left: 45%;transform: translate(-20%, -30%); font-size: large">${rental.name}</b>
+                </div>
                 <a href="employee?action=viewEmployee&employeeId=${rental.id}"><img src="${rental.urlImage}"
                                                                                     class="img-responsive"
                                                                                     style="width:100%; height: 300px; object-fit: cover"

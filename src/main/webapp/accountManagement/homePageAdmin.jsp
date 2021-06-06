@@ -58,6 +58,11 @@
       .col-sm-4{
           border: 5px solid white;
       }
+      .thanh:hover{
+          color: deeppink;
+          font-family: "Apple Color Emoji", serif;
+          font-size: medium;
+      }
     </style>
 </head>
 <body>
@@ -186,7 +191,7 @@
         </div>
         <div style="margin-top: 50px" class="col-sm-4">
             <div class="well">
-                <p>Chân thành cảm ơn <b>Mr. Quân Nguyễn</b> đã giúp đỡ để chúng tôi hoàn thành project này</p>
+                <p class="thanh">Chân thành cảm ơn <b>Mr. Quân Nguyễn</b> đã giúp đỡ để chúng tôi hoàn thành project này</p>
             </div>
         </div>
     </div>
