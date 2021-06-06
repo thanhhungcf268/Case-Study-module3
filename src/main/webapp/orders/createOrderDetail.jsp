@@ -97,12 +97,14 @@
             <tr>
                 <td style="text-align: right">User Id:</td>
                 <td>
-                    <a style="text-decoration: none;color: black" name="userName" >${users.userId}</a>
+                    <input readonly type = "text" name = "userId" value="${users.userId}">
+<%--                    <a style="text-decoration: none;color: black" name="userId" >${users.userId}</a>--%>
                 </td>
             </tr>
             <tr>
                 <td style="text-align: right">Person Id:</td>
                 <td>
+
                     <select name="personId" style="width: 202px; height: 30px">
                         <c:forEach items="${rentalPeople}" var="rentalPeople">
                             <option value="${rentalPeople.id}">
@@ -114,7 +116,8 @@
             </tr>
             <tr>
                 <td style="text-align: right">Price:</td>
-                <td><a style="text-decoration: none;color: black" name="price">${price}</a></td>
+                <td><input readonly type = "text" name = "price" value="${price}"></td>
+
             </tr>
             <tr>
                 <td style="text-align: right">Hours:</td>

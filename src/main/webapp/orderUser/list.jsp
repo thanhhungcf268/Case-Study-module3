@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <body>
 <center>
@@ -20,15 +21,7 @@
         <button type="submit">Back Home Page</button>
     </form>
 </center>
-<div align="center">
 
-    <caption><h2>List of Employees</h2></caption>
-    <form>
-        <input type="text" placeholder="Search By Name" name="search">
-        <button type="submit">Search</button>
-    </form>
-    <br/>
-    <br/>
     <p>Sort by:
         <button><a href="/employee?sort=personId&type=asc">Sort By ID asc</a></button>
         <button><a href="/employee?sort=personId&type=desc">Sort By ID desc</a></button>
