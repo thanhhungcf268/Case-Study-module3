@@ -40,6 +40,17 @@
         th {
             text-align: center;
         }
+        button {
+            margin-top: 14px;
+            border: 0;
+            margin-right: 10px;
+            color: #9d9d9d;
+            background-color: #222222;
+        }
+
+        button:hover {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -62,9 +73,9 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a>Home</a></li>
                     <li>
-                        <button type="submit" value="login">Homepage</button>
+                        <button style="margin-left: 10px" type="submit" value="login">Homepage</button>
                     </li>
-                    <li><a href="/orders?action=create">Create Order</a></li>
+                    <li><a style="margin-left: -10px" href="/orders?action=create">Create Order</a></li>
                 </ul>
             </div>
         </div>
