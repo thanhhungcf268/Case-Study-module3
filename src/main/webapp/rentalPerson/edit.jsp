@@ -40,41 +40,50 @@
                 <th>Age</th>
                 <td>
                     <select name = "age">
-                        <option>19</option>
-                        <option>20</option>
-                        <option>21</option>
-                        <option>22</option>
-                        <option>23</option>
-                        <option>24</option>
-                        <option>25</option>
-                        <option>26</option>
-                        <option>27</option>
-                        <option>28</option>
-                        <option>29</option>
-                        <option>30</option>
+                        <c:forEach items="${validAges}"  var="age">
+                            <c:if test="${age == rental.age}">
+                                <option selected>${age}</option>
+                            </c:if>
+                            <c:if test="${age != rental.age}">
+                                <option>${age}</option>
+                            </c:if>
+                        </c:forEach>
                     </select>
-<%--                    <input type="text" name="age" size="45"--%>
-<%--                           value="<c:out value='${rental.age}' />"--%>
-<%--                    />--%>
                 </td>
             </tr>
             <tr>
                 <th>Gender</th>
                 <td>
-                    <input type="radio" id="female" name="gender" value="female" checked> Female
-                    <br>
-                    <input type="radio" id="male" name="gender" value="male"> Male
-                    <br>
-                    <input type="radio" id="other" name="gender" value="other"> Other
+                    <c:choose>
+                        <c:when test="${rental.gender == 'female'}">
+                            <input type="radio" id="female" name="gender" value="female" checked> Female<br>
+                            <input type="radio" id="male" name="gender" value="male"> Male<br>
+                            <input type="radio" id="other" name="gender" value="other"> Other<br />
+                        </c:when>
+                        <c:when test="${rental.gender == 'male'}">
+                            <input type="radio" id="female" name="gender" value="female" > Female<br>
+                            <input type="radio" id="male" name="gender" value="male" checked> Male<br>
+                            <input type="radio" id="other" name="gender" value="other"> Other<br />
+                        </c:when>
+                        <c:otherwise>
+                            <input type="radio" id="female" name="gender" value="female" > Female<br>
+                            <input type="radio" id="male" name="gender" value="male" > Male<br>
+                            <input type="radio" id="other" name="gender" value="other" checked> Other<br />
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
             <tr>
                 <th>Status</th>
                 <td>
-                    <input type="radio" id="true" name="status" value="true" checked> Available
-                    <br>
-                    <input type="radio" id="false" name="status" value="false" > Not available
-                    <br>
+                    <c:if test="${rental.status == true}">
+                        <input type="radio" id="true" name="status" value="true" checked> Available<br>
+                        <input type="radio" id="false" name="status" value="false" > Not available<br>
+                    </c:if>
+                    <c:if test="${rental.status == false}">
+                        <input type="radio" id="true" name="status" value="true" > Available<br>
+                        <input type="radio" id="false" name="status" value="false" checked> Not available<br>
+                    </c:if>
                 </td>
             </tr>
             <tr>
@@ -95,7 +104,6 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type = "reset" value = "Clear"/>
                     <input type="submit" value="Save"/>
                 </td>
             </tr>

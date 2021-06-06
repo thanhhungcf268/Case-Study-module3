@@ -14,18 +14,14 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean create(User user) throws SQLException {
         connection = SQLConnection.getConnection();
-        try {
-            String INSERT_USER = "insert into usermanager.user (username, password, gender, phone, level) VALUE (?,?,?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER);
-            preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getPassWord());
-            preparedStatement.setString(3, user.getGender());
-            preparedStatement.setString(4, user.getPhone());
-            preparedStatement.setInt(5, user.getLevel());
-            rowInserted = preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        String INSERT_USER = "insert into usermanager.user (username, password, gender, phone, level) VALUE (?,?,?,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER);
+        preparedStatement.setString(1, user.getUserName());
+        preparedStatement.setString(2, user.getPassWord());
+        preparedStatement.setString(3, user.getGender());
+        preparedStatement.setString(4, user.getPhone());
+        preparedStatement.setInt(5, user.getLevel());
+        rowInserted = preparedStatement.executeUpdate();
         return rowInserted != 0;
     }
 
@@ -43,7 +39,7 @@ public class UserDAO implements IUserDAO {
             String gender = resultSet.getString("gender");
             String phone = resultSet.getString("phone");
             int level = resultSet.getInt("level");
-            user= new User(id, username, password, gender, phone, level);
+            user = new User(id, username, password, gender, phone, level);
         }
         return user;
     }
@@ -76,7 +72,7 @@ public class UserDAO implements IUserDAO {
         rowInserted = 0;
         String DELETE_USER = "{call deleteUser(?)}";
         CallableStatement preparedStatements = connection.prepareCall(DELETE_USER);
-        preparedStatements.setInt(1,id);
+        preparedStatements.setInt(1, id);
         rowInserted = preparedStatements.executeUpdate();
         return rowInserted != 0;
     }

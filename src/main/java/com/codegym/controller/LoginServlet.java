@@ -68,16 +68,17 @@ public class LoginServlet extends HttpServlet {
         if (checkUser != -1) {
             if (userName.equals("admin")) {
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageAdmin.jsp");
+
             }else {
                 showListRentalUser(req,resp);
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageUser.jsp");
+
             }
         } else {
             dispatcher = req.getRequestDispatcher("/error-404.jsp");
         }
         dispatcher.forward(req, resp);
     }
-
     private void showListRentalUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<RentalPerson> rentals = this.rentalPersonService.selectAll();
         request.setAttribute("rentals", rentals);

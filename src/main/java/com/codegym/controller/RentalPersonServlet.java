@@ -8,7 +8,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.codegym.model.RentalPerson.MAX_AGE;
+import static com.codegym.model.RentalPerson.MIN_AGE;
 
 @WebServlet(name = "RentalPersonServlet", value = "/employee")
 public class RentalPersonServlet extends HttpServlet {
@@ -108,10 +112,16 @@ public class RentalPersonServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("employeeId"));
         RentalPerson rental = this.rentalPersonService.select(id);
 
+        List<Integer> validAges = new ArrayList<>();
+        for (int i = MIN_AGE; i <= MAX_AGE; i++){
+            validAges.add(i);
+        }
+
         RequestDispatcher dispatcher;
         if (rental == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
+            request.setAttribute("validAges", validAges);
             request.setAttribute("rental", rental);
             dispatcher = request.getRequestDispatcher("/rentalPerson/edit.jsp");
         }
