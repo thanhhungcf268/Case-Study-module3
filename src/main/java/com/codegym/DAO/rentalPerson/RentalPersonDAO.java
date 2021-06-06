@@ -60,7 +60,6 @@ public class RentalPersonDAO implements IRentalPersonDAO {
 
 
 
-    //need to change procedure
     @Override
     public boolean delete(int id) throws SQLException {
         int deletedRow;
