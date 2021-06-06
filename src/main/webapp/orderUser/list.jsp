@@ -23,22 +23,21 @@
 <div align="center">
 
     <caption><h2>List of Employees</h2></caption>
-
     <form>
-        <input type="text" placeholder="Search By Name" name = "search">
-        <button type = "submit">Search</button>
+        <input type="text" placeholder="Search By Name" name="search">
+        <button type="submit">Search</button>
     </form>
     <br/>
     <br/>
     <p>Sort by:
-        <button><a href = "/employee?sort=personId&type=asc">Sort By ID asc</a></button>
-        <button><a href = "/employee?sort=personId&type=desc">Sort By ID desc</a></button>
-        <button><a href = "/employee?sort=name&type=asc">Sort By Name asc</a></button>
-        <button><a href = "/employee?sort=name&type=desc">Sort By Name desc</a></button>
-        <button><a href = "/employee?sort=age&type=asc">Sort By Age asc</a></button>
-        <button><a href = "/employee?sort=age&type=desc">Sort By Age desc</a></button>
+        <button><a href="/employee?sort=personId&type=asc">Sort By ID asc</a></button>
+        <button><a href="/employee?sort=personId&type=desc">Sort By ID desc</a></button>
+        <button><a href="/employee?sort=name&type=asc">Sort By Name asc</a></button>
+        <button><a href="/employee?sort=name&type=desc">Sort By Name desc</a></button>
+        <button><a href="/employee?sort=age&type=asc">Sort By Age asc</a></button>
+        <button><a href="/employee?sort=age&type=desc">Sort By Age desc</a></button>
     </p>
-    <table border = "1" cellpadding="5" class = "table table-hover">
+    <table border="1" cellpadding="5" class="table table-hover">
         <thead>
         <tr>
             <th>#</th>
@@ -48,8 +47,6 @@
             <th>Status</th>
             <th>Phone</th>
             <th>Image</th>
-            <th>Edit</th>
-            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -68,7 +65,10 @@
                     </c:if>
                 </td>
                 <td><c:out value="${rental.phone}"/></td>
-                <td><a href = "${rental.urlImage}"><img src = "${rental.urlImage}" alt="Not available" width = 100 height = 160></a></td>
+                <td><a href="${rental.urlImage}"><img src="${rental.urlImage}" alt="Not available" width=100 height=160></a>
+                </td>
+                <td><a style="margin-left: -10px" href="/orders?action=create">Create Order</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

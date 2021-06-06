@@ -18,6 +18,7 @@
         b:hover {
             color: red;
         }
+
         .navbar {
             margin-bottom: 0;
             border-radius: 0;
@@ -28,9 +29,11 @@
             background-color: #f2f2f2;
             padding: 25px;
         }
-        th{
+
+        th {
             text-align: center;
         }
+
         button {
             margin-top: 14px;
             border: 0;
@@ -54,12 +57,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ><b id = "tider" style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
+            <a class="navbar-brand"><b id="tider"
+                                       style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a>Home</a></li>
-                <li><form style="margin-left: 10px" method="post" action="/orders"><button>List Order</button></form></li>
+                <li>
+                    <form method="post" action="/login?action=login">
+                        <input hidden name="passWord" value="${passWord}">
+                        <input hidden name="userName" value="${userName}">
+                        <button type="submit">Back Home Page</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -87,13 +97,7 @@
             <tr>
                 <td style="text-align: right">User Id:</td>
                 <td>
-                    <select name="userId" style="width: 202px; height: 30px">
-                        <c:forEach items="${users}" var="users">
-                            <option value="${users.userId}">
-                                <c:out value="${users.userName}"/>
-                            </option>
-                        </c:forEach>
-                    </select>
+                    <a style="text-decoration: none;color: black" name="userName" >${users.userId}</a>
                 </td>
             </tr>
             <tr>
@@ -110,7 +114,7 @@
             </tr>
             <tr>
                 <td style="text-align: right">Price:</td>
-                <td><input type="text" name="price"></td>
+                <td><a style="text-decoration: none;color: black" name="price">${price}</a></td>
             </tr>
             <tr>
                 <td style="text-align: right">Hours:</td>
@@ -129,7 +133,8 @@
             </tbody>
         </table>
     </form>
-</div><br>
+</div>
+<br>
 
 <footer class="site-footer">
     <div class="container">
@@ -138,7 +143,8 @@
                 <h6>About</h6>
                 <p class="text-justify">SỨ MỆNH CỦA CODEGYM <br>Phát triển các giải pháp học tập hiện đại và
                     hiệu quả thông qua các mô hình đào tạo tiên tiến trên nền tảng công nghệ giáo dục và sự
-                    cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.</p>
+                    cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.
+                </p>
             </div>
 
             <div class="col-xs-6 col-md-3">

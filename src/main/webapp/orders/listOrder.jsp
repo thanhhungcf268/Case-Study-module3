@@ -75,7 +75,6 @@
                     <li>
                         <button style="margin-left: 10px" type="submit" value="login">Homepage</button>
                     </li>
-                    <li><a style="margin-left: -10px" href="/orders?action=create">Create Order</a></li>
                 </ul>
             </div>
         </div>

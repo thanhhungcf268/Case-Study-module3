@@ -13,6 +13,7 @@
     <input hidden name="userName" value="${userName}">
     <button type="submit">Back Home Page</button>
 </form>
+<a style="margin-left: -10px" href="/orders?action=create">Create Order</a>
 </p>
 <div align="center">
     <fieldset>
