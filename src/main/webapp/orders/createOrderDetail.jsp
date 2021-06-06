@@ -98,7 +98,6 @@
                 <td style="text-align: right">User Id:</td>
                 <td>
                     <input readonly type = "text" name = "userId" value="${users.userId}">
-<%--                    <a style="text-decoration: none;color: black" name="userId" >${users.userId}</a>--%>
                 </td>
             </tr>
             <tr>
@@ -116,16 +115,22 @@
             </tr>
             <tr>
                 <td style="text-align: right">Price:</td>
-                <td><input readonly type = "text" name = "price" value="${price}"></td>
+                <td><input readonly type = "text" id = "price" name = "price" value="${price}"></td>
 
             </tr>
             <tr>
                 <td style="text-align: right">Hours:</td>
-                <td><input type="text" name="hours"></td>
+                <td><input type="text" id="hours" value="" onkeyup="showResult()" name="hours"></td>
             </tr>
             <tr>
                 <td style="text-align: right">Start Hour:</td>
-                <td><input type="text" name="startHour"></td>
+                <td><input readonly type = "text" name = "startHour" value="${startHour}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Total Price: </td>
+                <td>
+                    <div type="text" id="totalPrice"></div>
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -184,3 +189,11 @@
 </footer>
 </body>
 </html>
+<script>
+    function showResult() {
+        let hours = document.getElementById("hours").value;
+        let price = document.getElementById("price").value;
+        let totalPrice = hours*price;
+        document.getElementById("totalPrice").innerHTML = totalPrice+"";
+    }
+</script>

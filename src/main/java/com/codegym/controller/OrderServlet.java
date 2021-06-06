@@ -103,9 +103,11 @@ public class OrderServlet extends HttpServlet {
         request.setAttribute("passWord", UserServlet.checkUserPassWord);
         List<RentalPerson> rentalPeople = rentalPersonDAO.selectAll();
         request.setAttribute("rentalPeople", rentalPeople);
-
         double Price = UserServlet.Price-UserServlet.Price*0.05*(users.getLevel()-1);
         request.setAttribute("price", Price);
+
+        request.setAttribute("startHour", java.time.LocalDateTime.now()+"");
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/createOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
