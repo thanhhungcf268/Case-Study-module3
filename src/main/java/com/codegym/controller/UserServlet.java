@@ -151,4 +151,3 @@ public class UserServlet extends HttpServlet {
         return new User(userName, passWord, gender, phone, level);
     }
 }
-

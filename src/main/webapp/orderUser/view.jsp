@@ -4,6 +4,26 @@
 <html>
 <head>
     <title>View Employee</title>
+    <style>
+        div {
+            width: 50%;
+            position: relative;
+            left: 25%
+        }
+
+        #firstRow {
+            width: 20%;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <h1>Employee Details</h1>
@@ -13,7 +33,7 @@
     <input hidden name="userName" value="${userName}">
     <button type="submit">Back Home Page</button>
 </form>
-<a style="margin-left: -10px" href="/orders?action=create">Create Order</a>
+<a href="/orders?action=create">Create Order</a>
 </p>
 <div align="center">
     <fieldset>

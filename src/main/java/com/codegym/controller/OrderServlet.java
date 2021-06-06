@@ -99,13 +99,16 @@ public class OrderServlet extends HttpServlet {
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         User users = userDAO.select(UserServlet.idUser);
         request.setAttribute("users", users);
-         request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("userName", UserServlet.checkUser);
         request.setAttribute("passWord", UserServlet.checkUserPassWord);
         request.setAttribute("startHour", java.time.LocalDateTime.now()+"");
         List<RentalPerson> rentalPeople = rentalPersonDAO.selectAll();
         request.setAttribute("rentalPeople", rentalPeople);
         double Price = UserServlet.Price-UserServlet.Price*0.05*(users.getLevel()-1);
         request.setAttribute("price", Price);
+
+        request.setAttribute("startHour", java.time.LocalDateTime.now()+"");
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/createOrderDetail.jsp");
         dispatcher.forward(request, response);
     }

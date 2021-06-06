@@ -5,8 +5,93 @@
 <html>
 <head>
     <title>Employee List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        .sort{
+            height: 30px;
+            padding:0;
+            margin:0;
+            background-color: darkgray;
+            border: none;
+            width: 225px;
+        }
 
+        .sort ul, .sort li{
+            padding:0;
+            margin:0;
+        }
+
+        .sort li{
+            position: relative;
+            float: left;
+            list-style: none;
+            margin: 0;
+            padding:0;
+        }
+
+        .sort li a {
+            width: 50px;
+            height: 30px;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            line-height: 30px;
+            background-color: darkgray;
+            color: white;
+        }
+
+        .sort ul ul li a {
+            width: 100px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .sort li a:hover{
+            background-color: black;
+        }
+
+        .sort ul ul{
+            position: absolute;
+            top: 30px;
+            left: 15px;
+            visibility: hidden;
+        }
+
+        .sort ul li:hover ul{
+            visibility: visible;
+        }
+
+        #sort-header{
+            width: 75px;
+            height: 30px;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            line-height: 30px;
+            background-color: white;
+            color: black;
+        }
+
+        #sort-header:hover{
+            background-color: white;
+        }
+
+        input[type=text] {
+            padding: 3px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: 1px solid grey;
+        }
+
+        .search-container button {
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -23,23 +108,44 @@
 </center>
 <div align="center">
 
-        <caption><h2>List of Employees</h2></caption>
+    <div align="center">
 
-        <form>
-            <input type="text" placeholder="Search By Name" name = "search">
-            <button type = "submit">Search</button>
-        </form>
+        <caption><h2>List of Employees</h2></caption>
+        <div class="search-container">
+            <form>
+                <input type="text" placeholder="Search By Name" name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
         <br/>
+        <div class = "sort">
+            <ul>
+                <li><a id = "sort-header">Sort By: </a></li>
+                <li>
+                    <a>ID</a>
+                    <ul>
+                        <li><a href = "/employee?sort=personId&type=asc">Ascending</a></li>
+                        <li><a href = "/employee?sort=personId&type=desc">Descending</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a>Name</a>
+                    <ul>
+                        <li><a href = "/employee?sort=name&type=asc">Ascending</a></li>
+                        <li><a href = "/employee?sort=name&type=desc">Descending</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a>Age</a>
+                    <ul>
+                        <li><a href = "/employee?sort=age&type=asc">Ascending</a></li>
+                        <li><a href = "/employee?sort=age&type=desc">Descending</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
         <br/>
-        <p>Sort by:
-            <button><a href = "/employee?sort=personId&type=asc">Sort By ID asc</a></button>
-            <button><a href = "/employee?sort=personId&type=desc">Sort By ID desc</a></button>
-            <button><a href = "/employee?sort=name&type=asc">Sort By Name asc</a></button>
-            <button><a href = "/employee?sort=name&type=desc">Sort By Name desc</a></button>
-            <button><a href = "/employee?sort=age&type=asc">Sort By Age asc</a></button>
-            <button><a href = "/employee?sort=age&type=desc">Sort By Age desc</a></button>
-        </p>
-        <table border = "1" cellpadding="5" class = "table table-hover">
+        <table border = "1" cellpadding="5">
         <thead>
         <tr>
             <th>#</th>
@@ -81,6 +187,6 @@
         </tbody>
     </table>
 </div>
-
+</div>
 </body>
 </html>

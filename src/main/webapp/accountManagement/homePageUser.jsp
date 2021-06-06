@@ -71,9 +71,9 @@
             <div class="col-sm-3">
                 <p> ${rental.name} </p>
                 <a href="employee?action=viewEmployee&employeeId=${rental.id}"><img src="${rental.urlImage}"
-                                                                                      class="img-responsive"
-                                                                                      style="width:100%; height: 300px; object-fit: cover"
-                                                                                      alt="Image"></a>
+                                                                                    class="img-responsive"
+                                                                                    style="width:100%; height: 300px; object-fit: cover"
+                                                                                    alt="Image"></a>
             </div>
         </c:forEach>
         <%--        <div class="col-sm-3">--%>

@@ -97,12 +97,13 @@
             <tr>
                 <td style="text-align: right">User Id:</td>
                 <td>
-                    <input readonly name="userId" value="${users.userId}">
+                    <input readonly type = "text" name = "userId" value="${users.userId}">
                 </td>
             </tr>
             <tr>
                 <td style="text-align: right">Person Id:</td>
                 <td>
+
                     <select name="personId" style="width: 202px; height: 30px">
                         <c:forEach items="${rentalPeople}" var="rentalPeople">
                             <option value="${rentalPeople.id}">
@@ -114,8 +115,8 @@
             </tr>
             <tr>
                 <td style="text-align: right">Price:</td>
-                <td><input readonly type="text" value="${price}" id="price"
-                           name="price"></td>
+                <td><input readonly type = "text" id = "price" name = "price" value="${price}"></td>
+
             </tr>
             <tr>
                 <td style="text-align: right">Hours:</td>
@@ -123,10 +124,10 @@
             </tr>
             <tr>
                 <td style="text-align: right">Start Hour:</td>
-                <td><input readonly value="${startHour}" type="text" name="startHour"></td>
+                <td><input readonly type = "text" name = "startHour" value="${startHour}"></td>
             </tr>
             <tr>
-                <td style="text-align: right">Total Price:</td>
+                <td style="text-align: right">Total Price: </td>
                 <td>
                     <div type="text" id="totalPrice"></div>
                 </td>
@@ -134,7 +135,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button  style="width: 100px; height: 50px" class="btn btn-success">Create</button>
+                    <button style="width: 100px; height: 50px" class="btn btn-success">Create</button>
                 </td>
             </tr>
             </tbody>
@@ -193,6 +194,6 @@
         let hours = document.getElementById("hours").value;
         let price = document.getElementById("price").value;
         let totalPrice = hours*price;
-        document.getElementById("totalPrice").textContent = totalPrice+"";
+        document.getElementById("totalPrice").innerHTML = totalPrice+"";
     }
 </script>
