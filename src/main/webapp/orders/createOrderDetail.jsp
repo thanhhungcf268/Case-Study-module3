@@ -97,7 +97,7 @@
             <tr>
                 <td style="text-align: right">User Id:</td>
                 <td>
-                    <a style="text-decoration: none;color: black" name="userName" >${users.userId}</a>
+                    <input readonly name="userId" value="${users.userId}">
                 </td>
             </tr>
             <tr>
@@ -114,20 +114,27 @@
             </tr>
             <tr>
                 <td style="text-align: right">Price:</td>
-                <td><a style="text-decoration: none;color: black" name="price">${price}</a></td>
+                <td><input readonly type="text" value="${price}" id="price"
+                           name="price"></td>
             </tr>
             <tr>
                 <td style="text-align: right">Hours:</td>
-                <td><input type="text" name="hours"></td>
+                <td><input type="text" id="hours" value="" onkeyup="showResult()" name="hours"></td>
             </tr>
             <tr>
                 <td style="text-align: right">Start Hour:</td>
-                <td><input type="text" name="startHour"></td>
+                <td><input readonly value="${startHour}" type="text" name="startHour"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Total Price:</td>
+                <td>
+                    <div type="text" id="totalPrice"></div>
+                </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button style="width: 100px; height: 50px" class="btn btn-success">Create</button>
+                    <button  style="width: 100px; height: 50px" class="btn btn-success">Create</button>
                 </td>
             </tr>
             </tbody>
@@ -181,3 +188,11 @@
 </footer>
 </body>
 </html>
+<script>
+    function showResult() {
+        let hours = document.getElementById("hours").value;
+        let price = document.getElementById("price").value;
+        let totalPrice = hours*price;
+        document.getElementById("totalPrice").textContent = totalPrice+"";
+    }
+</script>

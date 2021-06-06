@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td style="text-align: right">Level:</td>
-                <td> <input name="rank" type="text"></td>
+                <td> <input name="level" type="text"></td>
             </tr>
             <tr>
                 <td></td>
