@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td style="text-align: right">Level:</td>
-                <td> <input readonly value="1" name="level " type="text"></td>
+                <td> <input name="level" readonly value="1" type="text"></td>
             </tr>
             <tr>
                 <td></td>
