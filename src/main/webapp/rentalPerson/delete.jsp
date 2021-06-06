@@ -48,6 +48,12 @@
             font-size: 18px;
             font-weight: bold;
         }
+
+        table {
+            background-color: plum;
+            border: 5px solid plum;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
@@ -65,9 +71,6 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active">
-                    <button>Home</button>
-                </li>
                 <li>
                     <form method="post" action="/employee">
                         <button type="submit">Back to Employee List</button>
@@ -85,22 +88,21 @@
         <h3 style = "color: red">Are you sure?</h3>
         <form method="post">
             <fieldset>
-                <legend><p class="title">Employee Information</p></legend>
                 <table align="center" width="75%" height="50%">
                     <tr id="firstRow">
                         <td rowspan="5"><img src="${rental.urlImage}" alt="Not available" style="object-fit: cover"></td>
                         <td colspan="2"><p class="title">${rental.id}. ${rental.name}</p></td>
                     </tr>
                     <tr>
-                        <td><p>Age: </p></td>
+                        <td><p><b>Age: </b></p></td>
                         <td><p>${rental.age}</p></td>
                     </tr>
                     <tr>
-                        <td><p>Gender: </p></td>
+                        <td><p><b>Gender: </b></p></td>
                         <td><p>${rental.gender}</p></td>
                     </tr>
                     <tr>
-                        <td><p>Status: </p></td>
+                        <td><p><b>Status: </b></p></td>
                         <td>
                             <c:if test="${rental.status == true}">
                                 <p>Available</p>
@@ -111,14 +113,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><p>Phone: </p></td>
+                        <td><p><b>Phone: </b></p></td>
                         <td><p>${rental.phone}</p></td>
                     </tr>
                     <tr>
                     </tr>
                 </table>
                 <br/>
-                <input align = "center" type="submit" value="Delete"/>
+                <input align = "center" type="submit" class="btn btn-danger" value="Delete">
+
             </fieldset>
         </form>
     </div>

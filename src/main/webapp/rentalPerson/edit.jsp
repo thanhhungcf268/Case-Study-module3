@@ -19,7 +19,7 @@
             padding: 25px;
         }
 
-        nav button {
+        button {
             margin-top: 14px;
             border: 0;
             margin-right: 10px;
@@ -37,15 +37,12 @@
         .col-sm-4{
             border: 5px solid white;
         }
+
+
     </style>
 </head>
 <body>
-<%--<center>--%>
-<%--    <h1>Employee Management</h1>--%>
-<%--    <h2>--%>
-<%--        <form method="post" action="/employee"><button type="submit">Back to Employee List</button></form>--%>
-<%--    </h2>--%>
-<%--</center>--%>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -59,9 +56,6 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active">
-                    <button>Home</button>
-                </li>
                 <li>
                     <form method="post" action="/employee">
                         <button type="submit">Back to Employee List</button>
@@ -75,14 +69,11 @@
         </div>
     </div>
 </nav>
-<div align="center">
+<div align="center" style="width: 75%; position: relative; left: 17%">
     <form method="post">
-        <table style = "border: 1px solid white" cellpadding="5">
-            <caption>
-                <h2>
-                    Edit Employee
-                </h2>
-            </caption>
+        <table align = "center" class="table table-striped">
+            <h2>  Edit Employee </h2>
+            <tbody>
             <c:if test="${message != null}">
                 <h3 style="color: red"><c:out value="${message}"/></h3>
             </c:if>
@@ -90,7 +81,7 @@
             <tr>
                 <th>Employee's Name</th>
                 <td>
-                    <input type="text" name="name" size="45"
+                    <input type="text" name="name" size="50"
                            value="<c:out value='${rental.name}' />"
                     />
                 </td>
@@ -164,10 +155,12 @@
             <tr></tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Save"/>
+                    <input type="submit" class="btn btn-success" value="Save"/>
                 </td>
             </tr>
+            </tbody>
         </table>
+
     </form>
 </div>
 

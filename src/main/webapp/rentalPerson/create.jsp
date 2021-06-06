@@ -53,9 +53,6 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active">
-                    <button>Home</button>
-                </li>
                 <li>
                     <form method="post" action="/employee">
                         <button type="submit">Back to Employee List</button>
@@ -69,20 +66,21 @@
         </div>
     </div>
 </nav>
-<div align="center">
-    <c:if test="${message != null}">
-        <h3 style="color: red"><c:out value="${message}"/></h3>
-    </c:if>
+
+
+<div align="center" style="width: 75%; position: relative; left: 17%">
     <form method="post">
-        <table border="1" cellpadding="5">
-            <caption>
-                <h2>Add New Employee</h2>
-            </caption>
-            <p> </p>
+        <table align = "center" class="table table-striped">
+            <h2>Add New Employee</h2>
+            <tbody>
+            <c:if test="${message != null}">
+                <h3 style="color: red"><c:out value="${message}"/></h3>
+            </c:if>
+
             <tr>
                 <th>Employee's Name</th>
                 <td>
-                    <input type="text" name="name" id="name" size="45"/>
+                    <input type="text" name="name" id="name" size="50"/>
                 </td>
             </tr>
             <tr>
@@ -118,10 +116,8 @@
             <tr>
                 <th>Status</th>
                 <td>
-                    <input type="radio" id="true" name="status" value="true">
-                    <label for="true">Available</label><br>
-                    <input type="radio" id="false" name="status" value="false">
-                    <label for="false">Not available</label><br>
+                    <input type="radio" id="true" name="status" value="true"> Available<br>
+                    <input type="radio" id="false" name="status" value="false" > Not available<br>
                 </td>
             </tr>
             <tr>
@@ -131,20 +127,23 @@
                 </td>
             </tr>
             <tr>
-
                 <th>Image URL</th>
                 <td>
-                    <input type="text" name="urlImage" id="image" size="45"/>
+                    <input type="text" name="urlImage" id="image" size="50"/>
                 </td>
             </tr>
+            <tr></tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Save"/>
+                    <input type="submit" class="btn btn-success" value="Add"/>
                 </td>
             </tr>
+            </tbody>
         </table>
     </form>
 </div>
+
+
 <footer class="site-footer">
     <div class="container">
         <div class="row">
