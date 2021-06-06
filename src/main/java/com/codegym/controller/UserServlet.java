@@ -1,7 +1,5 @@
 package com.codegym.controller;
 
-import com.codegym.DAO.user.IUserDAO;
-import com.codegym.DAO.user.UserDAO;
 import com.codegym.model.User;
 import com.codegym.service.IUserService;
 import com.codegym.service.UserService;
@@ -35,8 +33,8 @@ public class UserServlet extends HttpServlet {
             case "edit":
                 try {
                     showEditUserForm(request, response);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
+                } catch (SQLException throwable) {
+                    throwable.printStackTrace();
                 }
                 break;
             case "list":
@@ -46,8 +44,8 @@ public class UserServlet extends HttpServlet {
             case "delete":
                 try {
                     deleteNewFrom(request, response);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
+                } catch (SQLException throwable) {
+                    throwable.printStackTrace();
                 }
                 break;
             default:
@@ -60,32 +58,37 @@ public class UserServlet extends HttpServlet {
     private void deleteNewFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("userId"));
         userService.delete(id);
-        request.setAttribute("userName", checkUser);
-        request.setAttribute("passWord", checkUserPassWord);
+        setAttribute(request);
         response.sendRedirect("/users?userName=" + checkUser + "&passWord=" + checkUserPassWord);
     }
 
+    private void setAttribute(HttpServletRequest request){
+        request.setAttribute("userName", checkUser);
+        request.setAttribute("passWord", checkUserPassWord);
+    }
     private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
         User user = userService.findById(id);
-        request.setAttribute("userName", checkUser);
-        request.setAttribute("passWord", checkUserPassWord);
-        request.setAttribute("user", user);
-        if (checkUser.equals("admin")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/editAdmin.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/editUser.jsp");
-            dispatcher.forward(request, response);
-        }
+        getUserNamePW(request, response, user);
 
+    }
+
+    private void getUserNamePW(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+        setAttribute(request);
+        request.setAttribute("user", user);
+        RequestDispatcher dispatcher;
+        if (checkUser.equals("admin")) {
+            dispatcher = request.getRequestDispatcher("/accountManagement/editAdmin.jsp");
+        } else {
+            dispatcher = request.getRequestDispatcher("/accountManagement/editUser.jsp");
+        }
+        dispatcher.forward(request, response);
     }
 
     private void createNewForm(HttpServletRequest request, HttpServletResponse response, String a) throws ServletException, IOException {
         List<User> users = userService.findAll();
         request.setAttribute("user", users);
-        request.setAttribute("userName", checkUser);
-        request.setAttribute("passWord", checkUserPassWord);
+        setAttribute(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/" + a);
         dispatcher.forward(request, response);
     }
@@ -117,37 +120,18 @@ public class UserServlet extends HttpServlet {
 
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
-        String userName = request.getParameter("userName");
-        String passWord = request.getParameter("passWord");
-        String gender = request.getParameter("gender");
-        String phone = request.getParameter("phone");
-        int rank = Integer.parseInt(request.getParameter("level"));
-        User user = new User(userName, passWord, gender, phone, rank);
+        User user = getUser(request);
         boolean isUpdate = userService.update(id, user);
         if (!isUpdate) {
             request.setAttribute("message", "Error!");
         } else {
             request.setAttribute("message", "Success!");
         }
-        request.setAttribute("userName", checkUser);
-        request.setAttribute("passWord", checkUserPassWord);
-        request.setAttribute("user", user);
-        if (checkUser.equals("admin")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/editAdmin.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/editUser.jsp");
-            dispatcher.forward(request, response);
-        }
+        getUserNamePW(request, response, user);
     }
 
     private void createNewCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String userName = request.getParameter("userName");
-        String passWord = request.getParameter("passWord");
-        String gender = request.getParameter("gender");
-        String phone = request.getParameter("phone");
-        int rank = Integer.parseInt(request.getParameter("rank"));
-        User user = new User(userName, passWord, gender, phone, rank);
+        User user = getUser(request);
         boolean isUpdate = userService.create(user);
         if (!isUpdate) {
             request.setAttribute("message", "Error!");
@@ -157,5 +141,13 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/registration.jsp");
         dispatcher.forward(request, response);
     }
-}
 
+    private User getUser(HttpServletRequest request) {
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
+        String gender = request.getParameter("gender");
+        String phone = request.getParameter("phone");
+        int level = Integer.parseInt(request.getParameter("level"));
+        return new User(userName, passWord, gender, phone, level);
+    }
+}

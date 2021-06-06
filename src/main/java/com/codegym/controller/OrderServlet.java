@@ -99,8 +99,9 @@ public class OrderServlet extends HttpServlet {
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         User users = userDAO.select(UserServlet.idUser);
         request.setAttribute("users", users);
-         request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("userName", UserServlet.checkUser);
         request.setAttribute("passWord", UserServlet.checkUserPassWord);
+        request.setAttribute("startHour", java.time.LocalDateTime.now()+"");
         List<RentalPerson> rentalPeople = rentalPersonDAO.selectAll();
         request.setAttribute("rentalPeople", rentalPeople);
         double Price = UserServlet.Price-UserServlet.Price*0.05*(users.getLevel()-1);
@@ -108,7 +109,6 @@ public class OrderServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/createOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -158,7 +158,8 @@ public class OrderServlet extends HttpServlet {
         float price = Float.parseFloat(request.getParameter("price"));
         float hours = Float.parseFloat(request.getParameter("hours"));
         String startHour = request.getParameter("startHour");
-
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
         OrderDetail orderDetail = new OrderDetail(userId, personId, price, hours, startHour);
         boolean isCreate = orderDAO.create(orderDetail);
         if (!isCreate) {
