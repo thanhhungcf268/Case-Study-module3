@@ -87,7 +87,9 @@
 </form>
 <form method="post">
    <div align="center">
-
+       <h1><c:if test="${message!= null}">
+           <p style="color: red"><c:out value="${message}"/></p>
+       </c:if></h1>
        <table class="table">
            <thead class="thead-light">
            <tr>
