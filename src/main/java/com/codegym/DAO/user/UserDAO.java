@@ -45,6 +45,20 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
+    public String forgotPassword(String userName,String phone) throws SQLException {
+        connection = SQLConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select password from usermanager.user where username = ? and phone = ?");
+        preparedStatement.setString(1,userName);
+        preparedStatement.setString(2,phone);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        String password = "";
+        while (resultSet.next()){
+             password = resultSet.getString("password");
+        }
+        return password;
+    }
+
+    @Override
     public List<User> selectAll() {
         List<User> list = new ArrayList<>();
         connection = SQLConnection.getConnection();
