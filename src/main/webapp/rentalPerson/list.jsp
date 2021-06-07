@@ -239,12 +239,12 @@
             </thead>
             <tbody>
             <c:forEach var="rental" items="${rentals}">
-                <tr>
-                    <td><c:out value="${rental.id}"/></td>
-                    <td><a href="/employee?action=viewEmployee&employeeId=${rental.id}">${rental.name}</a></td>
-                    <td><c:out value="${rental.age}"/></td>
-                    <td><c:out value="${rental.gender}"/></td>
-                    <td>
+                <tr >
+                    <td style = "padding-top: 70px;"><c:out value="${rental.id}"/></td>
+                    <td style = "padding-top: 70px;"><a href="/employee?action=viewEmployee&employeeId=${rental.id}">${rental.name}</a></td>
+                    <td style = "padding-top: 70px;"><c:out value="${rental.age}"/></td>
+                    <td style = "padding-top: 70px;"><c:out value="${rental.gender}"/></td>
+                    <td style = "padding-top: 70px;">
                         <c:if test="${rental.status == true}">
                             <p>Available</p>
                         </c:if>
@@ -252,12 +252,12 @@
                             <p>N/A</p>
                         </c:if>
                     </td>
-                    <td><c:out value="${rental.phone}"/></td>
-                    <td><a href = "${rental.urlImage}"><img src = "${rental.urlImage}" alt="Not available" width = 100 height = 160></a></td>
-                    <td>
+                    <td style = "padding-top: 70px;"><c:out value="${rental.phone}"/></td>
+                    <td><a href = "${rental.urlImage}"><img src = "${rental.urlImage}" alt="Not available" style="object-fit: cover;" width = 100 height = 160></a></td>
+                    <td style = "padding-top: 70px;">
                         <a href="/employee?action=editEmployee&employeeId=${rental.id}">Edit</a>
                     </td>
-                    <td>
+                    <td style = "padding-top: 70px;">
                         <a href="/employee?action=deleteEmployee&employeeId=${rental.id}">Delete</a>
                     </td>
                 </tr>

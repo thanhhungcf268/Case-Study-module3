@@ -78,13 +78,13 @@
             </c:if>
 
             <tr>
-                <th>Employee's Name</th>
+                <th>Employee's Name <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="name" id="name" size="50"/>
                 </td>
             </tr>
             <tr>
-                <th>Age</th>
+                <th>Age <span style = "color: red">*</span></th>
                 <td>
                     <select name = "age">
                         <option>19</option>
@@ -103,31 +103,28 @@
                 </td>
             </tr>
             <tr>
-                <th>Gender</th>
+                <th>Gender <span style = "color: red">*</span></th>
                 <td>
-                    <input type="radio" id="male" name="gender" value="male">
-                    <label for="male">Male</label><br>
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label for="female">Female</label><br>
-                    <input type="radio" id="other" name="gender" value="other">
-                    <label for="other">Other</label>
+                    <input type="radio" id="male" name="gender" value="male"> Male<br>
+                    <input type="radio" id="female" name="gender" value="female"> Female<br>
+                    <input type="radio" id="other" name="gender" value="other"> Other
                 </td>
             </tr>
             <tr>
-                <th>Status</th>
+                <th>Status <span style = "color: red">*</span></th>
                 <td>
                     <input type="radio" id="true" name="status" value="true"> Available<br>
                     <input type="radio" id="false" name="status" value="false" > Not available<br>
                 </td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Phone <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="phone" id="phone" size="10"/>
                 </td>
             </tr>
             <tr>
-                <th>Image URL</th>
+                <th>Image URL <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="urlImage" id="image" size="50"/>
                 </td>
