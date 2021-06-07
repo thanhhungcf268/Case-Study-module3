@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Edit</title>
@@ -54,9 +55,9 @@
 <body>
 
 <form method="get" action="/users">
-    <input hidden name="userName" value="${userName}">
-    <input hidden name="passWord" value="${passWord}">
-<%--    <button style="height: auto" type="submit">Users List</button>--%>
+<%--    <input hidden name="userName" value="${userName}">--%>
+<%--    <input hidden name="passWord" value="${passWord}">--%>
+    <%--    <button style="height: auto" type="submit">Users List</button>--%>
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -86,51 +87,57 @@
     </nav>
 </form>
 <form method="post">
-   <div align="center">
-       <h1><c:if test="${message!= null}">
-           <p style="color: red"><c:out value="${message}"/></p>
-       </c:if></h1>
-       <table class="table">
-           <thead class="thead-light">
-           <tr>
-               <th style="text-align: right" scope="col">Property</th>
-               <th scope="col">Data</th>
-           </tr>
-           </thead>
-           <tbody>
-           <tr>
-               <td style="text-align: right">User Id:</td>
-               <td><input readonly type="text" name="userId" value="${user.userId}"></td>
-           </tr>
-           <tr>
-               <td style="text-align: right">Username:</td>
-               <td><input readonly type="text" name="userName" value="${user.userName}"></td>
-           </tr>
-           <tr>
-               <td style="text-align: right">Passsword:</td>
-               <td><input readonly type="password" name="passWord" value="${user.passWord}"></td>
-           </tr>
-           <tr>
-               <td style="text-align: right">Gender:</td>
-               <td><input type="text" name="gender" value="${user.gender}"></td>
-           </tr>
-           <tr>
-               <td style="text-align: right">Phone:</td>
-               <td><input type="text" name="phone" value="${user.phone}"></td>
-           </tr>
-           <tr>
-               <td style="text-align: right">Level:</td>
-               <td><input type="number" name="level" value="${user.level}"></td>
-           </tr>
-           <tr>
-               <td></td>
-               <td>
-                   <button style="width: 100px; height: 50px" class="btn btn-success">Edit</button>
-               </td>
-           </tr>
-           </tbody>
-       </table>
-   </div>
+    <div align="center">
+        <h1><c:if test="${message!= null}">
+            <p style="color: red"><c:out value="${message}"/></p>
+        </c:if></h1>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th style="text-align: right" scope="col">Property</th>
+                <th scope="col">Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: right">User Id:</td>
+                <td><input readonly type="text" name="userId" value="${user.userId}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Username:</td>
+                <td><input readonly type="text" name="userName" value="${user.userName}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Passsword:</td>
+                <td>
+                    <%--                   <input readonly type="password" name="passWord" value="${user.passWord}">--%>
+                    <c:if test='${user.userName != "admin"}'><input readonly type="password" name="passWord"
+                                                                    value="${user.passWord}"> </c:if>
+                    <c:if test='${user.userName == "admin"}'><input type="password" name="passWord"
+                                                                    value="${user.passWord}"></c:if>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Gender:</td>
+                <td><input type="text" name="gender" value="${user.gender}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Phone:</td>
+                <td><input type="text" name="phone" value="${user.phone}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Level:</td>
+                <td><input type="number" name="level" value="${user.level}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button style="width: 100px; height: 50px" class="btn btn-success">Edit</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </form>
 <footer class="site-footer">
     <div class="container">
