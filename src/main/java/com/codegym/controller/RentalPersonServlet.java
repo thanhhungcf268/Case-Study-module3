@@ -10,6 +10,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.codegym.model.RentalPerson.MAX_AGE;
 import static com.codegym.model.RentalPerson.MIN_AGE;
@@ -178,7 +180,23 @@ public class RentalPersonServlet extends HttpServlet {
         String urlImage = request.getParameter("urlImage");
 
         boolean isInserted = this.rentalPersonService.create(new RentalPerson(name, age, gender, status, phone, urlImage));
-        if (!isInserted) {
+
+        if (validateName(name) == false){
+            isInserted = false;
+            request.setAttribute("warningName", "Name must start with 1 letter and not exceed 50 characters");
+        }
+
+        if (validatePhone(phone) == false){
+            isInserted = false;
+            request.setAttribute("warningPhone", "Phone number contains 10 digits");
+        }
+
+        if (validateUrlImage(urlImage) == false){
+            isInserted = false;
+            request.setAttribute("warningImage", "URL Image should not exceed 255 characters");
+        }
+
+        if (isInserted == false) {
             request.setAttribute("message", "Error occurs when adding new employee!");
         } else {
             request.setAttribute("message", "Added new employee!");
@@ -219,6 +237,22 @@ public class RentalPersonServlet extends HttpServlet {
             boolean isUpdated = this.rentalPersonService.update(id, rental);
             request.setAttribute("validAges", validAges);
             request.setAttribute("rental", rental);
+
+            if (validateName(name) == false){
+                isUpdated = false;
+                request.setAttribute("warningName", "Name must start with 1 letter and not exceed 50 characters");
+            }
+
+            if (validatePhone(phone) == false){
+                isUpdated = false;
+                request.setAttribute("warningPhone", "Phone number contains 10 digits");
+            }
+
+            if (validateUrlImage(urlImage) == false){
+                isUpdated = false;
+                request.setAttribute("warningImage", "URL Image should not exceed 255 characters");
+            }
+
             if (isUpdated == false) {
                 request.setAttribute("message", "Errors occurs when editing this employee!");
             } else {
@@ -243,4 +277,23 @@ public class RentalPersonServlet extends HttpServlet {
             response.sendRedirect("/employee");
         }
     }
+
+
+    private boolean validatePhone(String phone){
+        Pattern pattern = Pattern.compile("^[0-9]{10}$");
+        Matcher matcher = pattern.matcher(phone);
+        return matcher.matches();
+    }
+
+
+    private boolean validateUrlImage(String urlImage){
+        return (urlImage.length() <= 255);
+    }
+
+    private boolean validateName(String name){
+        Pattern pattern = Pattern.compile("^([a-zA-z]+[a-zA-Z0-9 .,]*){1,50}$");
+        Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
+    }
+
 }
