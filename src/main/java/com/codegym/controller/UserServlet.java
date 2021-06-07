@@ -78,7 +78,8 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("userId"));
         userService.delete(id);
         setAttribute(request);
-        response.sendRedirect("/users?userName=" + checkUser + "&passWord=" + checkUserPassWord);
+//        response.sendRedirect("/users?userName=" + checkUser + "&passWord=" + checkUserPassWord);
+        response.sendRedirect("/users");
     }
 
     private void setAttribute(HttpServletRequest request) {
@@ -147,6 +148,7 @@ public class UserServlet extends HttpServlet {
         if (!isUpdate) {
             request.setAttribute("message", "Error!");
         } else {
+            checkUserPassWord= user.getPassWord();
             request.setAttribute("message", "Success!");
         }
         getUserNamePW(request, response, user);
