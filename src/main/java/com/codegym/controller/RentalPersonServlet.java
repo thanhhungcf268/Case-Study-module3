@@ -49,7 +49,6 @@ public class RentalPersonServlet extends HttpServlet {
     }
 
 
-
     private void showListRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<RentalPerson> rentals;
         String search = request.getParameter("search");
@@ -96,7 +95,7 @@ public class RentalPersonServlet extends HttpServlet {
             if (UserServlet.checkUser.equals("admin")) {
                 request.setAttribute("rental", rental);
                 dispatcher = request.getRequestDispatcher("/rentalPerson/view.jsp");
-            }else {
+            } else {
                 request.setAttribute("rental", rental);
                 dispatcher = request.getRequestDispatcher("/orderUser/view.jsp");
             }
@@ -115,7 +114,7 @@ public class RentalPersonServlet extends HttpServlet {
         RentalPerson rental = this.rentalPersonService.select(id);
 
         List<Integer> validAges = new ArrayList<>();
-        for (int i = MIN_AGE; i <= MAX_AGE; i++){
+        for (int i = MIN_AGE; i <= MAX_AGE; i++) {
             validAges.add(i);
         }
 
@@ -179,21 +178,25 @@ public class RentalPersonServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String urlImage = request.getParameter("urlImage");
 
-        boolean isInserted = this.rentalPersonService.create(new RentalPerson(name, age, gender, status, phone, urlImage));
+        boolean isInserted;
 
-        if (validateName(name) == false){
-            isInserted = false;
+        if (validateName(name) == false) {
             request.setAttribute("warningName", "Name must start with 1 letter and not exceed 50 characters");
         }
 
-        if (validatePhone(phone) == false){
-            isInserted = false;
+        if (validatePhone(phone) == false) {
             request.setAttribute("warningPhone", "Phone number contains 10 digits");
         }
 
-        if (validateUrlImage(urlImage) == false){
-            isInserted = false;
+        if (validateUrlImage(urlImage) == false) {
             request.setAttribute("warningImage", "URL Image should not exceed 255 characters");
+        }
+        boolean isValidate = validateName(name) & validatePhone(phone) & validateUrlImage(urlImage);
+
+        if (isValidate) {
+            isInserted = this.rentalPersonService.create(new RentalPerson(name, age, gender, status, phone, urlImage));
+        } else {
+            isInserted = false;
         }
 
         if (isInserted == false) {
@@ -221,7 +224,7 @@ public class RentalPersonServlet extends HttpServlet {
         RequestDispatcher dispatcher;
 
         List<Integer> validAges = new ArrayList<>();
-        for (int i = MIN_AGE; i <= MAX_AGE; i++){
+        for (int i = MIN_AGE; i <= MAX_AGE; i++) {
             validAges.add(i);
         }
 
@@ -234,23 +237,27 @@ public class RentalPersonServlet extends HttpServlet {
             rental.setStatus(status);
             rental.setPhone(phone);
             rental.setUrlImage(urlImage);
-            boolean isUpdated = this.rentalPersonService.update(id, rental);
+            boolean isUpdated;
             request.setAttribute("validAges", validAges);
             request.setAttribute("rental", rental);
 
-            if (validateName(name) == false){
-                isUpdated = false;
+            if (validateName(name) == false) {
                 request.setAttribute("warningName", "Name must start with 1 letter and not exceed 50 characters");
             }
 
-            if (validatePhone(phone) == false){
-                isUpdated = false;
+            if (validatePhone(phone) == false) {
                 request.setAttribute("warningPhone", "Phone number contains 10 digits");
             }
 
-            if (validateUrlImage(urlImage) == false){
-                isUpdated = false;
+            if (validateUrlImage(urlImage) == false) {
                 request.setAttribute("warningImage", "URL Image should not exceed 255 characters");
+            }
+
+            boolean isValidate = validateName(name) & validatePhone(phone) & validateUrlImage(urlImage);
+            if (isValidate) {
+                isUpdated = this.rentalPersonService.update(id, rental);
+            } else {
+                isUpdated = false;
             }
 
             if (isUpdated == false) {
@@ -279,18 +286,18 @@ public class RentalPersonServlet extends HttpServlet {
     }
 
 
-    private boolean validatePhone(String phone){
+    private boolean validatePhone(String phone) {
         Pattern pattern = Pattern.compile("^[0-9]{10}$");
         Matcher matcher = pattern.matcher(phone);
         return matcher.matches();
     }
 
 
-    private boolean validateUrlImage(String urlImage){
+    private boolean validateUrlImage(String urlImage) {
         return (urlImage.length() <= 255);
     }
 
-    private boolean validateName(String name){
+    private boolean validateName(String name) {
         Pattern pattern = Pattern.compile("^([a-zA-z]+[a-zA-Z0-9 .,]*){1,50}$");
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();

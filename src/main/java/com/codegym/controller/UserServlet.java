@@ -148,6 +148,7 @@ public class UserServlet extends HttpServlet {
         if (!isUpdate) {
             request.setAttribute("message", "Error!");
         } else {
+            checkUser = user.getUserName();
             checkUserPassWord= user.getPassWord();
             request.setAttribute("message", "Success!");
         }
