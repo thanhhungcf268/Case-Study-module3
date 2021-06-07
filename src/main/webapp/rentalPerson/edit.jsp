@@ -79,7 +79,7 @@
             </c:if>
 
             <tr>
-                <th>Employee's Name</th>
+                <th>Employee's Name <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="name" size="50"
                            value="<c:out value='${rental.name}' />"
@@ -87,7 +87,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Age</th>
+                <th>Age <span style = "color: red">*</span></th>
                 <td>
                     <select name = "age">
                         <c:forEach items="${validAges}"  var="age">
@@ -102,7 +102,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Gender</th>
+                <th>Gender <span style = "color: red">*</span></th>
                 <td>
                     <c:choose>
                         <c:when test="${rental.gender == 'female'}">
@@ -124,7 +124,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Status</th>
+                <th>Status <span style = "color: red">*</span></th>
                 <td>
                     <c:if test="${rental.status == true}">
                         <input type="radio" id="true" name="status" value="true" checked> Available<br>
@@ -137,7 +137,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Phone <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="phone" size="15"
                            value="<c:out value='${rental.phone}' />"
@@ -145,7 +145,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Image URL</th>
+                <th>Image URL <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="urlImage" size="50"
                            value="<c:out value='${rental.urlImage}' />"
