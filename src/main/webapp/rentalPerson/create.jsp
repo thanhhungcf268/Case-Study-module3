@@ -80,8 +80,12 @@
             <tr>
                 <th>Employee's Name <span style = "color: red">*</span></th>
                 <td>
-                    <input type="text" name="name" id="name" size="50"/>
+                    <input type="text" name="name" id="name" size="50"/><br/>
+                    <c:if test="${warningName != null}">
+                        <p style="color: red">${warningName}</p>
+                    </c:if>
                 </td>
+
             </tr>
             <tr>
                 <th>Age <span style = "color: red">*</span></th>
@@ -120,13 +124,19 @@
             <tr>
                 <th>Phone <span style = "color: red">*</span></th>
                 <td>
-                    <input type="text" name="phone" id="phone" size="10"/>
+                    <input type="text" name="phone" id="phone" size="10"/><br/>
+                    <c:if test="${warningPhone != null}">
+                        <p style="color: red">${warningPhone}</p>
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <th>Image URL <span style = "color: red">*</span></th>
                 <td>
-                    <input type="text" name="urlImage" id="image" size="50"/>
+                    <input type="text" name="urlImage" id="image" size="50"/><br/>
+                    <c:if test="${warningImage != null}">
+                        <p style="color: red">${warningImage}</p>
+                    </c:if>
                 </td>
             </tr>
             <tr></tr>
@@ -186,4 +196,5 @@
 </footer>
 </body>
 </html>
+
 

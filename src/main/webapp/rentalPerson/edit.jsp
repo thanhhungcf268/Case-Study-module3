@@ -82,8 +82,10 @@
                 <th>Employee's Name <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="name" size="50"
-                           value="<c:out value='${rental.name}' />"
-                    />
+                           value="${rental.name}"/>
+                    <c:if test="${warningName != null}">
+                        <p style="color: red">${warningName}</p>
+                    </c:if>
                 </td>
             </tr>
             <tr>
@@ -139,17 +141,20 @@
             <tr>
                 <th>Phone <span style = "color: red">*</span></th>
                 <td>
-                    <input type="text" name="phone" size="15"
-                           value="<c:out value='${rental.phone}' />"
-                    />
+                    <input type="text" name="phone" size="10" value="${rental.phone}"/>
+                    <c:if test="${warningPhone != null}">
+                        <p style="color: red">${warningPhone}</p>
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <th>Image URL <span style = "color: red">*</span></th>
                 <td>
                     <input type="text" name="urlImage" size="50"
-                           value="<c:out value='${rental.urlImage}' />"
-                    />
+                           value="${rental.urlImage}"/>
+                    <c:if test="${warningImage != null}">
+                        <p style="color: red">${warningImage}</p>
+                    </c:if>
                 </td>
             </tr>
             <tr></tr>
