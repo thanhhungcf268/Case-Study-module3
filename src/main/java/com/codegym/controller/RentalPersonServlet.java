@@ -8,7 +8,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.codegym.model.RentalPerson.MAX_AGE;
+import static com.codegym.model.RentalPerson.MIN_AGE;
 
 @WebServlet(name = "RentalPersonServlet", value = "/employee")
 public class RentalPersonServlet extends HttpServlet {
@@ -34,12 +38,15 @@ public class RentalPersonServlet extends HttpServlet {
             case "deleteEmployee":
                 showDeleteRentalForm(request, response);
                 break;
+
             default:
                 showListRental(request, response);
                 break;
 
         }
     }
+
+
 
     private void showListRental(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<RentalPerson> rentals;
@@ -57,7 +64,6 @@ public class RentalPersonServlet extends HttpServlet {
         if (sort != null) {
             rentals = this.rentalPersonService.sort(sort, type);
         }
-
         request.setAttribute("rentals", rentals);
         request.setAttribute("userName", UserServlet.checkUser);
         request.setAttribute("passWord", UserServlet.checkUserPassWord);
@@ -80,32 +86,21 @@ public class RentalPersonServlet extends HttpServlet {
         RentalPerson rental = this.rentalPersonService.select(id);
 
         RequestDispatcher dispatcher;
-        String a = UserServlet.checkUser;
         request.setAttribute("userName", UserServlet.checkUser);
         request.setAttribute("passWord", UserServlet.checkUserPassWord);
         if (rental == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            request.setAttribute("rental", rental);
-            dispatcher = request.getRequestDispatcher("/rentalPerson/view.jsp");
+            if (UserServlet.checkUser.equals("admin")) {
+                request.setAttribute("rental", rental);
+                dispatcher = request.getRequestDispatcher("/rentalPerson/view.jsp");
+            }else {
+                request.setAttribute("rental", rental);
+                dispatcher = request.getRequestDispatcher("/orderUser/view.jsp");
+            }
         }
         dispatcher.forward(request, response);
     }
-
-    private void viewRentals(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("employeeId"));
-        RentalPerson rental = this.rentalPersonService.select(id);
-        RequestDispatcher dispatcher;
-
-        if (rental == null) {
-            dispatcher = request.getRequestDispatcher("error-404.jsp");
-        } else {
-            request.setAttribute("rental", rental);
-            dispatcher = request.getRequestDispatcher("/orderUser/view.jsp");
-        }
-        dispatcher.forward(request, response);
-    }
-
 
     private void showCreateRentalForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/rentalPerson/create.jsp");
@@ -117,10 +112,16 @@ public class RentalPersonServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("employeeId"));
         RentalPerson rental = this.rentalPersonService.select(id);
 
+        List<Integer> validAges = new ArrayList<>();
+        for (int i = MIN_AGE; i <= MAX_AGE; i++){
+            validAges.add(i);
+        }
+
         RequestDispatcher dispatcher;
         if (rental == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
+            request.setAttribute("validAges", validAges);
             request.setAttribute("rental", rental);
             dispatcher = request.getRequestDispatcher("/rentalPerson/edit.jsp");
         }

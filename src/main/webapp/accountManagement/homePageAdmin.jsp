@@ -39,6 +39,30 @@
                 display: none;
             }
         }
+
+        button {
+            margin-top: 14px;
+            border: 0;
+            margin-right: 10px;
+            color: #9d9d9d;
+            background-color: #222222;
+        }
+
+        button:hover {
+            color: white;
+        }
+
+      .col-sm-4:hover{
+          border: white;
+      }
+      .col-sm-4{
+          border: 5px solid white;
+      }
+      .thanh:hover{
+          color: deeppink;
+          font-family: "Apple Color Emoji", serif;
+          font-size: medium;
+      }
     </style>
 </head>
 <body>
@@ -56,14 +80,16 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><button>Home</button></li>
+                <li class="active">
+                    <button>Home</button>
+                </li>
                 <li>
                     <form method="post" action="/orders">
                         <button style="height: auto" type="submit">Order List</button>
                     </form>
                 </li>
                 <li>
-                    <form  method="get" action="/users">
+                    <form method="get" action="/users">
                         <button style="height: auto" type="submit">Users List</button>
                     </form>
                 </li>
@@ -82,7 +108,9 @@
                         <button type="submit">typeServices</button>
                     </form>
                 </li>
-                <li><button><a href="https://www.facebook.com/xoa.hets.9">Contact</a></button></li>
+                <li>
+                    <button><a href="https://www.facebook.com/xoa.hets.9">Contact</a></button>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
@@ -161,12 +189,9 @@
                  class="img-responsive" style="width:100%;height: 200px; padding: 5px;object-fit: cover" alt="Image">
             <h4>Project 2</h4>
         </div>
-        <div class="col-sm-4">
+        <div style="margin-top: 50px" class="col-sm-4">
             <div class="well">
-                <p>Group: Bột giặt Tide</p>
-            </div>
-            <div class="well">
-                <p>Chân thành cảm ơn <b>Mr. Quân Nguyễn</b> đã giúp đỡ để chúng tôi hoàn thành project này</p>
+                <p class="thanh">Chân thành cảm ơn <b>Mr. Quân Nguyễn</b> đã giúp đỡ để chúng tôi hoàn thành project này</p>
             </div>
         </div>
     </div>

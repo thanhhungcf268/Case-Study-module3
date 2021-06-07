@@ -10,6 +10,7 @@ public interface IUserService extends IGeneralService<User> {
 
     List<User> sortAllCustomer();
 
-     boolean changePasswordById(int id) throws SQLException;
+    boolean changePasswordById(int id) throws SQLException;
 
+    String forgotPassword(String userName, String phone) throws SQLException;
 }

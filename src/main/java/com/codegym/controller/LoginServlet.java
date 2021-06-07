@@ -1,9 +1,8 @@
 package com.codegym.controller;
 
+import com.codegym.model.RentalPerson;
 import com.codegym.model.User;
-import com.codegym.service.IUserService;
-import com.codegym.service.LoginService;
-import com.codegym.service.UserService;
+import com.codegym.service.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
+    private final IRentalPersonService rentalPersonService = new RentalPersonService();
     private final LoginService loginService1 = new LoginService();
     private final IUserService userService = new UserService();
     @Override
@@ -42,6 +43,7 @@ public class LoginServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
+
         try {
             switch (action) {
                 case "login":
@@ -58,6 +60,7 @@ public class LoginServlet extends HttpServlet {
         String passWord = req.getParameter("passWord");
         int checkUser = loginService1.loginService(userName, passWord);
         User user = userService.findById(checkUser);
+        UserServlet.idUser = user.getUserId();
         req.setAttribute("user",user);
         RequestDispatcher dispatcher;
         UserServlet.checkUser = userName;
@@ -65,14 +68,21 @@ public class LoginServlet extends HttpServlet {
         if (checkUser != -1) {
             if (userName.equals("admin")) {
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageAdmin.jsp");
-                dispatcher.forward(req, resp);
+
             }else {
+                showListRentalUser(req,resp);
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageUser.jsp");
-                dispatcher.forward(req, resp);
+
             }
         } else {
             dispatcher = req.getRequestDispatcher("/error-404.jsp");
-            dispatcher.forward(req, resp);
         }
+        dispatcher.forward(req, resp);
+    }
+    private void showListRentalUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<RentalPerson> rentals = this.rentalPersonService.selectAll();
+        request.setAttribute("rentals", rentals);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/homePageUser.jsp");
+//        dispatcher.forward(request, response);
     }
 }

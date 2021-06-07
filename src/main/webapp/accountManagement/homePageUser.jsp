@@ -5,6 +5,8 @@
   Time: 2:00 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -26,11 +28,19 @@
             background-color: #f2f2f2;
             padding: 25px;
         }
-        img{
-            border: 5px solid white;
+
+        img {
+            border: 5px solid #F798C0;
         }
-        img:hover{
-            border: lightskyblue;
+
+        img:hover {
+            border: lightpink;
+        }
+        html, body{
+            background-color: lightpink;
+        }
+        #tuan:hover{
+            color: deeppink;
         }
     </style>
 </head>
@@ -44,14 +54,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ><b id = "tider" style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
+            <a class="navbar-brand"><b id="tider"
+                                       style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a>Home</a></li>
                 <li><a href="..//users?action=edit&userId=${user.userId}">Information</a></li>
-                <li><a href="/employee?action=showListRental">Create Request</a></li>
-                <li><a href="https://zingmp3.vn/">Contact</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=100006779658131">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
@@ -61,48 +71,23 @@
 </nav>
 
 <div class="container-fluid bg-3 text-center">
-    <h3>People Who Looking For Their Half</h3><br>
+    <h3>Everyone Is Looking For Their Half</h3><br>
     <div class="row">
-        <div class="col-sm-3">
-            <p>Ino Masashi 20</p>
-            <a href="employee?action=viewEmployee&employeeId=1"><img src="https://cdn.statically.io/img/thuthuatnhanh.com/wp-content/uploads/2019/11/anh-avatar-anime-buon-khoc-that-tinh-cho-nu.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
-        <div class="col-sm-3">
-            <p>Minano Yakuchi 19</p>
-            <a href="employee?action=viewEmployee&employeeId=2"><img src="https://img.thuthuatphanmem.vn/uploads/2018/10/06/anh-dep-ve-anime-girl-ca-tinh_033449959.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
-        <div class="col-sm-3">
-            <p>Yoona Kaito 18</p>
-            <a href="employee?action=viewEmployee&employeeId=3"><img src="https://img.thuthuatphanmem.vn/uploads/2018/10/06/hinh-anh-anime-girl-de-thuong-ca-tinh_033450366.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
-        <div class="col-sm-3">
-            <p>Naomi Anderson 16</p>
-            <a href="employee?action=viewEmployee&employeeId=4"><img src="https://i.pinimg.com/originals/e5/fa/8c/e5fa8c39861fe595e429067841f38485.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
+        <c:forEach items="${rentals}" var="rental">
+            <div id="tuan" style="position:relative;" class="col-sm-3">
+                <div>
+                    <b class="tuan" style="position: absolute;top: 90%; left: 45%;transform: translate(-20%, -30%); font-size: large">${rental.name}</b>
+                </div>
+                <a href="employee?action=viewEmployee&employeeId=${rental.id}"><img src="${rental.urlImage}"
+                                                                                    class="img-responsive"
+                                                                                    style="width:100%; height: 300px; object-fit: cover"
+                                                                                    alt="Image"></a><br><br>
+            </div>
+        </c:forEach>
     </div>
-</div><br>
-
-<div class="container-fluid bg-3 text-center">
-    <div class="row">
-        <div class="col-sm-3">
-            <p>Elizabeth Olsen</p>
-            <a href="employee?action=viewEmployee&employeeId=5"><img src="https://static.viettelstudy.vn/upload/17975/20200818/nhung-hinh-anh-anime-nu-dep-nhat-2_9c2f4.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
-        <div class="col-sm-3">
-            <p>Nguyễn Yến Linh 20</p>
-            <a href="employee?action=viewEmployee&employeeId=6"><img src="https://gamek.mediacdn.vn/133514250583805952/2020/8/22/kizunaaifull2298404-15980596259471104118625.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
-        <div class="col-sm-3">
-            <p>Sakura Anko 25</p>
-            <a href="employee?action=viewEmployee&employeeId=7"><img src="https://taoanhonline.com/wp-content/uploads/2020/02/anh-ngau-32-2.jpg?v=1582389550" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
-        <div class="col-sm-3">
-            <p>Emily Colson 22</p>
-            <a href="employee?action=viewEmployee&employeeId=8"><img src="https://mondaycareer.com/wp-content/uploads/2020/11/%E1%BA%A3nh-avatar-%C4%91%E1%BA%B9p-c%C3%B4-g%C3%A1i-%C4%91eo-k%C3%ADnh.jpg" class="img-responsive" style="width:100%; height: 300px; object-fit: cover" alt="Image"></a>
-        </div>
-    </div>
-</div><br>
-<div class="container" >
+</div>
+<br>
+<div class="container">
     <ul style="margin-left: 38%" class="pagination">
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
         <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -110,16 +95,18 @@
         <li class="page-item"><a class="page-link" href="#">...</a></li>
         <li class="page-item"><a class="page-link" href="#">Next</a></li>
     </ul>
-</div><br>
+</div>
+<br>
 
-<footer class="site-footer">
+<footer style="background-color: #D8D4D7" class="site-footer">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <h6>About</h6>
                 <p class="text-justify">SỨ MỆNH CỦA CODEGYM <br>Phát triển các giải pháp học tập hiện đại và
                     hiệu quả thông qua các mô hình đào tạo tiên tiến trên nền tảng công nghệ giáo dục và sự
-                    cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.</p>
+                    cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.
+                </p>
             </div>
 
             <div class="col-xs-6 col-md-3">

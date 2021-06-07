@@ -18,6 +18,7 @@
         b:hover {
             color: red;
         }
+
         .navbar {
             margin-bottom: 0;
             border-radius: 0;
@@ -28,8 +29,21 @@
             background-color: #f2f2f2;
             padding: 25px;
         }
-        th{
+
+        th {
             text-align: center;
+        }
+
+        button {
+            margin-top: 14px;
+            border: 0;
+            margin-right: 10px;
+            color: #9d9d9d;
+            background-color: #222222;
+        }
+
+        button:hover {
+            color: white;
         }
     </style>
 </head>
@@ -43,12 +57,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ><b id = "tider" style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
+            <a class="navbar-brand"><b id="tider"
+                                       style=" font-size: 35px; color: deeppink; font-family: 'Apple Color Emoji',serif">Tider+</b></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a>Home</a></li>
-                <li><form method="post" action="/orders"><button>List Order</button></form></li>
+                <li>
+                    <form method="post" action="/login?action=login">
+                        <input hidden name="passWord" value="${passWord}">
+                        <input hidden name="userName" value="${userName}">
+                        <button type="submit">Back Home Page</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -76,18 +97,13 @@
             <tr>
                 <td style="text-align: right">User Id:</td>
                 <td>
-                    <select name="userId" style="width: 202px; height: 30px">
-                        <c:forEach items="${users}" var="users">
-                            <option value="${users.userId}">
-                                <c:out value="${users.userName}"/>
-                            </option>
-                        </c:forEach>
-                    </select>
+                    <input readonly type = "text" name = "userId" value="${users.userId}">
                 </td>
             </tr>
             <tr>
                 <td style="text-align: right">Person Id:</td>
                 <td>
+
                     <select name="personId" style="width: 202px; height: 30px">
                         <c:forEach items="${rentalPeople}" var="rentalPeople">
                             <option value="${rentalPeople.id}">
@@ -99,15 +115,22 @@
             </tr>
             <tr>
                 <td style="text-align: right">Price:</td>
-                <td><input type="text" name="price"></td>
+                <td><input readonly type = "text" id = "price" name = "price" value="${price}"></td>
+
             </tr>
             <tr>
                 <td style="text-align: right">Hours:</td>
-                <td><input type="text" name="hours"></td>
+                <td><input type="text" id="hours" value="" onkeyup="showResult()" name="hours"></td>
             </tr>
             <tr>
                 <td style="text-align: right">Start Hour:</td>
-                <td><input type="text" name="startHour"></td>
+                <td><input readonly type = "text" name = "startHour" value="${startHour}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">Total Price: </td>
+                <td>
+                    <div type="text" id="totalPrice"></div>
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -118,7 +141,8 @@
             </tbody>
         </table>
     </form>
-</div><br>
+</div>
+<br>
 
 <footer class="site-footer">
     <div class="container">
@@ -127,7 +151,8 @@
                 <h6>About</h6>
                 <p class="text-justify">SỨ MỆNH CỦA CODEGYM <br>Phát triển các giải pháp học tập hiện đại và
                     hiệu quả thông qua các mô hình đào tạo tiên tiến trên nền tảng công nghệ giáo dục và sự
-                    cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.</p>
+                    cộng tác sâu rộng giữa các bên liên quan, đặc biệt là doanh nghiệp trong thời đại Công nghiệp 4.0.
+                </p>
             </div>
 
             <div class="col-xs-6 col-md-3">
@@ -164,3 +189,11 @@
 </footer>
 </body>
 </html>
+<script>
+    function showResult() {
+        let hours = document.getElementById("hours").value;
+        let price = document.getElementById("price").value;
+        let totalPrice = hours*price;
+        document.getElementById("totalPrice").innerHTML = totalPrice+"";
+    }
+</script>

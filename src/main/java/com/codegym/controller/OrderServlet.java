@@ -41,6 +41,9 @@ public class OrderServlet extends HttpServlet {
                 case "view":
                     viewDetail(request, response);
                     break;
+                default:
+                    showList(request, response);
+                    break;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,8 +71,9 @@ public class OrderServlet extends HttpServlet {
             request.setAttribute("message", "Error!");
         } else {
             request.setAttribute("message", "Success!");
+            response.sendRedirect("/orders");
         }
-        response.sendRedirect("/orders");
+
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -93,10 +97,18 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        List<User> users = userDAO.selectAll();
+        User users = userDAO.select(UserServlet.idUser);
         request.setAttribute("users", users);
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
+        request.setAttribute("startHour", java.time.LocalDateTime.now()+"");
         List<RentalPerson> rentalPeople = rentalPersonDAO.selectAll();
         request.setAttribute("rentalPeople", rentalPeople);
+        double Price = UserServlet.Price-UserServlet.Price*0.05*(users.getLevel()-1);
+        request.setAttribute("price", Price);
+
+        request.setAttribute("startHour", java.time.LocalDateTime.now()+"");
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("orders/createOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
@@ -149,6 +161,8 @@ public class OrderServlet extends HttpServlet {
         float price = Float.parseFloat(request.getParameter("price"));
         float hours = Float.parseFloat(request.getParameter("hours"));
         String startHour = request.getParameter("startHour");
+        request.setAttribute("userName", UserServlet.checkUser);
+        request.setAttribute("passWord", UserServlet.checkUserPassWord);
         OrderDetail orderDetail = new OrderDetail(userId, personId, price, hours, startHour);
         boolean isCreate = orderDAO.create(orderDetail);
         if (!isCreate) {

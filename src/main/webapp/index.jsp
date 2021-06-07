@@ -33,7 +33,7 @@
     .social_icon span {
         font-size: 60px;
         margin-left: 10px;
-        color: hotpink;
+        color: deeppink;
     }
 
     .social_icon span:hover {
@@ -53,7 +53,7 @@
 
     .input-group-prepend span {
         width: 50px;
-        background-color: hotpink;
+        background-color: deeppink;
         color: black;
         border: 0 !important;
     }
@@ -72,7 +72,7 @@
 
     .login_btn {
         color: black;
-        background-color: hotpink;
+        background-color: deeppink;
         width: 100px;
     }
 
@@ -143,7 +143,7 @@
                         Don't have an account?<a href="/users?action=create">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="/users?action=create">Forgot your password?</a>
+                        <a href="/users?action=ForgotPasswords">Forgot your password?</a>
                     </div>
                 </div>
             </div>

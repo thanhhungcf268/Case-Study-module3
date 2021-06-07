@@ -1,6 +1,8 @@
 package com.codegym.model;
 
 public class RentalPerson {
+    public static int MIN_AGE = 19, MAX_AGE = 30;
+
     private int id;
     private String name;
     private int age;

@@ -25,10 +25,8 @@ public class RentalPersonDAO implements IRentalPersonDAO {
 
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_RENTAL_PEOPLE);
         ResultSet rs = preparedStatement.executeQuery();
-
         return convertResultSetToList(rs);
     }
-
 
     @Override
     public RentalPerson select(int selectedId) throws SQLException {
@@ -62,7 +60,6 @@ public class RentalPersonDAO implements IRentalPersonDAO {
 
 
 
-    //need to change procedure
     @Override
     public boolean delete(int id) throws SQLException {
         int deletedRow;

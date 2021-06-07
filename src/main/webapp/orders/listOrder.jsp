@@ -40,6 +40,18 @@
         th {
             text-align: center;
         }
+
+        button {
+            margin-top: 14px;
+            border: 0;
+            margin-right: 10px;
+            color: #9d9d9d;
+            background-color: #222222;
+        }
+
+        button:hover {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -62,10 +74,16 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a>Home</a></li>
                     <li>
-                        <button type="submit" value="login">Homepage</button>
+                        <button style="margin-left: 10px" type="submit" value="login">Homepage</button>
                     </li>
-                    <li><a href="/orders?action=create">Create Order</a></li>
                 </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="background-color: #e3f2fd">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <h1 style="margin: 10px">Order List</h1>
             </div>
         </div>
     </nav>
@@ -74,23 +92,13 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" style="background-color: #e3f2fd">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <h1 style="margin: 10px">Order List</h1>
-                </div>
-            </div>
-        </nav>
-    </tr>
-    <tr>
         <th>Order Id</th>
         <th>User Id</th>
         <th>Person Id</th>
         <th>Price</th>
         <th>Hours</th>
         <th>Start Hour</th>
-        <th>edit</th>
-        <th>delete</th>
+        <th colspan="2"></th>
     </tr>
     </thead>
     <tbody>
