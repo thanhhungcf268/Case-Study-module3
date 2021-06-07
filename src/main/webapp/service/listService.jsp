@@ -11,6 +11,38 @@
 <html>
 <head>
     <title>Title</title>
+<%--    <style>--%>
+<%--        body{--%>
+<%--            text-align: center;--%>
+<%--            font-family: 'Open Sans', sans-serif;--%>
+<%--            font-weight: 300;--%>
+<%--            line-height: 1.42em;--%>
+<%--            background-color: #dfaaee;--%>
+<%--        }--%>
+<%--        table{--%>
+<%--            width: 80%;--%>
+<%--            border-collapse: collapse;--%>
+<%--            mso-cellspacing: 5px;--%>
+<%--            margin: 0 auto;--%>
+<%--        }--%>
+<%--        th{--%>
+<%--            height: 40px;--%>
+<%--            text-align: center;--%>
+<%--            font-size: x-large;--%>
+<%--            font-weight: bold;--%>
+<%--        }--%>
+<%--        td {--%>
+<%--            border: 1px solid #7243aa;--%>
+<%--            padding: 8px;--%>
+<%--        }--%>
+<%--        tr:hover{--%>
+<%--            font-weight: bold;--%>
+<%--            cursor: pointer;--%>
+<%--        }--%>
+
+<%--    </style>--%>
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <h1>List type service </h1>
@@ -21,7 +53,7 @@
 </form>
 <a href="/Services?action=create">|| create new ||</a>
 <p style="color: red"><c:out value="${message}"/></p>
-<table>
+<table >
     <tr>
         <td>Id</td>
         <td>Name</td>

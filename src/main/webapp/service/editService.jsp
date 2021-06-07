@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Edit type service</title>
+    <link href="../css/editStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1>Edit service </h1>

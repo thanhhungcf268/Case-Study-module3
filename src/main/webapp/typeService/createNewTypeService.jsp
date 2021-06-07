@@ -14,6 +14,8 @@
 </head>
 <body>
 <h1>Create new type service </h1>
+<link href="../css/editStyle.css" rel="stylesheet" type="text/css">
+
 <p style="color: red"><c:out value="${message}"/></p>
 <a href="/">|| back home ||</a>
 <a href="/typeServices">|| back list type of service ||</a>

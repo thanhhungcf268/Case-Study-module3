@@ -11,6 +11,8 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <h1>List type service </h1>
