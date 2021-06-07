@@ -127,6 +127,8 @@ public class ServiceServlet extends HttpServlet {
         String name = request.getParameter("service_name");
         int type = Integer.parseInt(request.getParameter("type_id"));
         ServiceDB serviceDB = new ServiceDB(id, name,type);
+        List<TypeService> typeServices = typeOfService.findAll();
+
         try {
             boolean isEdit = servicesOfService.update(serviceDB.getId(), serviceDB);
             if (!isEdit) {
@@ -135,6 +137,8 @@ public class ServiceServlet extends HttpServlet {
                 request.setAttribute("message", "Success!");
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/service/editService.jsp");
+            request.setAttribute("service", serviceDB);
+            request.setAttribute("typeServices",typeServices);
             dispatcher.forward(request, response);
         } catch (SQLException | ServletException | IOException e) {
             e.printStackTrace();
@@ -142,6 +146,8 @@ public class ServiceServlet extends HttpServlet {
     }
 
     private void createNew(HttpServletRequest request, HttpServletResponse response) {
+        List<TypeService> typeServices = typeOfService.findAll();
+
         String name = request.getParameter("service_name");
         int type = Integer.parseInt(request.getParameter("type_id"));
         ServiceDB serviceDB = new ServiceDB(name,type);
@@ -152,7 +158,10 @@ public class ServiceServlet extends HttpServlet {
             } else {
                 request.setAttribute("message", "Success!");
             }
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/service/createNewService.jsp");
+            request.setAttribute("typeServices",typeServices);
+
             dispatcher.forward(request, response);
         } catch (SQLException | ServletException | IOException throwables) {
             throwables.printStackTrace();
