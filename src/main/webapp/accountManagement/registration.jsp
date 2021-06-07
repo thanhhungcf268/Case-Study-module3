@@ -71,7 +71,7 @@
         }
     </style>
 </head>
-<body>
+<body ng-app="myapp">
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -131,13 +131,24 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input name="passWord" class="form-control" placeholder="Create password" type="password">
+                <div style="height: 50px" ng-controller="PasswordController">
+                    <div id="checkPassWord" ng-style="passwordStrength"></div>
+                    <div style="float: left; width: 100px">
+                        <input style="    margin-left: -146px;width: 196px;" id="passWord" placeholder="Password" name="passWord" class="form-control" type="text"
+                               ng-model="password"
+                               onkeyup="checkPassWord()" ng-change="analyze(password)"
+                        />
+                    </div>
+                </div>
+                <%--                <input name="passWord" id="passWord" class="form-control" onkeyup="checkPassWord()" placeholder="Create password" type="password">--%>
             </div> <!-- form-group// -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                 </div>
-                <input name="phone" class="form-control" placeholder="Phone number" type="number">
+                <div style="color:red;" id="checkPhone"></div>
+                <input name="phone" id="phone" value="" onkeyup="checkNumberPhone()" class="form-control"
+                       placeholder="Phone number" type="number">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
@@ -210,6 +221,58 @@
         </div>
     </div>
 </footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 <script src="../css/bootstrap-5.0.1-dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
+<script>
+    function checkNumberPhone() {
+        let phone = document.getElementById("phone").value;
+        console.log(phone.length)
+        if (phone.length === 10) {
+            document.getElementById("checkPhone").style.color = "blue";
+            document.getElementById("checkPhone").innerHTML = "YES !"
+        } else {
+            document.getElementById("checkPhone").style.color = "red";
+            document.getElementById("checkPhone").innerHTML = "Must be 10 numbers !!!"
+        }
+    }
+
+    function checkPassWord() {
+        let passWord = document.getElementById("passWord").value;
+        if (passWord.length > 5) {
+            document.getElementById("checkPassWord").style.color = "blue";
+            document.getElementById("checkPassWord").innerHTML = "YES !"
+        } else {
+            document.getElementById("checkPassWord").style.color = "yellow";
+            document.getElementById("checkPassWord").innerHTML = "Must be 6 numbers !!!"
+        }
+    }
+
+    const myApp = angular.module("myapp", []);
+    myApp.controller("PasswordController", function ($scope) {
+
+        const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+        $scope.passwordStrength = {
+            "float": "left",
+            "width": "100px",
+            "height": "25px",
+            "margin-left": "95px",
+            "margin-top": "37px"
+        };
+
+        $scope.analyze = function (value) {
+            if (strongRegex.test(value)) {
+                $scope.passwordStrength["background-color"] = "green";
+            } else if (mediumRegex.test(value)) {
+                $scope.passwordStrength["background-color"] = "orange";
+            } else {
+                $scope.passwordStrength["background-color"] = "red";
+            }
+        };
+
+    });
+</script>
