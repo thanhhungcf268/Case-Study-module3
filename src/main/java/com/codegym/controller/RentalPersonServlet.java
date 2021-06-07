@@ -202,6 +202,11 @@ public class RentalPersonServlet extends HttpServlet {
         RentalPerson rental = this.rentalPersonService.select(id);
         RequestDispatcher dispatcher;
 
+        List<Integer> validAges = new ArrayList<>();
+        for (int i = MIN_AGE; i <= MAX_AGE; i++){
+            validAges.add(i);
+        }
+
         if (rental == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
@@ -212,7 +217,7 @@ public class RentalPersonServlet extends HttpServlet {
             rental.setPhone(phone);
             rental.setUrlImage(urlImage);
             boolean isUpdated = this.rentalPersonService.update(id, rental);
-
+            request.setAttribute("validAges", validAges);
             request.setAttribute("rental", rental);
             if (isUpdated == false) {
                 request.setAttribute("message", "Errors occurs when editing this employee!");
