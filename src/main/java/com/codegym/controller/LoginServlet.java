@@ -21,20 +21,6 @@ public class LoginServlet extends HttpServlet {
     private final IUserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String action = req.getParameter("action");
-//        if (action == null) {
-//            action = "";
-//        }
-//        switch (action) {
-//            case "login":
-//                try {
-//
-//                } catch (SQLException throwables) {
-//                    throwables.printStackTrace();
-//                }
-//                break;
-//
-//        }
     }
 
     @Override
@@ -60,12 +46,12 @@ public class LoginServlet extends HttpServlet {
         String passWord = req.getParameter("passWord");
         int checkUser = loginService1.loginService(userName, passWord);
         User user = userService.findById(checkUser);
-        UserServlet.idUser = user.getUserId();
         req.setAttribute("user",user);
         RequestDispatcher dispatcher;
         UserServlet.checkUser = userName;
         UserServlet.checkUserPassWord = passWord;
         if (checkUser != -1) {
+            UserServlet.idUser = user.getUserId();
             if (userName.equals("admin")) {
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageAdmin.jsp");
 
@@ -82,7 +68,5 @@ public class LoginServlet extends HttpServlet {
     private void showListRentalUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<RentalPerson> rentals = this.rentalPersonService.selectAll();
         request.setAttribute("rentals", rentals);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountManagement/homePageUser.jsp");
-//        dispatcher.forward(request, response);
     }
 }
