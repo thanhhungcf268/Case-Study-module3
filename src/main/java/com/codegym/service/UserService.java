@@ -36,7 +36,7 @@ public class UserService implements IUserService {
     }
 
     private boolean checkUser(User user) {
-        return  Pattern.matches("^[0-9a-zA-Z]{6,20}$", user.getPassWord());
+        return Pattern.matches("^[0-9a-zA-Z]{6,20}$", user.getPassWord());
     }
 
     @Override
@@ -62,5 +62,9 @@ public class UserService implements IUserService {
     @Override
     public boolean changePasswordById(int id) throws SQLException {
         return userDAO.changePasswordById(id);
+    }
+    @Override
+    public String forgotPassword(String userName,String phone) throws SQLException {
+        return userDAO.forgotPassword( userName, phone);
     }
 }

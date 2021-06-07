@@ -25,34 +25,53 @@ public class UserServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action) {
-            case "create":
-                String a = "registration.jsp";
-                createNewForm(request, response, a);
-                break;
-            case "edit":
-                try {
+        try {
+            switch (action) {
+                case "create":
+                    String a = "registration.jsp";
+                    createNewForm(request, response, a);
+                    break;
+                case "edit":
                     showEditUserForm(request, response);
-                } catch (SQLException throwable) {
-                    throwable.printStackTrace();
-                }
-                break;
-            case "list":
-                String b = "list.jsp";
-                createNewForm(request, response, b);
-                break;
-            case "delete":
-                try {
+                    break;
+                case "list":
+                    String b = "list.jsp";
+                    createNewForm(request, response, b);
+                    break;
+                case "delete":
+
                     deleteNewFrom(request, response);
-                } catch (SQLException throwable) {
-                    throwable.printStackTrace();
-                }
-                break;
-            default:
-                b = "list.jsp";
-                createNewForm(request, response, b);
-                break;
+
+                    break;
+                case "ForgotPasswords":
+                    forgotPasswordsFrom(request, response);
+                    break;
+                default:
+                    b = "list.jsp";
+                    createNewForm(request, response, b);
+                    break;
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
+
+    }
+
+    private void forgotPasswordsFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("accountManagement/ForgotPassword.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    private void forgotPassword(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String userName = request.getParameter("userName");
+        String phone = request.getParameter("phone");
+        String check = userService.forgotPassword(userName, phone);
+        if (check.equals("")) {
+            check = "wrong account or phone number";
+        }
+        request.setAttribute("message", "PassWord : "+check);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("accountManagement/ForgotPassword.jsp");
+        dispatcher.forward(request,response);
     }
 
     private void deleteNewFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -62,10 +81,11 @@ public class UserServlet extends HttpServlet {
         response.sendRedirect("/users?userName=" + checkUser + "&passWord=" + checkUserPassWord);
     }
 
-    private void setAttribute(HttpServletRequest request){
+    private void setAttribute(HttpServletRequest request) {
         request.setAttribute("userName", checkUser);
         request.setAttribute("passWord", checkUserPassWord);
     }
+
     private void showEditUserForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
         User user = userService.findById(id);
@@ -99,22 +119,24 @@ public class UserServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action) {
-            case "create":
-                try {
-                    createNewCustomer(request, response);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-                break;
-            case "edit":
-                try {
-                    editUser(request, response);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-                break;
+        try {
+            switch (action) {
+                case "create":
 
+                    createNewCustomer(request, response);
+
+                    break;
+                case "edit":
+
+                    editUser(request, response);
+
+                    break;
+                case "ForgotPassword":
+                    forgotPassword(request, response);
+                    break;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 

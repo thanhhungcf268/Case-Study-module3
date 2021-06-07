@@ -143,7 +143,7 @@
                         Don't have an account?<a href="/users?action=create">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="/users?action=create">Forgot your password?</a>
+                        <a href="/users?action=ForgotPasswords">Forgot your password?</a>
                     </div>
                 </div>
             </div>
