@@ -54,11 +54,9 @@ public class LoginServlet extends HttpServlet {
             UserServlet.idUser = user.getUserId();
             if (userName.equals("admin")) {
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageAdmin.jsp");
-
             }else {
                 showListRentalUser(req,resp);
                 dispatcher = req.getRequestDispatcher("/accountManagement/homePageUser.jsp");
-
             }
         } else {
             dispatcher = req.getRequestDispatcher("/error-404.jsp");
