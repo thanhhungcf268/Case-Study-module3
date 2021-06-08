@@ -131,16 +131,17 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <div style="height: 50px" ng-controller="PasswordController">
-                    <div id="checkPassWord" ng-style="passwordStrength"></div>
-                    <div style="float: left; width: 100px">
-                        <input style="    margin-left: -146px;width: 196px;" id="passWord" placeholder="Password" name="passWord" class="form-control" type="text"
-                               ng-model="password"
-                               onkeyup="checkPassWord()" ng-change="analyze(password)"
-                        />
-                    </div>
-                </div>
-                <%--                <input name="passWord" id="passWord" class="form-control" onkeyup="checkPassWord()" placeholder="Create password" type="password">--%>
+                <%--                <div style="height: 50px" ng-controller="PasswordController">--%>
+                <%--                    <div id="checkPassWord" ng-style="passwordStrength"></div>--%>
+                <%--                    <div style="float: left; width: 100px">--%>
+                <%--                        <input style="    margin-left: -146px;width: 196px;" id="passWord" placeholder="Password" name="passWord" class="form-control" type="text"--%>
+                <%--                               ng-model="password"--%>
+                <%--                               onkeyup="checkPassWord()" ng-change="analyze(password)"--%>
+                <%--                        />--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <input name="passWord" id="passWord" class="form-control" onkeyup="checkPassWord()"
+                       placeholder="Create password" type="password">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
@@ -222,7 +223,7 @@
     </div>
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>--%>
 <script src="../css/bootstrap-5.0.1-dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
@@ -250,29 +251,29 @@
         }
     }
 
-    const myApp = angular.module("myapp", []);
-    myApp.controller("PasswordController", function ($scope) {
-
-        const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-        const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-
-        $scope.passwordStrength = {
-            "float": "left",
-            "width": "100px",
-            "height": "25px",
-            "margin-left": "95px",
-            "margin-top": "37px"
-        };
-
-        $scope.analyze = function (value) {
-            if (strongRegex.test(value)) {
-                $scope.passwordStrength["background-color"] = "green";
-            } else if (mediumRegex.test(value)) {
-                $scope.passwordStrength["background-color"] = "orange";
-            } else {
-                $scope.passwordStrength["background-color"] = "red";
-            }
-        };
-
-    });
+    // const myApp = angular.module("myapp", []);
+    // myApp.controller("PasswordController", function ($scope) {
+    //
+    //     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    //     const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+    //
+    //     $scope.passwordStrength = {
+    //         "float": "left",
+    //         "width": "100px",
+    //         "height": "25px",
+    //         "margin-left": "95px",
+    //         "margin-top": "37px"
+    //     };
+    //
+    //     $scope.analyze = function (value) {
+    //         if (strongRegex.test(value)) {
+    //             $scope.passwordStrength["background-color"] = "green";
+    //         } else if (mediumRegex.test(value)) {
+    //             $scope.passwordStrength["background-color"] = "orange";
+    //         } else {
+    //             $scope.passwordStrength["background-color"] = "red";
+    //         }
+    //     };
+    //
+    // });
 </script>
