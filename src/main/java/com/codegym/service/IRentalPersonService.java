@@ -19,4 +19,5 @@ public interface IRentalPersonService {
     List<RentalPerson> findRentalByName(String name);
 
     List<RentalPerson> sort(String category, String type);
+    public List<Integer> selectAllID();
 }

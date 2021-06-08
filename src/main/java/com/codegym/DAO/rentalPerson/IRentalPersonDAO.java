@@ -10,4 +10,6 @@ public interface IRentalPersonDAO extends IGeneralDAO<RentalPerson> {
     List<RentalPerson> findRentalByName(String name) throws SQLException;
 
     List<RentalPerson> sort(String category, String type) throws SQLException;
+    public List<Integer> selectAllID();
+
 }

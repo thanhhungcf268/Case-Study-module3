@@ -15,27 +15,26 @@
 
 </head>
 <body>
-<h1>List type service </h1>
+<h1>List person service </h1>
 <form method="post" action="/login?action=login">
     <input hidden name="passWord" value="${passWord}">
     <input hidden name="userName" value="${userName}">
     <button type="submit">back home</button>
 </form>
-<a href="/typeServices?action=create">|| create new ||</a>
+<a href="/PersonServices?action=create">|| create new ||</a>
 <p style="color: red"><c:out value="${message}"/></p>
 <table>
     <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Edit</td>
+        <td>Service Id</td>
+        <td>Person Id</td>
         <td>Delete</td>
     </tr>
-    <c:forEach items="${types}" var="service_id">
+    <c:forEach items="${personServices}" var="service_id">
         <tr>
-            <td><c:out value="${service_id.id}"/></td>
-            <td><c:out value="${service_id.name}"/></td>
-            <td><a href="/typeServices?action=edit&type_id=${service_id.id}">Edit</a></td>
-            <td><a href="/typeServices?action=delete&type_id=${service_id.id}">Delete</a></td>
+            <td><c:out value="${service_id.person_id}"/></td>
+            <td><c:out value="${service_id.service_id}"/></td>
+            <td><a href="/PersonServices?action=delete&person_id=${service_id.person_id}&service_id=${service_id.service_id}">
+                Delete</a></td>
         </tr>
     </c:forEach>
 </table>

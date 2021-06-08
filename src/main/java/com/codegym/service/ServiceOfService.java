@@ -38,4 +38,9 @@ public class ServiceOfService implements IServiceOfService{
     public boolean delete(int id) throws SQLException {
         return serviceDB_dao.delete(id);
     }
+
+    @Override
+    public List<Integer> selectAllID() {
+        return serviceDB_dao.selectAllID();
+    }
 }

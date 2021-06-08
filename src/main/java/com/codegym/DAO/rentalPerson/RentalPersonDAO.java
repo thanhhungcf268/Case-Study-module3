@@ -17,12 +17,12 @@ public class RentalPersonDAO implements IRentalPersonDAO {
     public static final String UPDATE_RENTAL_PERSON_BY_ID = "update personrental set name = ?, age = ?, gender = ?, status = ?, phone = ?, urlImg = ? where personId = ?";
     public static final String DELETE_RENTAL_PERSON_BY_ID = "Call deleteRentalPerson(?)";
     public static final String SORT_RENTAL = "select * from personrental order by";
+    private static final String SELECT_ALL_ID = "select personId from personrental";
 
 
     @Override
     public List<RentalPerson> selectAll() throws SQLException {
         Connection connection = SQLConnection.getConnection();
-
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_RENTAL_PEOPLE);
         ResultSet rs = preparedStatement.executeQuery();
         return convertResultSetToList(rs);
@@ -110,6 +110,25 @@ public class RentalPersonDAO implements IRentalPersonDAO {
 
         return convertResultSetToList(rs);
     }
+
+    @Override
+    public List<Integer> selectAllID() {
+        Connection connection = SQLConnection.getConnection();
+        List<Integer> list = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int personId = resultSet.getInt("personId");
+                list.add(personId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
 
 
     private List<RentalPerson> convertResultSetToList(ResultSet rs) throws SQLException {

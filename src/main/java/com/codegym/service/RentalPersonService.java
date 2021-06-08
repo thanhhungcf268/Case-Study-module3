@@ -82,4 +82,9 @@ public class RentalPersonService implements IRentalPersonService{
         }
         return null;
     }
+
+    @Override
+    public List<Integer> selectAllID() {
+        return rentalDAO.selectAllID();
+    }
 }

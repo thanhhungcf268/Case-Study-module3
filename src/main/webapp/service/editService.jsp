@@ -27,13 +27,13 @@
         <tr>
             <td>Type:</td>
             <td><select name="type_id" >
-                <c:forEach items="${typeServices}" var="type">
+                <c:forEach items="${typeServices}" var="service_id">
                     <c:choose>
-                        <c:when test="${type.getId()==service.type}">
-                            <option selected value="${type.getId()}"><c:out value="${type.getName()}"/></option>
+                        <c:when test="${service_id.getId()==service.type}">
+                            <option selected value="${service_id.getId()}"><c:out value="${service_id.getName()}"/></option>
                         </c:when>
                         <c:otherwise>
-                            <option value="${type.getId()}"><c:out value="${type.getName()}"/></option>
+                            <option value="${service_id.getId()}"><c:out value="${service_id.getName()}"/></option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>

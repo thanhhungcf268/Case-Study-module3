@@ -13,6 +13,7 @@ public class ServiceDB_DAO implements IServiceDB_DAO{
     private static final String DELETE_SERVICE = "delete from service where server_id = ?";
     private static final String UPDATE_SERVICE = "update service set service_name = ?,type_id = ?  where server_id = ?";
     private static final String SELECT_SERVICE = "select * from service where server_id=?";
+    private static final String SELECT_ALL_ID = "select server_id from service";
     private Connection connection = SQLConnection.getConnection();
     private int newRow;
 
@@ -90,5 +91,22 @@ public class ServiceDB_DAO implements IServiceDB_DAO{
         preparedStatement.setInt(3, serviceDB.getId());
         newRow = preparedStatement.executeUpdate();
         return newRow != 0;
+    }
+
+    @Override
+    public List<Integer> selectAllID() {
+        List<Integer> list = new ArrayList<>();
+        connection = SQLConnection.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int service_id = resultSet.getInt("server_id");
+                list.add(service_id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

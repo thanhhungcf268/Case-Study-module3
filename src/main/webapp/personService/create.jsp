@@ -15,21 +15,25 @@
 
 </head>
 <body>
-<h1>Create new type service </h1>
+<h1>Create new person service </h1>
 <p style="color: red"><c:out value="${message}"/></p>
 <a href="/">|| back home ||</a>
-<a href="/Services">|| back list service ||</a>
+<a href="/PersonServices">|| back list person service ||</a>
 <form method="post">
     <table>
         <tr>
-            <td>Name:</td>
-            <td><input type="text" name="service_name"></td>
+            <td>Person ID:</td>
+            <td><select name="person_id">
+                <c:forEach items="${personIDs}" var="person_id">
+                    <option value="${person_id}"><c:out value="${person_id}"/></option>
+                </c:forEach>
+            </select></td>
         </tr>
         <tr>
-            <td>Type:</td>
-            <td><select name="type_id">
-                <c:forEach items="${typeServices}" var="service_id">
-                    <option value="${service_id.getId()}"><c:out value="${service_id.getName()}"/></option>
+            <td>Service ID:</td>
+            <td><select name="service_id">
+                <c:forEach items="${serviceIDs}" var="service_id">
+                    <option value="${service_id}"><c:out value="${service_id}"/></option>
                 </c:forEach>
             </select></td>
         </tr>
